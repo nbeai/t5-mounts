@@ -14,9 +14,9 @@
         "category": "문서·서식",
         "files": [
           {
-            "bytes": 852,
+            "bytes": 1572,
             "path": "CHANGELOG.md",
-            "sha256": "0ebb3a5be66e3505ff44849c17ee52c122821800cc8a7a6495843d77fe109972"
+            "sha256": "5677718bf13ba292ca56708087652eaf08fa00b647cb0385fb92e1eb7836b9c8"
           },
           {
             "bytes": 1122,
@@ -24,9 +24,14 @@
             "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
           },
           {
-            "bytes": 7089,
+            "bytes": 8534,
             "path": "SKILL.md",
-            "sha256": "a996fafb05a48379c7a16cfadccd12dfe3f1cb10b4f6053897bad92e2a64c3fa"
+            "sha256": "50324a139b3094810be64ab589a6e1d158fcb2df7f92dfebd0f97a33b5f79bc4"
+          },
+          {
+            "bytes": 3291,
+            "path": "references/contracts.md",
+            "sha256": "54866c6481d4af04776f3f22c66c564d54b30e0a3028f1a5394f8280aedac13b"
           },
           {
             "bytes": 5710,
@@ -39,9 +44,9 @@
             "sha256": "cd90344f01fe49222314917a1c88864b7f035f88dcc9c921c7f61f7d0e30daec"
           },
           {
-            "bytes": 17994,
+            "bytes": 25397,
             "path": "scripts/forms.mjs",
-            "sha256": "a3b2d53a366ce87bf2ca78ad755ecf7f833e470b7340b1f44727e4b44cd6b5af"
+            "sha256": "412b3cc39c6aade1bbf8280b16ecc4945e245eb9fd2050946e20bcb976bfbcd7"
           },
           {
             "bytes": 499,
@@ -61,7 +66,7 @@
         "name": "한국 업무 서식",
         "origin": {
           "changes": [],
-          "note": "티파이브 연구(결과물품질-스킬연구-20261026) 후보 K2 를 2026-10-26 창고 항목으로 처음 만든 것. 새 렌더러·빌더 없이 티파이브 문서 도구(create-docx·create-xlsx·create-hwpx)가 읽는 명세와 칸·계산 사실만 더한다.",
+          "note": "티파이브 연구(결과물품질-스킬연구-20261026) 후보 K2 를 2026-10-26 창고 항목으로 처음 만든 것. 새 렌더러·빌더 없이 티파이브 문서 도구(create-docx·create-xlsx·create-hwpx)가 읽는 명세와 칸·계산 사실만 더한다. 0.2.0(2026-10-26): 서식 분야 전수 조사 추천 4에 따라 용역·행사·납품·문화예술용역·하도급 납품 계약서 절을 더함(새 스킬 없음, 상담 결정).",
           "type": "t5_made",
           "upstream": null
         },
@@ -90,7 +95,7 @@
         },
         "platforms": {
           "macos": {
-            "note": "2026-10-26 macOS(node 24.14.0)에서 이 판 forms.mjs 로 견적서·거래명세서 명세를 만들고 본선 d622dcd4 문서 도구로 DOCX·XLSX 를 실제로 만들어 다시 읽음(합계·한글 금액·수식 확인). 기안문 틀은 create-hwpx --preset 기안문 으로 HWPX 를 만들어 다시 읽음.",
+            "note": "2026-10-26 macOS(node 24.14.0)에서 이 판 forms.mjs 로 견적서·거래명세서 명세를 만들고 본선 d622dcd4 문서 도구로 DOCX·XLSX 를 실제로 만들어 다시 읽음(합계·한글 금액·수식 확인). 기안문 틀은 create-hwpx --preset 기안문 으로 HWPX 를 만들어 다시 읽음. 0.2.0: 같은 견적 사실표로 용역 계약서 DOCX 를 본선 4c96b025 문서 도구로 실제로 만들어 다시 읽음(계약 금액 = 견적 합계).",
             "supported": true,
             "verified": true
           },
@@ -110,8 +115,8 @@
           "checks": [
             {
               "item": "1. 티파이브가 받아들이나",
-              "method": "본선 t5-work-app d622dcd4(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
-              "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 191자(한도 320), when_to_use 25자(140에서 잘림). SKILL.md 7089바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음.",
+              "method": "본선 t5-work-app 4c96b025(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행(0.2.0 판)",
+              "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 219자(한도 320), when_to_use 29자. SKILL.md 8,534바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음.",
               "result": "pass"
             },
             {
@@ -158,7 +163,7 @@
             {
               "item": "9. 기본 스킬과 겹침 0(제작 가이드 6절 제안 칸)",
               "method": "본선 기본 스킬 폴더 33개 이름과 대조, 본문이 부르는 도구 확인",
-              "note": "이름이 기본 스킬과 겹치지 않음. 견적서·거래명세서·청구서·공문 틀은 기본 스킬이 하지 않는 일(연구 03 재판정). 만들기는 기본 문서 도구(create-docx·create-xlsx·create-hwpx)를 부르기만 함 — 새 렌더러·빌더 0.",
+              "note": "이름이 기본 스킬과 겹치지 않음. 견적서·거래명세서·청구서·공문 틀은 기본 스킬이 하지 않는 일(연구 03 재판정). 만들기는 기본 문서 도구(create-docx·create-xlsx·create-hwpx)를 부르기만 함 — 새 렌더러·빌더 0. 계약서 절도 create-docx 를 부르기만 함.",
               "result": "pass"
             },
             {
@@ -174,12 +179,196 @@
         },
         "schema": "t5.mount.v1",
         "status": "draft",
-        "summary": "견적서·거래명세서·청구서를 금액·한글 금액까지 맞춰 워드·엑셀로, 공문을 한글 기안문 꼴로 만들어 줘요.",
+        "summary": "견적서·거래명세서·청구서·계약서를 금액·한글 금액까지 맞춰 워드·엑셀로, 공문을 한글 기안문 꼴로 만들어 줘요.",
+        "t5MinVersion": "2.2.1",
+        "version": "0.2.0"
+      },
+      "mountSha256": "5cf1c8ba47f87641920c6669a2156f95ed51b2a8454f4275d050c8bfed42dbe0",
+      "path": "skills/korean-business-forms"
+    },
+    {
+      "mount": {
+        "category": "문서·서식",
+        "files": [
+          {
+            "bytes": 693,
+            "path": "CHANGELOG.md",
+            "sha256": "3a666a2e70c06c1ccb7b7415b2f6ac44ce28d486156823cc58ebe79622669264"
+          },
+          {
+            "bytes": 1122,
+            "path": "LICENSE",
+            "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+          },
+          {
+            "bytes": 5781,
+            "path": "SKILL.md",
+            "sha256": "4b159c0a867667a15e4868d22e44e983ee92000cd2f5bf6f5280645eadf365b9"
+          },
+          {
+            "bytes": 1287,
+            "path": "references/boundary.md",
+            "sha256": "7bfbf03803b54c99cdcd6ea93c50ef62c1f6b09897efff3f3e5d72c1de8d021c"
+          },
+          {
+            "bytes": 2849,
+            "path": "references/facts-format.md",
+            "sha256": "c97a37ee6f84cf7f0fd3da4767ef4e49e32a51369e5c85b850d419a2e61ceb8c"
+          },
+          {
+            "bytes": 3841,
+            "path": "references/law-items.md",
+            "sha256": "8815d592be388091399e8e30e09ad8a9e0bc94b4e1b548294bfe91c4338b8b5e"
+          },
+          {
+            "bytes": 1320,
+            "path": "references/yearly-values.md",
+            "sha256": "6169bdb4c53855403913cf97b4479a017968291cd5bab5f241f338c341a2bc54"
+          },
+          {
+            "bytes": 16808,
+            "path": "scripts/payroll.mjs",
+            "sha256": "a69df0a7cb5a4fe23336a2e77cc77f246119ab75a65fc32cf89a948c0988f9cd"
+          }
+        ],
+        "id": "korean-employment-paperwork",
+        "kind": "skill",
+        "license": {
+          "decided": true,
+          "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md).",
+          "redistribution": "allowed",
+          "spdx": "MIT",
+          "upstreamLicense": null
+        },
+        "name": "직원 서류",
+        "origin": {
+          "changes": [],
+          "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 2를 2026-10-26 창고 항목으로 처음 만든 것. 최저임금·보험료율·세액 같은 해마다 바뀌는 값은 싣지 않고 사람이 확인한 값만 쓴다. 외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음.",
+          "type": "t5_made",
+          "upstream": null
+        },
+        "overrides": null,
+        "permissions": {
+          "externalSend": {
+            "note": "4대보험 신고를 제출하지 않아요. 명세서를 직원에게 보내는 일은 사람이 해요.",
+            "uses": false
+          },
+          "files": {
+            "note": "사실표(JSON)를 읽고, 정한 폴더에 명세 파일을 써요(실행 임시 폴더). 결과 문서는 티파이브 문서 도구가 새로 만들어요. 원본 근무표는 고치지 않아요.",
+            "uses": true
+          },
+          "internet": {
+            "note": "인터넷에 접속하지 않아요.",
+            "uses": false
+          },
+          "money": {
+            "note": "결제·유료 서비스 없음.",
+            "uses": false
+          },
+          "programs": {
+            "note": "node 로 scripts/payroll.mjs 를 실행해요(계산과 명세 만들기만).",
+            "uses": true
+          }
+        },
+        "platforms": {
+          "macos": {
+            "note": "2026-10-26 macOS(node 24.14.0)에서 가상 직원 셋(주 40시간·15시간·일용)으로 임금대장 XLSX·임금명세서 DOCX 3장, 단시간 근로계약서 DOCX 를 본선 4c96b025 문서 도구로 실제로 만들어 다시 읽음. 금액은 손계산과 원 단위까지 같음.",
+            "supported": true,
+            "verified": true
+          },
+          "windows": {
+            "note": "확인 안 함. Windows 실기에서 돌려 보지 않았다.",
+            "supported": true,
+            "verified": false
+          }
+        },
+        "requires": [
+          "node(티파이브에 들어 있음)",
+          "티파이브 문서 도구($T5_DOCUMENT_CLI)",
+          "직원 근무 조건·근무 기록",
+          "그해 최저임금 값과 출처(고시)",
+          "공제액(고지서·간이세액표)"
+        ],
+        "review": {
+          "checks": [
+            {
+              "item": "1. 티파이브가 받아들이나",
+              "method": "본선 t5-work-app 4c96b025(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+              "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 195자(한도 320), when_to_use 29자. SKILL.md 5781바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음.",
+              "result": "pass"
+            },
+            {
+              "item": "2. 권한",
+              "method": "scripts 의 import·fs 읽기/쓰기/복사·네트워크·자식 프로세스 줄을 읽고 SKILL.md 단계와 대조",
+              "note": "파일: 사실표 읽기, --out/--out-dir 에 명세 쓰기(writeFileSync). 지우기 0. 프로그램: node 스크립트만. 인터넷·외부 전송·돈 없음. 들이기 검사 externalDomains 0.",
+              "result": "pass"
+            },
+            {
+              "item": "3. 맥·Windows",
+              "method": "맥에서 이 판 스크립트와 본선 문서 도구로 결과 파일을 실제로 만듦. Windows 는 코드만 읽음",
+              "note": "맥 확인. Windows 실기 확인 안 함(platforms.windows.verified=false). 스크립트는 Node 내장만·경로는 path, UTF-16 입력도 읽음. 엑셀 근무표 날짜 값 읽기는 document-data inspect 에 맡김(Windows 지역 설정 차이 확인 안 됨).",
+              "result": "not_checked"
+            },
+            {
+              "item": "4. 라이선스",
+              "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+              "note": "licenseFacts: file LICENSE, name MIT, restriction 없음.",
+              "result": "pass"
+            },
+            {
+              "item": "5. 경계(백업 없는 파괴·돈)",
+              "method": "SKILL.md·scripts 에서 지우기·덮어쓰기·결제 동작 찾기",
+              "note": "지우기 0. 명세 파일은 실행 임시 폴더에 쓰게 함. 결제 없음.",
+              "result": "pass"
+            },
+            {
+              "item": "6. 비교군 이름 0",
+              "method": "SKILL.md·references·scripts 를 읽어 다른 AI 제품·경쟁 서비스 이름 찾기",
+              "note": "없음. 공공기관·공식 사이트 이름은 길 안내 출처.",
+              "result": "pass"
+            },
+            {
+              "item": "7. 비밀값 0",
+              "method": "tools/validate.mjs 의 비밀값 모양 검사(본선과 같은 규칙)",
+              "result": "pass"
+            },
+            {
+              "item": "8. 고정과 지문",
+              "method": "tools/refresh-files.mjs 로 files 를 적고 tools/validate.mjs 로 대조",
+              "note": "숨은 파일·링크 0. 파일 이름은 모두 영문.",
+              "result": "pass"
+            },
+            {
+              "item": "9. 기본 스킬과 겹침 0(제작 가이드 6절 제안 칸)",
+              "method": "본선 기본 스킬 폴더 이름과 대조, 본문이 부르는 도구 확인",
+              "note": "이름 겹침 없음. 근로계약서·임금명세서는 기본 스킬이 하지 않는 일(조사 4절 grep 0건). 만들기는 기본 문서 도구를 부르기만 함.",
+              "result": "pass"
+            },
+            {
+              "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
+              "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
+              "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고·공유 노트에. 이 칸이 끝나기 전에는 진열하지 않음.",
+              "result": "not_checked"
+            },
+            {
+              "item": "11. 법무 확인(상담 결정 칸)",
+              "method": "서식 분야 전수 조사 5·8절의 경계를 SKILL.md·references/boundary.md 에 옮김",
+              "note": "외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음.",
+              "result": "not_checked"
+            }
+          ],
+          "date": "2026-10-26",
+          "result": "pending",
+          "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)"
+        },
+        "schema": "t5.mount.v1",
+        "status": "draft",
+        "summary": "내 사업장 직원의 근로계약서와 임금명세서·임금대장을 법정 항목과 계산 근거까지 채워 만들고, 4대보험 신고 기한을 알려 줘요.",
         "t5MinVersion": "2.2.1",
         "version": "0.1.0"
       },
-      "mountSha256": "a60c7495852f34c746b5f6728c0a686533e6805c32227657bced1b2f13014e86",
-      "path": "skills/korean-business-forms"
+      "mountSha256": "06183d05de11fa0bcc3067da0472b2f1ca5312dc1d3d138f3b034d23c4f14976",
+      "path": "skills/korean-employment-paperwork"
     },
     {
       "mount": {
@@ -347,6 +536,356 @@
       },
       "mountSha256": "9e18be68bde9a99063141b06bdb1ff7db96fff9569cfe271e28677c55cdbedc8",
       "path": "skills/korean-gov-proposal"
+    },
+    {
+      "mount": {
+        "category": "문서·서식",
+        "files": [
+          {
+            "bytes": 731,
+            "path": "CHANGELOG.md",
+            "sha256": "d1744a26042c8acc454fc8539d962865c5cc019599baf379e18724b2a75105ed"
+          },
+          {
+            "bytes": 1122,
+            "path": "LICENSE",
+            "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+          },
+          {
+            "bytes": 5844,
+            "path": "SKILL.md",
+            "sha256": "a5186662e8beb4f4fb9015d83f7c00b9665f5460c053588968e7a81e98266cbf"
+          },
+          {
+            "bytes": 1394,
+            "path": "references/boundary.md",
+            "sha256": "59796f79d9482cea719d7df0470a521826e7fe5d9f4b6aeea3f97dc36e0deed6"
+          },
+          {
+            "bytes": 2567,
+            "path": "references/required-format.md",
+            "sha256": "fdf0a9eede99b8aed1c3d8d5aaa3565d88089c971ae33bb9390bea56a66a7510"
+          },
+          {
+            "bytes": 9452,
+            "path": "scripts/kit.mjs",
+            "sha256": "40c3322ed81dba278436b57d3818400a699cab659d8c9519b14bc047f8d8e99f"
+          }
+        ],
+        "id": "korean-paperwork-kit",
+        "kind": "skill",
+        "license": {
+          "decided": true,
+          "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md).",
+          "redistribution": "allowed",
+          "spdx": "MIT",
+          "upstreamLicense": null
+        },
+        "name": "구비서류 꾸러미",
+        "origin": {
+          "changes": [],
+          "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 1을 2026-10-26 창고 항목으로 처음 만든 것. 어떤 기관·연도의 서류 목록도 싣지 않고 늘 그 공고 원문을 읽는다. 보험 설계사 고객별 청구 서류 목록은 시험 사례로만(보험 전용 스킬 없음, 상담 결정).",
+          "type": "t5_made",
+          "upstream": null
+        },
+        "overrides": null,
+        "permissions": {
+          "externalSend": {
+            "note": "서류를 어디에도 제출하거나 보내지 않아요. 제출은 사람이 해요.",
+            "uses": false
+          },
+          "files": {
+            "note": "요구 서류 표와 내 폴더 파일 목록을 읽고(파일 내용은 읽지 않음), 묶을 때 정한 새 폴더에 복사본만 써요. 원본 파일은 고치거나 옮기거나 지우지 않고, 비어 있지 않은 폴더에는 쓰지 않아요.",
+            "uses": true
+          },
+          "internet": {
+            "note": "스크립트는 인터넷에 접속하지 않아요. 공고·안내 페이지는 사람이 준 주소를 티파이브의 기존 웹 읽기로 읽기만 해요(로그인·내려받기 0).",
+            "uses": false
+          },
+          "money": {
+            "note": "발급 수수료 결제 없음. 돈이 드는 발급은 사람이 해요.",
+            "uses": false
+          },
+          "programs": {
+            "note": "node 로 scripts/kit.mjs 를 실행해요(다른 프로그램을 띄우지 않음). PDF 합치기는 티파이브 문서 도구가 해요.",
+            "uses": true
+          }
+        },
+        "platforms": {
+          "macos": {
+            "note": "2026-10-26 macOS(node 24.14.0)에서 가상 안내문·가상 폴더(맥 NFD 이름 포함)로 check·bundle 을 돌리고, 묶은 진짜 PDF 둘을 본선 4c96b025 merge-pdf 로 2쪽 한 파일로 만듦.",
+            "supported": true,
+            "verified": true
+          },
+          "windows": {
+            "note": "확인 안 함. Windows 실기에서 돌려 보지 않았다.",
+            "supported": true,
+            "verified": false
+          }
+        },
+        "requires": [
+          "node(티파이브에 들어 있음)",
+          "공고문이나 안내 페이지",
+          "서류가 든 내 폴더"
+        ],
+        "review": {
+          "checks": [
+            {
+              "item": "1. 티파이브가 받아들이나",
+              "method": "본선 t5-work-app 4c96b025(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+              "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 196자(한도 320), when_to_use 31자. SKILL.md 5844바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음.",
+              "result": "pass"
+            },
+            {
+              "item": "2. 권한",
+              "method": "scripts 의 import·fs 읽기/쓰기/복사·네트워크·자식 프로세스 줄을 읽고 SKILL.md 단계와 대조",
+              "note": "파일: readdirSync·statSync 로 목록만, copyFileSync 로 --out 새 폴더에 복사(비어 있지 않으면 거절). 지우기 0. 프로그램: node 스크립트만. 인터넷: fetch·http 없음. 외부 전송·돈 없음. 들이기 검사 externalDomains 0.",
+              "result": "pass"
+            },
+            {
+              "item": "3. 맥·Windows",
+              "method": "맥에서 이 판 스크립트와 본선 문서 도구로 결과 파일을 실제로 만듦. Windows 는 코드만 읽음",
+              "note": "맥 확인. Windows 실기 확인 안 함(platforms.windows.verified=false). 스크립트는 Node 내장만·경로는 path, UTF-16 입력도 읽음. 맥 NFD·윈도 NFC 이름 차이는 normalize 로 맞춤(시험 있음).",
+              "result": "not_checked"
+            },
+            {
+              "item": "4. 라이선스",
+              "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+              "note": "licenseFacts: file LICENSE, name MIT, restriction 없음.",
+              "result": "pass"
+            },
+            {
+              "item": "5. 경계(백업 없는 파괴·돈)",
+              "method": "SKILL.md·scripts 에서 지우기·덮어쓰기·결제 동작 찾기",
+              "note": "원본 파일 지우기·덮어쓰기 0. 묶음 폴더가 비어 있지 않으면 쓰지 않음(시험 있음). 결제 없음.",
+              "result": "pass"
+            },
+            {
+              "item": "6. 비교군 이름 0",
+              "method": "SKILL.md·references·scripts 를 읽어 다른 AI 제품·경쟁 서비스 이름 찾기",
+              "note": "없음. 공공기관·공식 사이트 이름은 길 안내 출처.",
+              "result": "pass"
+            },
+            {
+              "item": "7. 비밀값 0",
+              "method": "tools/validate.mjs 의 비밀값 모양 검사(본선과 같은 규칙)",
+              "result": "pass"
+            },
+            {
+              "item": "8. 고정과 지문",
+              "method": "tools/refresh-files.mjs 로 files 를 적고 tools/validate.mjs 로 대조",
+              "note": "숨은 파일·링크 0. 파일 이름은 모두 영문.",
+              "result": "pass"
+            },
+            {
+              "item": "9. 기본 스킬과 겹침 0(제작 가이드 6절 제안 칸)",
+              "method": "본선 기본 스킬 폴더 이름과 대조, 본문이 부르는 도구 확인",
+              "note": "이름 겹침 없음. 구비서류 대조는 기본 스킬이 하지 않는 일(조사 4절 grep 0건). PDF 합치기·양식 채우기는 기본 문서 도구(merge-pdf·fill-hwp·fill-pdf)를 부르기만 함.",
+              "result": "pass"
+            },
+            {
+              "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
+              "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
+              "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고·공유 노트에. 이 칸이 끝나기 전에는 진열하지 않음.",
+              "result": "not_checked"
+            }
+          ],
+          "date": "2026-10-26",
+          "result": "pending",
+          "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)"
+        },
+        "schema": "t5.mount.v1",
+        "status": "draft",
+        "summary": "공고·안내문이 요구하는 서류를 내 폴더와 대조해 빠진 서류·기한 지난 서류를 알려 주고, 있는 서류를 순서대로 묶어 줘요.",
+        "t5MinVersion": "2.2.1",
+        "version": "0.1.0"
+      },
+      "mountSha256": "aa3ab93adc46aef0dc0644df6335671cad3e32d6e1f1d9e687610248907e215d",
+      "path": "skills/korean-paperwork-kit"
+    },
+    {
+      "mount": {
+        "category": "돈·장부",
+        "files": [
+          {
+            "bytes": 592,
+            "path": "CHANGELOG.md",
+            "sha256": "d22d6e61d63f45be795fb9cf7542f52252e52f0ffd65d0d86b6b12ab3f684630"
+          },
+          {
+            "bytes": 1122,
+            "path": "LICENSE",
+            "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+          },
+          {
+            "bytes": 5727,
+            "path": "SKILL.md",
+            "sha256": "fa4ecfdef4fefc55c4ddbd55244f9a20702f04540029de78a16a92d47685e85b"
+          },
+          {
+            "bytes": 1399,
+            "path": "references/boundary.md",
+            "sha256": "d65119279b1ff2f40618ba7c1b316717279c5b9164b7a8f77bd9a9414ef882d2"
+          },
+          {
+            "bytes": 1365,
+            "path": "references/facts-format.md",
+            "sha256": "56fb246d4a77ef624dfa66e248374e58c985a40dfa790820480c77ad900ff4b1"
+          },
+          {
+            "bytes": 1380,
+            "path": "references/message-steps.md",
+            "sha256": "2a83c5c0443ea95a2dda49c3664e8ad24103460fec2d01657a96f6aedfede52f"
+          },
+          {
+            "bytes": 1348,
+            "path": "references/official-paths.md",
+            "sha256": "eee0501489110c7e69a990ab131c9a607278338d5cad7bfd3516b318b5bad2d3"
+          },
+          {
+            "bytes": 13216,
+            "path": "scripts/reminder.mjs",
+            "sha256": "ffafcb6ecd232c8591e8c1bd2240be955aa198046213f58c14fd8ca1288163d8"
+          }
+        ],
+        "id": "korean-payment-reminder",
+        "kind": "skill",
+        "license": {
+          "decided": true,
+          "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md).",
+          "redistribution": "allowed",
+          "spdx": "MIT",
+          "upstreamLicense": null
+        },
+        "name": "받을 돈 독촉 문서",
+        "origin": {
+          "changes": [],
+          "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 3을 2026-10-26 창고 항목으로 처음 만든 것. 지급명령은 자료표와 공식 길 안내에서 멈춘다(상담 결정). 외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음.",
+          "type": "t5_made",
+          "upstream": null
+        },
+        "overrides": null,
+        "permissions": {
+          "externalSend": {
+            "note": "메시지·내용증명을 대신 보내거나 지급명령을 신청하지 않아요. 보내기·신청은 사람이 해요.",
+            "uses": false
+          },
+          "files": {
+            "note": "사실표와 본문 글을 읽고, 증거 폴더는 파일 목록만 읽어요. 정한 경로에 명세 파일을 써요. 원본·증거 파일은 고치지 않아요.",
+            "uses": true
+          },
+          "internet": {
+            "note": "인터넷에 접속하지 않아요. 우체국·전자소송은 이름으로 안내만 해요.",
+            "uses": false
+          },
+          "money": {
+            "note": "인지대·송달료·우편 요금 결제 없음(사람이 내요).",
+            "uses": false
+          },
+          "programs": {
+            "note": "node 로 scripts/reminder.mjs 를 실행해요(계산·명세·말 후보 찾기만).",
+            "uses": true
+          }
+        },
+        "platforms": {
+          "macos": {
+            "note": "2026-10-26 macOS(node 24.14.0)에서 가상 미수금(계약서·카톡 증거)으로 summary·letter·claim-sheet·lint 를 돌리고 내용증명·지급명령 자료표 DOCX 를 본선 4c96b025 문서 도구로 실제로 만들어 다시 읽음.",
+            "supported": true,
+            "verified": true
+          },
+          "windows": {
+            "note": "확인 안 함. Windows 실기에서 돌려 보지 않았다.",
+            "supported": true,
+            "verified": false
+          }
+        },
+        "requires": [
+          "node(티파이브에 들어 있음)",
+          "티파이브 문서 도구($T5_DOCUMENT_CLI)",
+          "받을 돈 사실(장부 받을 돈 표 또는 견적·계약·거래명세)",
+          "거래처 이름·주소",
+          "증거 파일 폴더"
+        ],
+        "review": {
+          "checks": [
+            {
+              "item": "1. 티파이브가 받아들이나",
+              "method": "본선 t5-work-app 4c96b025(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+              "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 193자(한도 320), when_to_use 29자. SKILL.md 5727바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음.",
+              "result": "pass"
+            },
+            {
+              "item": "2. 권한",
+              "method": "scripts 의 import·fs 읽기/쓰기/복사·네트워크·자식 프로세스 줄을 읽고 SKILL.md 단계와 대조",
+              "note": "파일: 사실표·본문 읽기, 증거 폴더는 목록만(readdirSync·statSync), --out 에 명세 쓰기. 지우기 0. 프로그램: node 스크립트만. 인터넷·외부 전송·돈 없음. 들이기 검사 externalDomains 0.",
+              "result": "pass"
+            },
+            {
+              "item": "3. 맥·Windows",
+              "method": "맥에서 이 판 스크립트와 본선 문서 도구로 결과 파일을 실제로 만듦. Windows 는 코드만 읽음",
+              "note": "맥 확인. Windows 실기 확인 안 함(platforms.windows.verified=false). 스크립트는 Node 내장만·경로는 path, UTF-16 입력도 읽음. 인터넷우체국·전자소송의 Windows 보안 프로그램 요구는 확인 안 됨(안내 문구 한 줄).",
+              "result": "not_checked"
+            },
+            {
+              "item": "4. 라이선스",
+              "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+              "note": "licenseFacts: file LICENSE, name MIT, restriction 없음.",
+              "result": "pass"
+            },
+            {
+              "item": "5. 경계(백업 없는 파괴·돈)",
+              "method": "SKILL.md·scripts 에서 지우기·덮어쓰기·결제 동작 찾기",
+              "note": "지우기 0. 결제·발송·신청 0. 이자 계산 0, 판단 문장 후보를 lint 로 냄.",
+              "result": "pass"
+            },
+            {
+              "item": "6. 비교군 이름 0",
+              "method": "SKILL.md·references·scripts 를 읽어 다른 AI 제품·경쟁 서비스 이름 찾기",
+              "note": "없음. 공공기관·공식 사이트 이름은 길 안내 출처.",
+              "result": "pass"
+            },
+            {
+              "item": "7. 비밀값 0",
+              "method": "tools/validate.mjs 의 비밀값 모양 검사(본선과 같은 규칙)",
+              "result": "pass"
+            },
+            {
+              "item": "8. 고정과 지문",
+              "method": "tools/refresh-files.mjs 로 files 를 적고 tools/validate.mjs 로 대조",
+              "note": "숨은 파일·링크 0. 파일 이름은 모두 영문.",
+              "result": "pass"
+            },
+            {
+              "item": "9. 기본 스킬과 겹침 0(제작 가이드 6절 제안 칸)",
+              "method": "본선 기본 스킬 폴더 이름과 대조, 본문이 부르는 도구 확인",
+              "note": "이름 겹침 없음. 독촉·내용증명·지급명령 자료는 기본 스킬이 하지 않는 일(조사 4절 grep 0건). 만들기는 기본 문서 도구를 부르기만 함.",
+              "result": "pass"
+            },
+            {
+              "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
+              "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
+              "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고·공유 노트에. 이 칸이 끝나기 전에는 진열하지 않음.",
+              "result": "not_checked"
+            },
+            {
+              "item": "11. 법무 확인(상담 결정 칸)",
+              "method": "서식 분야 전수 조사 5·8절의 경계를 SKILL.md·references/boundary.md 에 옮김",
+              "note": "외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음.",
+              "result": "not_checked"
+            }
+          ],
+          "date": "2026-10-26",
+          "result": "pending",
+          "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)"
+        },
+        "schema": "t5.mount.v1",
+        "status": "draft",
+        "summary": "못 받은 돈의 금액·증거를 맞추고 정중한 독촉 메시지, 내 이름으로 보낼 내용증명 초안, 지급명령 자료표를 만들어 줘요.",
+        "t5MinVersion": "2.2.1",
+        "version": "0.1.0"
+      },
+      "mountSha256": "8045232bd1fefcba6af04ca549d7d6598cb9cc7c1ebced52e5491c2a01388220",
+      "path": "skills/korean-payment-reminder"
     },
     {
       "mount": {
