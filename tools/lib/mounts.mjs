@@ -7,6 +7,8 @@ import { basename, dirname, join, relative, resolve, sep } from 'node:path';
 export const KIND_DIRS = { skill: 'skills', mcp: 'mcp', cli: 'cli', plugin: 'plugins', hook: 'hooks' };
 export const INDEX_SCHEMA = 't5.mount-index.v1';
 export const PUBLIC_KEY_PATH = 'keys/t5-mounts-public.pem';
+// 출처 표시 세 가지(진열대·README 가 쓰는 이름). 스키마 origin.type 의 값과 짝이다.
+export const ORIGIN_LABELS = { t5_made: '티파이브 제작', reviewed_upstream: '검수 통과(원형 그대로)', t5_modified: '티파이브 수정판' };
 
 // 티파이브 본선 managed-skill-store.js 의 비밀값 모양 규칙과 같게 둔다(본선이 받아들이지 않는 것을 우리가 먼저 거른다).
 const SECRET_PATTERNS = [
@@ -119,12 +121,37 @@ export function checkItem(repoRoot, kindDir, id, schema) {
     if (SECRET_PATTERNS.some((p) => p.test(text))) errors.push(`${where}/${path}: 비밀값 모양이 들어 있음`);
   }
 
-  // 출처 규칙: 외부 원형은 링크·고정 커밋·원 라이선스가 반드시 있다. 우리 제작물은 원형 칸이 비어 있다.
-  if (mount.origin.type === 'external') {
-    if (!mount.origin.upstream) errors.push(`${where}: 외부 원형은 origin.upstream(주소·태그·커밋)이 있어야 함`);
-    if (!mount.license.upstreamLicense) errors.push(`${where}: 외부 원형은 license.upstreamLicense 가 있어야 함`);
-    if (mount.license.redistribution === 'allowed' && !mount.license.decided) errors.push(`${where}: 외부 원형 사본은 오너 결정(license.decided) 없이 둘 수 없음`);
-  } else if (mount.origin.upstream) errors.push(`${where}: 우리 제작물에는 origin.upstream 을 두지 않음`);
+  // 이름 규칙: 한국어 표시 이름(name) + 영문 짧은 이름(id = 폴더).
+  if (!/[가-힣]/u.test(mount.name)) errors.push(`${where}: name 은 한국어 표시 이름이어야 함(한글 없음)`);
+
+  // 출처 규칙(세 가지): 티파이브 제작은 원형 칸이 비고, 검수 통과·수정판은 원형 링크·고정 커밋·원 라이선스가 반드시 있다.
+  const { type } = mount.origin;
+  if (type === 't5_made') {
+    if (mount.origin.upstream) errors.push(`${where}: 티파이브 제작에는 origin.upstream 을 두지 않음`);
+  } else {
+    if (!mount.origin.upstream) errors.push(`${where}: 원형이 있는 항목은 origin.upstream(주소·태그·커밋)이 있어야 함`);
+    if (!mount.license.upstreamLicense) errors.push(`${where}: 원형이 있는 항목은 license.upstreamLicense 가 있어야 함`);
+    if (mount.license.redistribution === 'allowed' && !mount.license.decided) errors.push(`${where}: 원형 사본은 오너 결정(license.decided) 없이 둘 수 없음`);
+  }
+  if (type === 't5_modified') {
+    if (!mount.origin.changes.length) errors.push(`${where}: 티파이브 수정판은 origin.changes(바뀐 점)가 있어야 함`);
+    // 수정판은 원형을 고친 사본을 이 창고에 둔다 — 재배포 허락과 오너 결정이 모두 있어야 한다(CHECKLIST 4).
+    if (mount.license.redistribution !== 'allowed' || !mount.license.decided) errors.push(`${where}: 티파이브 수정판은 재배포 허락(redistribution allowed)과 오너 결정이 있어야 함`);
+  } else if (mount.origin.changes.length) errors.push(`${where}: 바뀐 점(origin.changes)은 티파이브 수정판에만 적음`);
+
+  // 기본 스킬 업그레이드(오너 결정 2026-10-26): 이미 실린 기본 스킬을 같은 이름·높은 판으로 내보낸다.
+  if (mount.overrides) {
+    if (mount.kind !== 'skill') errors.push(`${where}: 기본 스킬 덮어쓰기(overrides)는 스킬만`);
+    if (mount.overrides.baseSkill !== mount.id) errors.push(`${where}: overrides.baseSkill 은 id 와 같은 이름이어야 함`);
+    // 티파이브가 기본 스킬을 실제로 바꿔 끼우는지 확인(연구 세션 t5-skill-research)되기 전에는 진열하지 않는다(CHECKLIST 정리 규칙).
+    if (mount.status === 'listed') errors.push(`${where}: 기본 스킬 덮어쓰기 항목은 티파이브 동작 확인 전에는 listed 가 될 수 없음`);
+  }
+
+  // 판 이력: CHANGELOG.md 가 있고 지금 판의 제목이 있어야 한다.
+  let changelog = null; try { changelog = readFileSync(join(folder, 'CHANGELOG.md'), 'utf8'); } catch { errors.push(`${where}: CHANGELOG.md(판 이력)가 없음`); }
+  if (changelog != null && !new RegExp(`^## ${mount.version.replace(/[.]/gu, '\\.')}(?:\\s|$)`, 'mu').test(changelog)) {
+    errors.push(`${where}/CHANGELOG.md: 지금 판(## ${mount.version}) 제목이 없음`);
+  }
 
   // 진열 조건: 라이선스가 정해졌고 검수가 통과(pass)여야 listed.
   if (mount.status === 'listed') {
@@ -191,7 +218,10 @@ export function assertOutsideRepo(repoRoot, path) {
 export function buildIndex(repoRoot, { publicKeyPem, builtAt }) {
   const { items, errors } = checkRepo(repoRoot);
   if (errors.length) throw Object.assign(new MountError('items_invalid', '항목 검사가 떨어져 목록을 만들지 않았어요.'), { errors });
+  // 진열대가 읽는 분류 순서와 출처 표시 이름도 목록에 함께 싣는다(분류의 원본은 스키마의 category 목록 하나).
+  const schema = JSON.parse(readFileSync(join(repoRoot, 'schema', 'mount.schema.json'), 'utf8'));
   return canonicalJson({ schema: INDEX_SCHEMA, builtAt, keyId: keyIdOf(publicKeyPem),
+    categories: schema.properties.category.enum, originLabels: ORIGIN_LABELS,
     items: items.map(({ path, mount, mountSha256 }) => ({ path, mountSha256, mount })) });
 }
 
@@ -221,6 +251,10 @@ export function verifyRepo(repoRoot, { publicKeyPem = null } = {}) {
   let index; try { index = JSON.parse(indexText); } catch { fail('index_invalid', 'index.json 이 깨짐'); return { ok: false, errors }; }
   if (index.schema !== INDEX_SCHEMA) fail('index_invalid', `index.json schema 가 ${INDEX_SCHEMA} 가 아님`);
   if (index.keyId !== keyIdOf(pem)) fail('key_mismatch', '목록에 적힌 열쇠 번호가 공개 열쇠와 다름');
+  const categories = JSON.parse(readFileSync(join(repoRoot, 'schema', 'mount.schema.json'), 'utf8')).properties.category.enum;
+  if (canonicalJson(index.categories ?? null) !== canonicalJson(categories) || canonicalJson(index.originLabels ?? null) !== canonicalJson(ORIGIN_LABELS)) {
+    fail('index_stale', '목록의 분류·출처 이름이 지금 스키마와 다름(목록을 다시 만드세요)');
+  }
 
   const listed = new Map((index.items ?? []).map((item) => [item.path, item]));
   for (const { path, mount, mountSha256 } of checked.items) {

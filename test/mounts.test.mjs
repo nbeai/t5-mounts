@@ -116,11 +116,74 @@ test('스키마: 필수 칸이 빠지면 잡는다', () => {
   assert.ok(checkRepo(repo).errors.some((e) => e.includes('money: 빠짐')));
 });
 
-test('외부 원형은 고정 커밋 없이 들어갈 수 없다', () => {
-  editMount((m) => { m.origin.type = 'external'; });
+test('검수 통과(원형 그대로)는 고정 커밋·원 라이선스 없이 들어갈 수 없다', () => {
+  editMount((m) => { m.origin.type = 'reviewed_upstream'; });
   const errors = checkRepo(repo).errors.join('\n');
   assert.match(errors, /origin\.upstream/u);
   assert.match(errors, /upstreamLicense/u);
+});
+
+const upstream = { url: 'https://github.com/example/skill', ref: 'v1.0.0', commit: 'a'.repeat(40) };
+const upstreamLicense = { spdx: 'MIT', url: 'https://github.com/example/skill/blob/v1.0.0/LICENSE', checkedAt: '2026-10-26' };
+
+test('티파이브 수정판은 바뀐 점과 재배포 허락·오너 결정이 있어야 한다', () => {
+  editMount((m) => { m.origin = { type: 't5_modified', upstream, changes: [], note: '' }; m.license.upstreamLicense = upstreamLicense; m.license.redistribution = 'links_only'; });
+  const errors = checkRepo(repo).errors.join('\n');
+  assert.match(errors, /origin\.changes/u);
+  assert.match(errors, /재배포 허락/u);
+});
+
+test('티파이브 수정판을 제대로 적으면 통과한다', () => {
+  editMount((m) => { m.origin = { type: 't5_modified', upstream, changes: ['Windows 경로 고침'], note: '' }; m.license.upstreamLicense = upstreamLicense; });
+  assert.deepEqual(checkRepo(repo).errors, []);
+});
+
+test('바뀐 점은 수정판에만 적는다', () => {
+  editMount((m) => { m.origin.changes = ['무언가 고침']; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('수정판에만')));
+});
+
+test('분류는 정해진 사장님 일 분류 가운데 하나여야 한다', () => {
+  editMount((m) => { m.category = 'marketing'; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('category')));
+});
+
+test('표시 이름은 한국어여야 한다', () => {
+  editMount((m) => { m.name = 'Promo Image Set'; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('한국어 표시 이름')));
+});
+
+test('기본 스킬 덮어쓰기는 같은 이름이어야 하고 바뀐 점·되돌리기가 있어야 한다', () => {
+  const base = { baseSkill: 'carousel', baseProductVersion: '2.2.1', baseContentSha256: 'b'.repeat(64), changes: ['문구 규칙 보강'], rollback: '장착 목록에서 빼면 기본 판으로 돌아가요.' };
+  editMount((m) => { m.overrides = base; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('id 와 같은 이름')));
+  editMount((m) => { m.overrides = { ...base, baseSkill: 'promo-image-set', changes: [], rollback: '' }; });
+  const errors = checkRepo(repo).errors.join('\n');
+  assert.match(errors, /overrides\.changes/u);
+  assert.match(errors, /overrides\.rollback/u);
+  editMount((m) => { m.overrides = { ...base, baseSkill: 'promo-image-set' }; m.status = 'draft'; });
+  assert.deepEqual(checkRepo(repo).errors, []);
+});
+
+test('기본 스킬 덮어쓰기 항목은 티파이브 동작 확인 전에는 진열할 수 없다', () => {
+  const base = { baseSkill: 'promo-image-set', baseProductVersion: '2.2.1', baseContentSha256: 'b'.repeat(64), changes: ['문구 규칙 보강'], rollback: '장착 목록에서 빼면 기본 판으로 돌아가요.' };
+  editMount((m) => { m.overrides = base; m.status = 'listed'; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('동작 확인 전')));
+});
+
+test('판 이력(CHANGELOG.md)이 없거나 지금 판 제목이 없으면 잡는다', () => {
+  editMount((m) => { m.version = '0.2.0'; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('## 0.2.0')));
+  rmSync(join(repo, 'skills', 'promo-image-set', 'CHANGELOG.md'));
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('CHANGELOG.md(판 이력)가 없음')));
+});
+
+test('목록의 분류가 지금 스키마와 다르면 잡는다', () => {
+  const schemaPath = join(repo, 'schema', 'mount.schema.json');
+  const schema = JSON.parse(readFileSync(schemaPath, 'utf8'));
+  schema.properties.category.enum.push('새 분류');
+  writeFileSync(schemaPath, JSON.stringify(schema));
+  assert.ok(codes().includes('index_stale'));
 });
 
 test('라이선스 미정·검수 미통과 항목은 listed 가 될 수 없다', () => {

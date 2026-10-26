@@ -1,9 +1,23 @@
 {
   "builtAt": "2026-10-26",
+  "categories": [
+    "홍보·콘텐츠",
+    "문서·서식",
+    "돈·장부",
+    "웹 업무",
+    "사진·영상",
+    "컴퓨터 관리"
+  ],
   "items": [
     {
       "mount": {
+        "category": "홍보·콘텐츠",
         "files": [
+          {
+            "bytes": 685,
+            "path": "CHANGELOG.md",
+            "sha256": "76a0558d9b08e93c55a55811a792280470f075f48b503bf0d39eab76902ab218"
+          },
           {
             "bytes": 1122,
             "path": "LICENSE",
@@ -56,11 +70,12 @@
         },
         "name": "홍보 이미지 세트",
         "origin": {
-          "modified": false,
-          "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본 하나를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게).",
-          "type": "ours",
+          "changes": [],
+          "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본과 판 이력 CHANGELOG.md 를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게).",
+          "type": "t5_made",
           "upstream": null
         },
+        "overrides": null,
         "permissions": {
           "externalSend": {
             "note": "만든 이미지를 어디에도 올리거나 보내지 않아요. 게시는 이 방법 밖이고, 부탁하면 채널별 방법으로 따로 이어 가요.",
@@ -145,7 +160,7 @@
             },
             {
               "item": "8. 고정과 지문",
-              "method": "원본 zip 을 풀어 파일 7개 sha256 을 이 폴더와 대조, tools/refresh-files.mjs 로 files 다시 적음",
+              "method": "원본 zip 을 풀어 파일 7개 sha256 을 이 폴더와 대조, tools/refresh-files.mjs 로 files 다시 적음. CHANGELOG.md 를 더한 뒤 다시 적음",
               "note": "상담이 알린 다듬은 판(3999ec0f…208c)은 첫 판에 넣은 13:44 판과 같은 파일이었다. 숨은 파일·링크 0.",
               "result": "pass"
             }
@@ -160,10 +175,15 @@
         "t5MinVersion": "2.2.1",
         "version": "0.1.0"
       },
-      "mountSha256": "bb0ee14a982041b0544986c989851329489725954ea0a79685e8437626f0e46c",
+      "mountSha256": "828671620b820e3e3e8e586a049d8b1b304fb85f0d0dec1165a275a9f0316fc0",
       "path": "skills/promo-image-set"
     }
   ],
   "keyId": "132ced345b8f7f47",
+  "originLabels": {
+    "reviewed_upstream": "검수 통과(원형 그대로)",
+    "t5_made": "티파이브 제작",
+    "t5_modified": "티파이브 수정판"
+  },
   "schema": "t5.mount-index.v1"
 }

@@ -63,9 +63,22 @@ API 키·토큰·비밀번호·쿠키·비밀 열쇠가 어떤 파일에도 없�
 - 숨은 파일(`.DS_Store` 등)·바로가기(링크)는 넣지 않습니다.
 - 외부 원형은 움직이는 가지 이름(`main`) 대신 태그와 커밋 전체 해시로 고정합니다. 원형에 태그가 없으면 커밋 해시로 고정하고 그 사실을 `origin.note` 에 적습니다.
 
+## 정리 규칙 — 이름·분류·출처·판 (검사기가 막음)
+
+이 창고에는 우리가 만들었거나 검수했거나 고친 것만 넣습니다(오너 방향 2026-10-26). 그래서 아래 칸으로 우리식대로 정리합니다.
+
+- **이름:** `name` 은 한국어 표시 이름(한글 필수), `id` 는 영문 짧은 이름이며 폴더 이름과 같습니다. 기술 종류는 폴더(`skills/`·`mcp/`·`cli/`·`plugins/`)로 가릅니다.
+- **분류(`category`):** 사장님 일 기준 여섯 가지 — 홍보·콘텐츠, 문서·서식, 돈·장부, 웹 업무, 사진·영상, 컴퓨터 관리. 목록 원본은 `schema/mount.schema.json` 의 `category` 하나이고, `index.json` 의 `categories` 가 거기서 나옵니다. 분류를 늘리거나 바꾸면 그 목록만 고치고 목록을 다시 만듭니다.
+- **출처(`origin.type`) 세 가지:**
+  - `t5_made` 「티파이브 제작」 — `origin.upstream` 은 `null`.
+  - `reviewed_upstream` 「검수 통과(원형 그대로)」 — 원형 주소·태그·커밋(`origin.upstream`)과 원 라이선스(`license.upstreamLicense`) 필수. 원본 사본을 두지 않는 것이 기본(`redistribution: "links_only"`).
+  - `t5_modified` 「티파이브 수정판」 — 위 둘에 더해 `origin.changes` 에 바뀐 점을 한 줄씩(하나 이상). 고친 사본을 이 창고에 두므로 재배포 허락(`redistribution: "allowed"`)과 오너 결정(`decided: true`)이 모두 있어야 합니다.
+- **기본 스킬 업그레이드(`overrides`):** 티파이브에 이미 실린 기본 스킬을 **같은 이름 + 높은 판 번호**로 내보낼 때만 채웁니다(오너 결정 2026-10-26). `baseSkill`(= `id`), `baseProductVersion`(그 기본 스킬이 실린 티파이브 판), `baseContentSha256`(그 판 기본 스킬 SKILL.md 의 sha256 — 기본 스킬 머리말에는 판 번호 칸이 없어 내용 지문으로 가리킵니다), `changes`(바뀐 점), `rollback`(되돌리는 법). 티파이브가 실제로 기본 스킬을 바꿔 끼우는지, 판 번호를 무엇과 비교하는지는 연구 세션(t5-skill-research)이 확인 중이라 그 결과가 나오기 전에는 이 칸을 쓴 항목을 진열하지 않습니다.
+- **판 이력:** 항목 폴더에 `CHANGELOG.md` 를 두고 판마다 `## <판>` 제목 아래 날짜·출처·바뀐 점·되돌리기를 적습니다. 지금 `version` 의 제목이 없으면 검사가 떨어집니다.
+
 ## 넣는 순서
 
-1. 항목 폴더와 `mount.json` 을 만들고 `node tools/refresh-files.mjs <폴더>`.
+1. 항목 폴더와 `mount.json`·`CHANGELOG.md` 를 만들고 `node tools/refresh-files.mjs <폴더>`.
 2. 위 1~8을 보고 `review` 를 채움.
 3. `node tools/validate.mjs` → `node tools/build-index.mjs` → `node tools/sign-index.mjs --key <저장소 밖 비밀 열쇠>` → `node tools/verify.mjs` → `node --test test/*.test.mjs`.
 4. 커밋. 공개 올리기는 오너 결정 뒤.

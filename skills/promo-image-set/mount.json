@@ -2,17 +2,24 @@
   "schema": "t5.mount.v1",
   "id": "promo-image-set",
   "kind": "skill",
+  "category": "홍보·콘텐츠",
   "name": "홍보 이미지 세트",
   "summary": "우리 가게·서비스 소개 이미지를 인스타 세로판과 홈페이지 가로판 두 벌로 여러 장 만들어 줘요.",
   "version": "0.1.0",
   "status": "listed",
   "origin": {
-    "type": "ours",
-    "modified": false,
+    "type": "t5_made",
     "upstream": null,
-    "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본 하나를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게)."
+    "changes": [],
+    "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본과 판 이력 CHANGELOG.md 를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게)."
   },
+  "overrides": null,
   "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 685,
+      "sha256": "76a0558d9b08e93c55a55811a792280470f075f48b503bf0d39eab76902ab218"
+    },
     {
       "path": "LICENSE",
       "bytes": 1122,
@@ -149,7 +156,7 @@
       },
       {
         "item": "8. 고정과 지문",
-        "method": "원본 zip 을 풀어 파일 7개 sha256 을 이 폴더와 대조, tools/refresh-files.mjs 로 files 다시 적음",
+        "method": "원본 zip 을 풀어 파일 7개 sha256 을 이 폴더와 대조, tools/refresh-files.mjs 로 files 다시 적음. CHANGELOG.md 를 더한 뒤 다시 적음",
         "result": "pass",
         "note": "상담이 알린 다듬은 판(3999ec0f…208c)은 첫 판에 넣은 13:44 판과 같은 파일이었다. 숨은 파일·링크 0."
       }
