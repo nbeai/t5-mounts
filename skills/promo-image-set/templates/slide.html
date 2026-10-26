@@ -1,0 +1,26 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<!-- ?m=P 세로, ?m=L 가로. 같은 내용을 두 판에서 다르게 배치한다. 모든 좌표는 .P/.L 별로 따로 준다. -->
+<script>document.documentElement.className=(new URLSearchParams(location.search).get('m')||'P')</script>
+<style>
+.text{position:absolute;z-index:3}
+.P .text{left:72px;right:72px;top:160px}
+.L .text{left:96px;top:190px;width:760px}
+.vis{position:absolute;z-index:2}
+.P .vis{left:72px;right:72px;top:600px;height:460px}
+.L .vis{left:930px;right:96px;top:150px;bottom:120px}
+.P .char{width:230px;right:30px;top:820px}
+.L .char{width:280px;left:1560px;top:700px}
+</style></head><body><div class="frame">
+<div class="brand"><img src="assets/logo.png"><span>브랜드 이름</span></div>
+<div class="topic">이 장의 주제</div>
+<div class="text">
+  <h1>후킹 한 줄,<br><span style="color:var(--cobalt)">결과 한 줄.</span></h1>
+  <p class="lead">무엇을 해 주는지 두 줄 이내로.<br>해요체로 짧게.</p>
+</div>
+<div class="vis">
+  <div class="bubble">사용자가 실제로 칠 요청 문장.</div>
+  <div class="shot"><img src="assets/shot-result.png"></div>
+</div>
+<img class="char" src="assets/character.png">
+<div class="site">example.com</div>
+</div></body></html>

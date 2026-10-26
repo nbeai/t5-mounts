@@ -1,0 +1,7 @@
+# 비밀 열쇠·환경 파일은 절대 올리지 않는다. 공개 열쇠만 keys/ 에 둔다.
+*.pem
+!keys/t5-mounts-public.pem
+*.key
+.env*
+.DS_Store
+node_modules/

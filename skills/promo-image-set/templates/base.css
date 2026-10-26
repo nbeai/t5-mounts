@@ -1,0 +1,51 @@
+/* 브랜드 색은 :root 토큰만 바꾼다. 크기 단위: 세로판 .P(1080×1350), 가로판 .L(1920×1080). */
+:root{
+  --bg:#F5F2EB; --ink:#16181D; --sub:#5A5E67; --mute:#8D9099; --line:#E3DED3;
+  --blue:#79AAFB; --sky:#DCE8FD; --cobalt:#095CE8; --ivory:#FAF1E4; --char:#424141;
+  --card:#FFFFFF; --ok:#1F8A5B; --warn:#B7791F;
+  --shadow:0 2px 4px rgba(22,24,29,.04),0 24px 60px -12px rgba(22,40,80,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:'Apple SD Gothic Neo','AppleSDGothicNeo','Malgun Gothic','맑은 고딕','Noto Sans KR','Noto Sans CJK KR','NanumGothic',sans-serif;
+  -webkit-font-smoothing:antialiased;letter-spacing:-0.02em;word-break:keep-all;line-break:strict}
+.P{width:1080px;height:1350px}.L{width:1920px;height:1080px}
+.frame{position:relative;width:100%;height:100%;overflow:hidden}
+
+/* 머리줄 */
+.brand{position:absolute;display:flex;align-items:center;gap:14px;font-weight:700;font-size:24px;color:var(--ink);z-index:5}
+.brand img{width:44px;height:44px}
+.brand span{letter-spacing:-0.01em}
+.topic{position:absolute;font-size:22px;font-weight:600;color:var(--sub);z-index:5;letter-spacing:0}
+.P .brand{left:72px;top:64px}.P .topic{right:72px;top:74px}
+.L .brand{left:96px;top:72px}.L .topic{right:96px;top:82px}
+.site{position:absolute;font-size:22px;font-weight:700;color:var(--ink);letter-spacing:0.01em;z-index:6;opacity:.75}
+.P .site{right:72px;bottom:44px}.L .site{right:96px;bottom:52px}
+.note{font-size:19px}
+
+/* 글자 */
+.kicker{font-size:28px;font-weight:700;color:var(--cobalt);margin-bottom:22px;letter-spacing:-0.01em}
+h1{font-weight:800;letter-spacing:-0.045em;line-height:1.12}
+.P h1{font-size:88px}.L h1{font-size:92px}
+.lead{color:var(--sub);font-weight:500;line-height:1.5;margin-top:28px}
+.P .lead{font-size:33px}.L .lead{font-size:32px}
+b.hl{color:var(--cobalt);font-weight:800}
+
+/* 카드 */
+.card{background:var(--card);border-radius:28px;box-shadow:var(--shadow);border:1px solid rgba(22,24,29,.06)}
+.bubble{display:inline-block;background:var(--ink);color:#fff;border-radius:28px 28px 8px 28px;padding:22px 30px;font-size:28px;font-weight:600;line-height:1.4;letter-spacing:-0.02em}
+.bubble.t5{background:#fff;color:var(--ink);border-radius:28px 28px 28px 8px;box-shadow:var(--shadow)}
+.chip{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 16px;font-size:20px;font-weight:700;letter-spacing:-0.01em}
+.chip.ok{background:#E3F4EB;color:var(--ok)}.chip.part{background:#FBF0DD;color:var(--warn)}.chip.blue{background:var(--sky);color:var(--cobalt)}
+.char{position:absolute;z-index:4;filter:drop-shadow(0 18px 24px rgba(30,60,120,.18))}
+.shot{border-radius:20px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(22,24,29,.08);background:#fff}
+.shot img{display:block;width:100%}
+.note{font-size:18px;color:var(--mute);letter-spacing:0}
+
+/* 진한 바탕 장 — 시리즈에 한두 장만, 오너가 "너무 파랗다"고 하면 밝은 표지로 */
+body.dark{background:#0F1E3D;color:#F5F1E8}
+body.dark .brand,body.dark .site{color:#F5F1E8}
+body.dark .topic{color:#A9B6CF}
+body.dark .lead{color:#C4CCDB}
+body.dark .card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);box-shadow:none}
+body.dark .em,body.dark .acc{color:#8DB6FF}
