@@ -32,11 +32,11 @@
 
 ## 3. 맥·Windows
 
-`platforms.macos`·`platforms.windows` 에 지원 여부와 **실제로 돌려 봤는지**를 따로 적습니다. 코드에 Windows 경로가 있어도 실기로 돌려 보지 않았으면 `verified: false` 입니다. 실행 파일 이름(`.exe`), 경로 구분자, 셸 문법(`sh` 전용 명령), 줄바꿈(CRLF)을 봅니다.
+`platforms.macos`·`platforms.windows` 에 지원 여부와 **실제로 돌려 봤는지**를 따로 적습니다. 코드에 Windows 경로가 있어도 실기로 돌려 보지 않았으면 `verified: false` 이고 이 칸은 `not_checked` 입니다. 이 칸만은 `not_checked` 여도 진열할 수 있습니다 — 확인 안 한 운영체제가 `verified: false` 로 적혀 있어야 하고(검사기가 대조), 진열대가 그 사실을 그대로 보여 줍니다(`docs/결정-기록.md`). 실행 파일 이름(`.exe`), 경로 구분자, 셸 문법(`sh` 전용 명령), 줄바꿈(CRLF)을 봅니다.
 
 ## 4. 라이선스
 
-- 우리 제작물: 저장소 라이선스(오너 결정, `LICENSE-초안.md`)를 따릅니다. 결정 전에는 `license.decided: false` 이고 진열하지 않습니다.
+- 우리 제작물: 저장소 라이선스 MIT(오너 결정 2026-10-26, `docs/결정-기록.md`)를 따르고, 항목 폴더에 `LICENSE` 사본을 둡니다(깃허브 항목 주소로 들일 때 티파이브는 그 폴더의 LICENSE 만 읽어 「MIT」로 알립니다). 라이선스가 정해지지 않은 항목은 `license.decided: false` 이고 진열하지 않습니다.
 - 외부 원형: 원 저장소의 LICENSE 파일을 고정 판 기준으로 직접 열어 `license.upstreamLicense`(SPDX·주소·확인 날짜)에 적습니다. 목록 사이트의 표기만 보고 적지 않습니다.
 - **원본 코드 복사·포크는 오너 결정 없이는 0입니다.** 우리 저장소에는 원형의 주소·고정 판(태그와 커밋 전체 해시)·얇은 연결 설정·검수 기록만 둡니다(`license.redistribution: "links_only"`). 사본을 두려면 재배포가 허락되는 라이선스인지 확인하고 오너 결정을 받아 `decided: true` 로 적습니다(검사기가 결정 없는 외부 사본을 막습니다).
 - 티파이브는 깃허브에서 들일 때 특정 회사 서비스 안에서만 쓰라는 약관과 오픈소스 이름 없이 「All rights reserved」·「Proprietary」만 적힌 라이선스를 거절합니다(본선 `managed-skill-store.js` `license_forbids_install`). 항목 폴더에 둘 LICENSE 문장도 이 기준으로 확인합니다.

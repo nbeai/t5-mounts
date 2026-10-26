@@ -5,6 +5,11 @@
       "mount": {
         "files": [
           {
+            "bytes": 1122,
+            "path": "LICENSE",
+            "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+          },
+          {
             "bytes": 7929,
             "path": "SKILL.md",
             "sha256": "e9e69608e5ae21896e7a6b0a073814a09c28421dcd8471089adc721d5f9669f8"
@@ -43,16 +48,16 @@
         "id": "promo-image-set",
         "kind": "skill",
         "license": {
-          "decided": false,
-          "note": "저장소 라이선스 오너 결정 대기(LICENSE-초안.md). 결정 전에는 진열(listed)하지 않는다.",
-          "redistribution": "undecided",
-          "spdx": null,
+          "decided": true,
+          "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md).",
+          "redistribution": "allowed",
+          "spdx": "MIT",
           "upstreamLicense": null
         },
         "name": "홍보 이미지 세트",
         "origin": {
           "modified": false,
-          "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set (2026-10-26 13:44 판, zip 18,319바이트). 다듬은 판이 나오면 폴더를 바꿔 넣고 node tools/refresh-files.mjs skills/promo-image-set 로 지문을 다시 적는다.",
+          "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본 하나를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게).",
           "type": "ours",
           "upstream": null
         },
@@ -80,12 +85,12 @@
         },
         "platforms": {
           "macos": {
-            "note": "2026-10-26 macOS(Darwin 25.6.0, node 24.14.0)에서 render.mjs --only 01 로 PNG 2장·대조판·휴대폰점검판 생성 확인(약 2초).",
+            "note": "2026-10-26 macOS 26.6.1(node 24.14.0)에서 이 판의 render.mjs --only 01 로 PNG 2장·대조판·휴대폰점검판 생성, 끝 코드 0. 세로판을 열어 글자 겹침·잘림 없음 확인.",
             "supported": true,
             "verified": true
           },
           "windows": {
-            "note": "render.mjs 에 Windows 크롬·엣지 경로가 있으나 Windows 실기 확인 안 함.",
+            "note": "확인 안 함. render.mjs 에 Windows 크롬·엣지 경로 분기가 있으나 Windows 실기에서 돌려 보지 않았다.",
             "supported": true,
             "verified": false
           }
@@ -100,37 +105,36 @@
           "checks": [
             {
               "item": "1. 티파이브가 받아들이나",
-              "method": "본선 t5-work-app c53ec733 의 inspectPackageSource(folder·zip 둘 다)와 validateProcedureContent 를 이 폴더와 원본 zip 에 실행",
-              "note": "kind=skill, 거절 0, 미지원 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 상태 none_declared. 머리말 description 247자(한도 320).",
+              "method": "본선 t5-work-app c53ec733 의 inspectPackageSource 를 이 폴더(folder)와 원본 zip(sha256 3999ec0f…208c)에 실행, validateProcedureContent 를 SKILL.md 에 실행",
+              "note": "둘 다 kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0. 이 폴더는 라이선스를 open_license MIT 로 알림(zip 은 LICENSE 가 없어 none_declared). description 247자(한도 320).",
               "result": "pass"
             },
             {
               "item": "2. 권한",
-              "method": "scripts/render.mjs 의 import·spawn·fetch·파일 쓰기 줄을 읽고 SKILL.md 단계와 대조",
-              "note": "외부 전송·돈 없음. 프로그램 실행(크롬)은 들일 때 티파이브가 알리는 사실.",
+              "method": "scripts/render.mjs 의 import·spawn·fetch·파일 쓰기·지우기 줄을 읽고 SKILL.md 단계와 대조",
+              "note": "파일 읽기·결과 폴더 쓰기, 크롬 실행(127.0.0.1 로만 통신), 레퍼런스 조사는 공개 웹 읽기만. 외부 전송·돈 없음.",
               "result": "pass"
             },
             {
               "item": "3. 맥·Windows",
-              "method": "맥에서 실제 렌더 1장. Windows 는 코드 경로만 읽음",
-              "note": "Windows 실기 확인 필요.",
+              "method": "맥에서 이 판으로 실제 렌더 1장. Windows 는 코드 경로만 읽음",
+              "note": "맥 확인. Windows 실기 확인 안 함(platforms.windows.verified=false).",
               "result": "not_checked"
             },
             {
               "item": "4. 라이선스",
-              "method": "우리 제작물. 저장소 라이선스 오너 결정 대기",
-              "note": "결정 전 listed 불가.",
-              "result": "not_checked"
+              "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별로 확인",
+              "result": "pass"
             },
             {
               "item": "5. 경계(백업 없는 파괴·돈)",
               "method": "SKILL.md·render.mjs 에서 지우기·결제 동작 찾기",
-              "note": "지우는 것은 스크립트가 만든 임시 크롬 프로필뿐. 원본은 복사해 쓰고 고치지 않음.",
+              "note": "지우는 것은 스크립트가 만든 임시 크롬 프로필뿐. 원본 그림은 복사해 쓰고 고치지 않음. 결제 없음.",
               "result": "pass"
             },
             {
               "item": "6. 비교군 이름 0",
-              "method": "SKILL.md·references 를 읽어 다른 제품 이름 찾기",
+              "method": "SKILL.md·references·templates 를 읽어 다른 제품 이름 찾기",
               "note": "SKILL.md 3단계가 「비교 제품 이름은 넣지 않는다」를 규칙으로 둠.",
               "result": "pass"
             },
@@ -140,23 +144,23 @@
               "result": "pass"
             },
             {
-              "item": "8. 다듬은 판 반영",
-              "method": "소개 이미지 세션의 다듬은 판(새 zip) 대기",
-              "note": "바꿔 넣은 뒤 1~7을 다시 본다.",
-              "result": "not_checked"
+              "item": "8. 고정과 지문",
+              "method": "원본 zip 을 풀어 파일 7개 sha256 을 이 폴더와 대조, tools/refresh-files.mjs 로 files 다시 적음",
+              "note": "상담이 알린 다듬은 판(3999ec0f…208c)은 첫 판에 넣은 13:44 판과 같은 파일이었다. 숨은 파일·링크 0.",
+              "result": "pass"
             }
           ],
           "date": "2026-10-26",
-          "result": "pending",
+          "result": "pass",
           "reviewer": "t5-mounts 저장소 준비 세션(Claude Code)"
         },
         "schema": "t5.mount.v1",
-        "status": "draft",
+        "status": "listed",
         "summary": "우리 가게·서비스 소개 이미지를 인스타 세로판과 홈페이지 가로판 두 벌로 여러 장 만들어 줘요.",
         "t5MinVersion": "2.2.1",
-        "version": "0.1.0-draft.1"
+        "version": "0.1.0"
       },
-      "mountSha256": "5d29073072d520d2cc9e0d39d19fe845efbfb3de786603df9902e82ed1cb96df",
+      "mountSha256": "bb0ee14a982041b0544986c989851329489725954ea0a79685e8437626f0e46c",
       "path": "skills/promo-image-set"
     }
   ],

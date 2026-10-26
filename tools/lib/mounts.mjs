@@ -130,7 +130,11 @@ export function checkItem(repoRoot, kindDir, id, schema) {
   if (mount.status === 'listed') {
     if (!mount.license.decided) errors.push(`${where}: 라이선스 미정 항목은 listed 가 될 수 없음`);
     if (mount.review.result !== 'pass') errors.push(`${where}: 검수 결과가 pass 가 아니면 listed 가 될 수 없음`);
-    if (mount.review.checks.some((c) => c.result === 'fail' || c.result === 'not_checked')) errors.push(`${where}: 떨어졌거나 안 본 검수 칸이 있으면 listed 가 될 수 없음`);
+    // 「3. 맥·Windows」만 예외: 확인 안 한 운영체제가 platforms 에 verified:false 로 적혀 있으면 진열할 수 있다(docs/결정-기록.md).
+    const unverifiedOs = Object.values(mount.platforms).some((p) => p.supported && !p.verified);
+    const blocking = mount.review.checks.filter((c) => c.result === 'fail'
+      || (c.result === 'not_checked' && !(c.item.startsWith('3.') && unverifiedOs)));
+    if (blocking.length) errors.push(`${where}: 떨어졌거나 안 본 검수 칸이 있으면 listed 가 될 수 없음(${blocking.map((c) => c.item).join(', ')})`);
   }
   if (mount.kind === 'hook' && mount.status !== 'draft') errors.push(`${where}: 훅은 티파이브 훅 기능(2.3) 전에는 draft 만`);
 

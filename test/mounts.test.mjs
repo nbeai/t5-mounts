@@ -124,10 +124,36 @@ test('외부 원형은 고정 커밋 없이 들어갈 수 없다', () => {
 });
 
 test('라이선스 미정·검수 미통과 항목은 listed 가 될 수 없다', () => {
-  editMount((m) => { m.status = 'listed'; });
+  editMount((m) => { m.status = 'listed'; m.license.decided = false; m.review.result = 'pending'; });
   const errors = checkRepo(repo).errors.join('\n');
   assert.match(errors, /라이선스 미정/u);
   assert.match(errors, /pass 가 아니면/u);
+});
+
+test('맥·Windows 칸만 안 봤고 그 운영체제가 verified:false 로 적혀 있으면 진열할 수 있다', () => {
+  editMount((m) => {
+    m.status = 'listed'; m.license.decided = true; m.review.result = 'pass';
+    m.platforms.windows.verified = false;
+    m.review.checks = m.review.checks.map((c) => ({ ...c, result: c.item.startsWith('3.') ? 'not_checked' : 'pass' }));
+  });
+  assert.deepEqual(checkRepo(repo).errors, []);
+});
+
+test('운영체제를 모두 확인했다고 적고 맥·Windows 칸을 안 봤으면 진열을 막는다', () => {
+  editMount((m) => {
+    m.status = 'listed'; m.license.decided = true; m.review.result = 'pass';
+    m.platforms.windows.verified = true;
+    m.review.checks = m.review.checks.map((c) => ({ ...c, result: c.item.startsWith('3.') ? 'not_checked' : 'pass' }));
+  });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('안 본 검수 칸')));
+});
+
+test('맥·Windows 밖의 칸을 안 봤으면 진열을 막는다', () => {
+  editMount((m) => {
+    m.status = 'listed'; m.license.decided = true; m.review.result = 'pass';
+    m.review.checks = m.review.checks.map((c) => ({ ...c, result: c.item.startsWith('2.') ? 'not_checked' : 'pass' }));
+  });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('2. 권한')));
 });
 
 test('비밀값 모양이 든 파일을 잡는다', () => {
