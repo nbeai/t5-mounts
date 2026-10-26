@@ -1,0 +1,163 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "korean-gov-proposal",
+  "kind": "skill",
+  "version": "0.1.0",
+  "status": "draft",
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 832,
+      "sha256": "2cfaaef0933c0795925c3198ace96d7c3b147200bcc7cf6a4fb629083e6117d1"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 7733,
+      "sha256": "2f2521ad453861ccb57d03979d122320a6393d80dcbced6748daa5ce6a49b7a8"
+    },
+    {
+      "path": "references/form-tools.md",
+      "bytes": 2183,
+      "sha256": "4406a53697624f0e212c238936ea310b08672be28087115e4c07254b0029c88d"
+    },
+    {
+      "path": "references/psst.md",
+      "bytes": 2929,
+      "sha256": "0915e5457b30ff11cbd194fab695328f6f3fb0d63c588f005292b7f346077f94"
+    },
+    {
+      "path": "scripts/proposal.mjs",
+      "bytes": 8211,
+      "sha256": "8386a42344f04d35d1f1754e2f9c01339c3de2c3c133d4c9f362bcda66e6c6c1"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": null,
+    "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
+  },
+  "t5MinVersion": "2.2.1",
+  "category": "문서·서식",
+  "name": "정부지원사업 사업계획서",
+  "summary": "창업패키지·소상공인 지원사업 사업계획서 양식을 서식 그대로 두고 사장님 자료로 채우고, 가리기·남은 안내 문구까지 확인해요.",
+  "origin": {
+    "type": "t5_made",
+    "upstream": null,
+    "changes": [],
+    "note": "티파이브 연구(결과물품질-스킬연구-20261026) 후보 K4 를 2026-10-26 창고 항목으로 처음 만든 것. 특정 연도 양식 사본 0 — 늘 사용자가 준 지금 양식을 읽어 칸을 맞춘다. 채우기는 티파이브 문서 도구(read-hwp·fill-hwp·edit-hwp·edit-docx)를 부르기만 한다."
+  },
+  "permissions": {
+    "files": {
+      "uses": true,
+      "note": "사람이 준 양식을 읽고, 채운 결과는 사본(--output)에 써요. 원본 양식은 고치지 않아요. 검사 스크립트는 문서 도구가 다시 읽은 글(JSON·마크다운)을 읽기만 해요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "node 로 scripts/proposal.mjs 를 실행해요(읽고 사실을 내기만, 다른 프로그램을 띄우지 않음). 양식 읽기·채우기는 티파이브에 들어 있는 문서 도구가 해요."
+    },
+    "internet": {
+      "uses": false,
+      "note": "인터넷에 접속하지 않아요. 공고문·양식은 사람이 준 파일을 읽어요."
+    },
+    "externalSend": {
+      "uses": false,
+      "note": "사업계획서를 어디에도 올리거나 보내지 않아요. 제출은 사람이 해요."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 서비스 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": true,
+      "note": "2026-10-26 macOS(node 24.14.0)에서 직접 만든 시험용 가짜 HWPX 양식으로 본선 d622dcd4 문서 도구 read-hwp → proposal.mjs map → fill-hwp·edit-hwp → read-hwp → proposal.mjs check 를 실제로 돌림. 실제 공고 양식으로는 돌리지 않음."
+    },
+    "windows": {
+      "supported": true,
+      "verified": false,
+      "note": "확인 안 함. 스크립트는 Node 내장만 쓰고 PowerShell 5 의 UTF-16 저장도 읽게 했으나 Windows 실기에서 돌려 보지 않았다."
+    }
+  },
+  "requires": [
+    "node(티파이브에 들어 있음)",
+    "티파이브 문서 도구($T5_DOCUMENT_CLI)",
+    "공고문과 그 공고의 사업계획서 양식 파일(HWP·HWPX·DOCX)",
+    "사업 자료(아이템 설명·숫자·팀 경력)"
+  ],
+  "review": {
+    "date": "2026-10-26",
+    "result": "pending",
+    "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "본선 t5-work-app d622dcd4(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+        "result": "pass",
+        "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 201자(한도 320), when_to_use 25자(140에서 잘림). SKILL.md 7733바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음."
+      },
+      {
+        "item": "2. 권한",
+        "method": "scripts 의 import·fs 읽기/쓰기·네트워크·자식 프로세스 줄을 읽고 SKILL.md 단계와 대조",
+        "result": "pass",
+        "note": "파일: --input 읽기만(쓰기 0). 프로그램: node 스크립트만, child_process 없음. 인터넷: fetch·http 없음. 외부 전송·돈 없음. 들이기 검사 facts.externalDomains 0 과 일치."
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "맥에서 이 판 스크립트와 본선 문서 도구로 결과 파일을 실제로 만듦. Windows 는 코드만 읽음",
+        "result": "not_checked",
+        "note": "맥 확인. Windows 실기 확인 안 함(platforms.windows.verified=false). 스크립트는 Node 내장만·경로는 path.resolve, PowerShell 5 의 UTF-16 저장도 읽게 함(시험 있음). SKILL.md 명령 줄의 따옴표·> 저장이 Windows 실행 손에서 그대로 도는지는 확인 안 됨."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+        "result": "pass",
+        "note": "licenseFacts: file LICENSE, name MIT, restriction 없음."
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·scripts 에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass",
+        "note": "스크립트는 쓰거나 지우지 않음. SKILL.md 는 원본 양식을 고치지 않고 사본(--output)에 채우게 함. 문서 도구 edit-hwp 는 문단 지우기를 거절함(직접 확인). 결제 없음."
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "SKILL.md·references·templates·scripts 를 읽어 다른 AI 제품·경쟁 서비스 이름 찾기",
+        "result": "pass",
+        "note": "없음. 문서 엔진 이름(kordoc)은 티파이브에 실린 라이브러리 출처 표시."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사(본선과 같은 규칙)",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "tools/refresh-files.mjs 로 files 를 적고 tools/validate.mjs 로 대조",
+        "result": "pass",
+        "note": "숨은 파일·링크 0. 파일 이름은 모두 영문(zip·Windows 이름 깨짐 피함)."
+      },
+      {
+        "item": "9. 기본 스킬과 겹침 0(제작 가이드 6절 제안 칸)",
+        "method": "본선 기본 스킬 폴더 33개 이름과 대조, 본문이 부르는 도구 확인",
+        "result": "pass",
+        "note": "이름이 기본 스킬과 겹치지 않음. 사업계획서 양식 채우기는 기본 스킬이 하지 않는 일(연구 03 재판정). 채우기는 기본 문서 도구를 부르기만 함 — 새 엔진 0."
+      },
+      {
+        "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
+        "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
+        "result": "not_checked",
+        "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고에. 이 칸이 끝나기 전에는 진열하지 않음."
+      }
+    ]
+  }
+}

@@ -90,11 +90,12 @@ test('지문 틀림: 적힌 파일이 사라지면 잡는다', () => {
 
 test('항목 빠짐: 목록에서 항목 하나를 빼고 다시 서명해도 잡는다', () => {
   const index = JSON.parse(readFileSync(join(repo, 'index.json'), 'utf8'));
+  const count = index.items.length; // 빠진 항목마다 하나씩 잡혀야 한다(항목 수와 상관없이).
   index.items = [];
   const text = canonicalJson(index);
   writeFileSync(join(repo, 'index.json'), text);
   writeFileSync(join(repo, 'index.sig'), signIndex(text, keys.privatePem));
-  assert.deepEqual(codes(), ['item_not_in_index']);
+  assert.deepEqual(codes(), Array(count).fill('item_not_in_index'));
 });
 
 test('항목 빠짐: 목록에는 있는데 저장소에서 폴더가 사라지면 잡는다', () => {
