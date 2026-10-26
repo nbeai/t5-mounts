@@ -4,6 +4,7 @@
 // 쓰는 법:
 //   node forms.mjs build --facts 사실.json --format docx|xlsx --out 명세.json   → 명세 파일 + 계산 사실(JSON, 표준 출력)
 //   node forms.mjs amount 113560                                             → 일금 일십일만삼천오백육십원정
+//   node forms.mjs contract --facts 계약.json --out 명세.json                   → 계약서 명세(견적과 같은 금액) + 빠진 조항
 //   node forms.mjs bizno 123-45-67890                                        → 사업자등록번호 모양·검증 숫자
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -220,6 +221,70 @@ export function buildForm(facts, format) {
     vatRounding: totals.rounding, vatBasis: totals.basis }, missing, warnings };
 }
 
+// 계약서(0.2.0): 견적 사실표를 그대로 이어받아 금액이 견적과 같게 하고, 유형별로 서면에 꼭 들어갈 조항이 비었는지 낸다.
+// 조항 문장은 사람·모델이 쓴다(clauses). 스크립트는 조항의 유불리를 판단하지 않는다.
+const CONTRACT_TYPES = {
+  // 예술인 복지법 4조의4 2항(문화예술용역 서면 계약 6항목) — 법정.
+  문화예술용역: { law: '예술인 복지법 4조의4 2항', keys: ['payment', 'term', 'rights', 'scope', 'revenueShare', 'dispute'] },
+  // 하도급법 3조 2항 1·2호(하도급대금과 지급방법 등 계약 내용, 16조의2 조정 요건·방법·절차) — 법정. 3·4호 시행령 사항은 확인 안 됨.
+  하도급납품: { law: '하도급거래 공정화에 관한 법률 3조 2항', keys: ['payment', 'scope', 'delivery', 'priceAdjustment', 'term', 'dispute'] },
+  // 일반 용역·행사·납품: 법정 서면 항목 근거 확인 안 됨 — 위 구조를 빌린 관행.
+  용역: { law: null, keys: ['payment', 'term', 'rights', 'scope', 'dispute'] },
+  행사: { law: null, keys: ['payment', 'term', 'rights', 'scope', 'cancellation', 'dispute'] },
+  납품: { law: null, keys: ['payment', 'scope', 'delivery', 'term', 'dispute'] },
+};
+const CLAUSE_TITLES = {
+  scope: '업무(용역)의 범위 — 내용·시간·장소', payment: '계약 금액과 지급', term: '계약 기간·갱신·변경·해지', rights: '당사자의 권리와 의무',
+  revenueShare: '수익 배분', dispute: '분쟁 해결', delivery: '납품·검수', priceAdjustment: '대금 조정(요건·방법·절차)',
+  cancellation: '취소·연기', ip: '결과물의 권리', confidentiality: '비밀 유지',
+};
+
+/** 계약서 명세. 금액은 견적과 같은 계산(computeTotals), 지급 일정 합계가 계약 금액과 다르면 missing 에 올린다. */
+export function buildContract(facts) {
+  const type = CONTRACT_TYPES[facts.contractType];
+  if (!type) throw new RangeError(`contractType 은 ${Object.keys(CONTRACT_TYPES).join('·')} 가운데 하나: ${facts.contractType}`);
+  if (!Array.isArray(facts.items) || !facts.items.length) throw new RangeError('items(견적과 같은 품목)가 하나 이상 있어야 해요');
+  const totals = computeTotals(facts); const missing = []; const warnings = [...totals.warnings];
+  const clauses = facts.clauses ?? {};
+  for (const k of type.keys) if (k !== 'payment' && blank(clauses[k])) missing.push(`${CLAUSE_TITLES[k]} 조항${type.law ? `(${type.law})` : ''}`);
+  for (const [path, label] of [['supplier.name', '을(수급인) 상호'], ['supplier.representative', '을 대표자'], ['buyer.name', '갑(도급인) 상호'], ['date', '계약일']]) if (blank(get(facts, path))) missing.push(label);
+  const schedule = (facts.paymentSchedule ?? []).map((p) => ({ ...p, amount: Number(p.amount) }));
+  const scheduled = schedule.reduce((s, p) => s + (Number.isFinite(p.amount) ? p.amount : 0), 0);
+  if (!schedule.length) missing.push('대금 지급 일정(paymentSchedule)');
+  else if (scheduled !== totals.total) missing.push(`지급 일정 합계(${won(scheduled)}원)가 계약 금액(${won(totals.total)}원)과 다름`);
+  for (const w of ['supplier', 'buyer']) { const no = get(facts, `${w}.bizNo`); if (!blank(no) && !checkBizNo(no).ok) warnings.push(`${w === 'supplier' ? '을' : '갑'} 사업자등록번호 확인 필요`); }
+  const val = (v) => (blank(v) ? MISSING : String(v));
+  const dt = (v) => (blank(v) ? MISSING : (koreanDate(v) ?? String(v)));
+  const order = [...new Set(['scope', 'payment', ...type.keys, ...Object.keys(clauses)])];
+  let n = 0;
+  const article = (k) => {
+    n += 1;
+    if (k === 'payment') {
+      return [{ type: 'paragraph', text: `제${n}조(${CLAUSE_TITLES.payment})`, style: 'heading2', keepWithNext: true },
+        { type: 'paragraph', text: `계약 금액은 ${totals.totalHangul} (₩${won(totals.total)}${totals.vat ? ', 부가가치세 포함' : ''})이며 내역은 붙임 표와 같다.${blank(clauses.payment) ? '' : ` ${clauses.payment}`}` },
+        { type: 'table', columns: [{ key: 'k', header: '지급' }, { key: 'a', header: '금액(원)' }, { key: 'd', header: '시기' }],
+          rows: schedule.map((p) => ({ k: val(p.label), a: Number.isFinite(p.amount) ? won(p.amount) : MISSING, d: val(p.due) })) }];
+    }
+    return [{ type: 'paragraph', text: `제${n}조(${CLAUSE_TITLES[k] ?? k})`, style: 'heading2', keepWithNext: true },
+      { type: 'paragraph', text: blank(clauses[k]) ? MISSING : String(clauses[k]) }];
+  };
+  const spec = { title: val(facts.title ?? `${facts.contractType} 계약서`), header: false, pageNumbers: true, blocks: [
+    { type: 'paragraph', text: `갑(${val(facts.buyer?.name)})과 을(${val(facts.supplier?.name)})은 아래 내용으로 계약을 맺는다.` },
+    { type: 'paragraph', text: `계약 기간 ${dt(facts.period?.start)} ~ ${dt(facts.period?.end)}` },
+    ...order.flatMap(article),
+    { type: 'paragraph', text: '붙임 — 계약 내역', style: 'heading2', keepWithNext: true },
+    { type: 'table', columns: [{ key: 'name', header: '품명' }, { key: 'qty', header: '수량' }, { key: 'unitPrice', header: '단가' }, { key: 'supply', header: '공급가액' }, { key: 'vat', header: '세액' }],
+      rows: totals.lines.map((l) => ({ name: val(l.name), qty: blank(l.qty) ? MISSING : won(l.qty), unitPrice: blank(l.unitPrice) ? MISSING : won(l.unitPrice),
+        supply: l.supply == null ? MISSING : won(l.supply), vat: l.tax === '과세' ? (l.vat == null ? MISSING : won(l.vat)) : l.tax })) },
+    { type: 'paragraph', text: `계약일: ${dt(facts.date)} — 이 계약서를 2부 만들어 갑과 을이 서명 또는 기명날인한 뒤 1부씩 가진다.` },
+    { type: 'table', columns: [{ key: 'k', header: '구분' }, { key: 'n', header: '상호·대표자' }, { key: 'b', header: '사업자등록번호' }, { key: 'a', header: '주소' }, { key: 's', header: '서명' }], rows: [
+      { k: '갑', n: [facts.buyer?.name, facts.buyer?.representative].filter((x) => !blank(x)).join(' 대표 ') || MISSING, b: blank(facts.buyer?.bizNo) ? '' : checkBizNo(facts.buyer.bizNo).formatted, a: facts.buyer?.address ?? '', s: '' },
+      { k: '을', n: [facts.supplier?.name, facts.supplier?.representative].filter((x) => !blank(x)).join(' 대표 ') || MISSING, b: blank(facts.supplier?.bizNo) ? '' : checkBizNo(facts.supplier.bizNo).formatted, a: facts.supplier?.address ?? '', s: '' }] },
+  ] };
+  return { contractType: facts.contractType, law: type.law, spec, totals: { supply: totals.supply, vat: totals.vat, total: totals.total, totalHangul: totals.totalHangul },
+    scheduled, missing, warnings };
+}
+
 // 사실표를 Windows PowerShell 5 의 `>` 로 저장하면 UTF-16 이다 — 머리 표시(BOM)를 보고 같이 읽는다.
 export function readText(path) {
   const bytes = readFileSync(resolve(path));
@@ -240,7 +305,15 @@ function main(argv) {
     const { spec, ...facts } = result;
     return { ...facts, specPath: resolve(out), next: `"$T5_DOCUMENT_CLI" create-${format} --spec "${resolve(out)}" --output <결과 파일>.${format}` };
   }
-  throw new TypeError('동작: build · amount · bizno');
+  if (action === 'contract') {
+    const factsPath = opt('--facts'); const out = opt('--out');
+    if (!factsPath || !out) throw new TypeError('쓰는 법: forms.mjs contract --facts 계약.json --out 명세.json');
+    const result = buildContract(JSON.parse(readText(factsPath)));
+    writeFileSync(resolve(out), `${JSON.stringify(result.spec, null, 2)}\n`);
+    const { spec, ...facts } = result;
+    return { ...facts, specPath: resolve(out), next: `"$T5_DOCUMENT_CLI" create-docx --spec "${resolve(out)}" --output <결과 파일>.docx` };
+  }
+  throw new TypeError('동작: build · contract · amount · bizno');
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
