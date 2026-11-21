@@ -5,20 +5,20 @@
   "category": "돈·장부",
   "name": "받을 돈 독촉 문서",
   "summary": "못 받은 돈의 금액·증거를 맞추고 정중한 독촉 메시지, 내 이름으로 보낼 내용증명 초안, 지급명령 자료표를 만들어 줘요.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "draft",
   "origin": {
     "type": "t5_made",
     "upstream": null,
     "changes": [],
-    "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 3을 2026-10-26 창고 항목으로 처음 만든 것. 지급명령은 자료표와 공식 길 안내에서 멈춘다(상담 결정). 외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음."
+    "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 3을 2026-10-26 창고 항목으로 처음 만든 것. 지급명령은 자료표와 공식 길 안내에서 멈춘다(결정). 외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 2026-10-26 결정, 지금 돈 드는 확인은 하지 않음."
   },
   "overrides": null,
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 592,
-      "sha256": "d22d6e61d63f45be795fb9cf7542f52252e52f0ffd65d0d86b6b12ab3f684630"
+      "bytes": 836,
+      "sha256": "d47fec913d3d10f679843203273a9ce5ce08554cce471de1b8cf24c9d733e56c"
     },
     {
       "path": "LICENSE",
@@ -32,8 +32,8 @@
     },
     {
       "path": "references/boundary.md",
-      "bytes": 1399,
-      "sha256": "d65119279b1ff2f40618ba7c1b316717279c5b9164b7a8f77bd9a9414ef882d2"
+      "bytes": 1392,
+      "sha256": "abf0fbe31117bf86baaf306071c8df2209bcf79e4bb1cba1fefecd9f40c20d3d"
     },
     {
       "path": "references/facts-format.md",
@@ -52,8 +52,8 @@
     },
     {
       "path": "scripts/reminder.mjs",
-      "bytes": 13216,
-      "sha256": "ffafcb6ecd232c8591e8c1bd2240be955aa198046213f58c14fd8ca1288163d8"
+      "bytes": 13233,
+      "sha256": "47909358e82180883bb4964664865d7ba9aeb54a68740e3b2ae2b8a023aa4b22"
     }
   ],
   "license": {
@@ -61,7 +61,7 @@
     "decided": true,
     "redistribution": "allowed",
     "upstreamLicense": null,
-    "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
+    "note": "결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
   },
   "permissions": {
     "files": {
@@ -108,11 +108,11 @@
   "review": {
     "date": "2026-10-26",
     "result": "pending",
-    "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
     "checks": [
       {
         "item": "1. 티파이브가 받아들이나",
-        "method": "본선 t5-work-app 4c96b025(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+        "method": "본선 4c96b025 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
         "result": "pass",
         "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 193자(한도 320), when_to_use 29자. SKILL.md 5727바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음."
       },
@@ -130,7 +130,7 @@
       },
       {
         "item": "4. 라이선스",
-        "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+        "method": "우리 제작물. 결정 기록의 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
         "result": "pass",
         "note": "licenseFacts: file LICENSE, name MIT, restriction 없음."
       },
@@ -167,13 +167,13 @@
         "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
         "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
         "result": "not_checked",
-        "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고·공유 노트에. 이 칸이 끝나기 전에는 진열하지 않음."
+        "note": "실모델 비교는 아직 돌리지 않음. 이 칸이 끝나기 전에는 진열하지 않음."
       },
       {
-        "item": "11. 법무 확인(상담 결정 칸)",
+        "item": "11. 법무 확인",
         "method": "서식 분야 전수 조사 5·8절의 경계를 SKILL.md·references/boundary.md 에 옮김",
         "result": "not_checked",
-        "note": "외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음."
+        "note": "외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 2026-10-26 결정, 지금 돈 드는 확인은 하지 않음."
       }
     ]
   }

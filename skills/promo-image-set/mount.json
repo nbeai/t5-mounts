@@ -5,20 +5,20 @@
   "category": "홍보·콘텐츠",
   "name": "홍보 이미지 세트",
   "summary": "우리 가게·서비스 소개 이미지를 인스타 세로판과 홈페이지 가로판 두 벌로 여러 장 만들어 줘요.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "listed",
   "origin": {
     "type": "t5_made",
     "upstream": null,
     "changes": [],
-    "note": "소개이미지 v3 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본과 판 이력 CHANGELOG.md 를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게)."
+    "note": "티파이브 소개 이미지 작업(2026-10-26)에서 쓴 방식을 일반 스킬로 만든 것. 원본은 그 작업 폴더의 스킬/promo-image-set.zip(2026-10-26 13:44 판, 18,319바이트, sha256 3999ec0fd2e2e5da0add17bac6dc8f3f785b08be2ae3b385a41a5e068b84208c)이고, 이 폴더의 스킬 파일 7개는 그 zip 을 푼 것과 sha256 이 모두 같다. 이 폴더에는 MIT LICENSE 사본과 판 이력 CHANGELOG.md 를 더했다(깃허브 항목 주소로 들일 때 티파이브가 라이선스를 알리게)."
   },
   "overrides": null,
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 685,
-      "sha256": "76a0558d9b08e93c55a55811a792280470f075f48b503bf0d39eab76902ab218"
+      "bytes": 940,
+      "sha256": "35c27bbfe968c6a8048521a9a4badcb39d3cf098ac9cebc9f0cd1692f72580dd"
     },
     {
       "path": "LICENSE",
@@ -53,7 +53,7 @@
     {
       "path": "templates/base.css",
       "bytes": 3360,
-      "sha256": "0dbf14067dadb9e790d28e11b383e703c1553d7062a690c34bfff23a1dc5006f"
+      "sha256": "f14b18cd71cd2e0874891808797653f389e2df7a27776a64239348622040bf62"
     },
     {
       "path": "templates/slide.html",
@@ -66,7 +66,7 @@
     "decided": true,
     "redistribution": "allowed",
     "upstreamLicense": null,
-    "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
+    "note": "결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
   },
   "permissions": {
     "files": {
@@ -112,11 +112,11 @@
   "review": {
     "date": "2026-10-26",
     "result": "pass",
-    "reviewer": "t5-mounts 저장소 준비 세션(Claude Code)",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
     "checks": [
       {
         "item": "1. 티파이브가 받아들이나",
-        "method": "본선 t5-work-app c53ec733 의 inspectPackageSource 를 이 폴더(folder)와 원본 zip(sha256 3999ec0f…208c)에 실행, validateProcedureContent 를 SKILL.md 에 실행",
+        "method": "본선 c53ec733 의 inspectPackageSource 를 이 폴더(folder)와 원본 zip(sha256 3999ec0f…208c)에 실행, validateProcedureContent 를 SKILL.md 에 실행",
         "result": "pass",
         "note": "둘 다 kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0. 이 폴더는 라이선스를 open_license MIT 로 알림(zip 은 LICENSE 가 없어 none_declared). description 247자(한도 320)."
       },
@@ -134,7 +134,7 @@
       },
       {
         "item": "4. 라이선스",
-        "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별로 확인",
+        "method": "우리 제작물. 결정 기록의 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별로 확인",
         "result": "pass"
       },
       {
@@ -158,7 +158,7 @@
         "item": "8. 고정과 지문",
         "method": "원본 zip 을 풀어 파일 7개 sha256 을 이 폴더와 대조, tools/refresh-files.mjs 로 files 다시 적음. CHANGELOG.md 를 더한 뒤 다시 적음",
         "result": "pass",
-        "note": "상담이 알린 다듬은 판(3999ec0f…208c)은 첫 판에 넣은 13:44 판과 같은 파일이었다. 숨은 파일·링크 0."
+        "note": "다듬은 판(3999ec0f…208c)은 첫 판에 넣은 13:44 판과 같은 파일이었다. 숨은 파일·링크 0."
       }
     ]
   }

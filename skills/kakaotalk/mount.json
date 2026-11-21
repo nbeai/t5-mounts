@@ -1,0 +1,159 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "kakaotalk",
+  "kind": "skill",
+  "category": "컴퓨터 관리",
+  "name": "카카오톡",
+  "summary": "카카오톡 방을 찾아 대화를 읽고, 요약해서 다른 방에 보내요. 카톡은 카카오톡 연결로만 다뤄요.",
+  "version": "2.8.1",
+  "status": "bundled",
+  "origin": {
+    "type": "t5_modified",
+    "upstream": {
+      "url": "https://github.com/HyunSeob/kakaotalk-ax",
+      "ref": "태그 없음(커밋 고정)",
+      "commit": "70c0944f3324b243cb60cf94b1328ff295bbbbe5"
+    },
+    "changes": [
+      "원형의 카카오톡 접근성 조작 절차(방 찾기·열기·읽기·보내기)를 티파이브 카카오 도구의 사용법으로 다시 씀",
+      "방 찾기·열기·보내기는 커밋 70c0944f 기준, 그 밖은 da3ebba9d4f58f4a06f6dce28dd289692c99b27c 기준"
+    ],
+    "note": "티파이브 2.8.1 공증본(본선 커밋 7526fd575)에 기본으로 실린 `kakaotalk` 폴더를 바이트 그대로 옮겼다(앱 기록 파일 T5-BUNDLE.json 은 빼고). 앱 판에 없던 LICENSE·CHANGELOG.md·NOTICE.md 를 더했다."
+  },
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 380,
+      "sha256": "9bf37653c416d1c446f0c478dc5b81ac72d3fa4a6999c417701863942c39f504"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "NOTICE.md",
+      "bytes": 1343,
+      "sha256": "ed21a5ee4bfe981c5b17fa42156a60a6a9591ef760977c116470aba301850456"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 11501,
+      "sha256": "23a355dc2ed9af4e7a6291e089845aa7a7e83e9cf3e8169b391210c1e6cfccfb"
+    },
+    {
+      "path": "references/app-structure.md",
+      "bytes": 4047,
+      "sha256": "50582f0d6f12f495e878b61299e5dbb4202bbfc5030dd447c06064e70af7a3a7"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": {
+      "spdx": "MIT",
+      "url": "https://github.com/HyunSeob/kakaotalk-ax/blob/70c0944f3324b243cb60cf94b1328ff295bbbbe5/LICENSE",
+      "checkedAt": "2026-11-21"
+    },
+    "note": "티파이브가 쓴 부분은 이 창고의 MIT(docs/결정-기록.md). 원형 부분은 원형 MIT, 전문은 NOTICE.md."
+  },
+  "permissions": {
+    "files": {
+      "uses": true,
+      "note": "사람이 고른 파일만 대화방에 붙여요. 받은 첨부는 읽기만 해요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "티파이브 카카오 도구가 이 컴퓨터의 카카오톡 앱을 접근성 기능으로 읽고 눌러요."
+    },
+    "internet": {
+      "uses": false,
+      "note": "이 방법 자체는 인터넷에 접속하지 않아요(카카오톡 앱이 메시지를 주고받음)."
+    },
+    "externalSend": {
+      "uses": true,
+      "note": "사람이 시키면 정한 대화방에 메시지·파일을 보내요."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 서비스 사용 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": false,
+      "note": "티파이브 2.8.1 맥판에 기본으로 실림. 이 공개본으로 따로 돌려 보지는 않았다."
+    },
+    "windows": {
+      "supported": false,
+      "verified": false,
+      "note": "티파이브 윈도우판 준비 중. 확인 안 함."
+    }
+  },
+  "requires": [
+    "카카오톡 맥 앱",
+    "티파이브 카카오 도구"
+  ],
+  "t5MinVersion": "2.8.1",
+  "bundledIn": {
+    "productVersion": "2.8.1",
+    "productCommit": "7526fd575accc49f4ad939da7663c776e4937eac",
+    "skillSha256": "23a355dc2ed9af4e7a6291e089845aa7a7e83e9cf3e8169b391210c1e6cfccfb",
+    "note": "SKILL.md 와 나머지 스킬 파일은 앱 판과 같다. 더한 것: LICENSE, CHANGELOG.md, NOTICE.md."
+  },
+  "review": {
+    "date": "2026-11-21",
+    "result": "conditional",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "티파이브 2.8.1 공증본 본선 커밋 7526fd575 에 기본으로 실린 판인지 git archive 로 확인",
+        "result": "not_applicable",
+        "note": "설치 길로 들이지 않는 기본 탑재 공개본이라 들이기 검사는 해당 없음. 참고 사실: SKILL.md 11501바이트, description 104자."
+      },
+      {
+        "item": "2. 권한",
+        "method": "SKILL.md 머리말·본문의 도구 이름과 단계, 스크립트의 import·spawn·fetch·파일 쓰기 줄을 읽음(스크립트 없음)",
+        "result": "pass"
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "맥판에 실린 사실만 확인. 이 공개본으로 따로 돌려 보지 않음",
+        "result": "not_checked",
+        "note": "platforms 의 verified 가 둘 다 false."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "원형 LICENSE 를 고정 커밋 기준으로 깃허브에서 직접 열어 MIT 확인, 전문을 NOTICE.md 에 둠",
+        "result": "pass"
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·스크립트에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass",
+        "note": "원본을 고치는 길은 되돌릴 수 있게 알리는 티파이브 도구로만 감. 결제 없음."
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "항목 안 .md 파일에서 다른 AI 제품 이름 찾기",
+        "result": "pass",
+        "note": "없음."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사, 개발 내부 흔적(내부 경로·세션 이름·개인 정보) 검색",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "본선 커밋 7526fd575accc49f4ad939da7663c776e4937eac 에서 git archive 로 꺼내 옮기고 tools/refresh-files.mjs 로 files 를 적음. SKILL.md sha256 을 bundledIn.skillSha256 과 검사기가 대조",
+        "result": "pass",
+        "note": "숨은 파일·링크 0."
+      }
+    ]
+  }
+}

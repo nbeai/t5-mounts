@@ -1,0 +1,42 @@
+<section class="center" data-align="center">
+  <h1>업무 자동화 첫걸음</h1>
+  <p>사내 교육 · 40분</p>
+  <aside class="notes">인사하고 오늘 40분 동안 다룰 세 가지를 먼저 말합니다.</aside>
+</section>
+<section>
+  <h2>오늘 다룰 내용</h2>
+  <ul>
+    <li class="fragment">반복 업무 찾기</li>
+    <li class="fragment">자동화할 순서 정하기</li>
+    <li class="fragment">효과 확인하기</li>
+  </ul>
+  <aside class="notes">항목은 하나씩 나타납니다. 각 항목에서 청중에게 경험을 물어봅니다.</aside>
+</section>
+<section>
+  <section>
+    <h2>반복 업무 찾기</h2>
+    <p>일주일 동안 같은 일을 세 번 이상 했다면 후보입니다.</p>
+  </section>
+  <section>
+    <h3>예시</h3>
+    <p>매주 월요일 매출 표 정리, 고객 문의 분류</p>
+    <aside class="notes">아래 방향 슬라이드입니다. 질문이 없으면 넘어갑니다.</aside>
+  </section>
+</section>
+<section>
+  <h2>실시간으로 보는 절감 시간</h2>
+  <label>한 번에 걸리는 시간(분) <input id="minutes" type="range" min="5" max="120" value="30"></label>
+  <p id="saved" aria-live="polite"></p>
+  <script>
+    (() => {
+      const input = document.getElementById('minutes'); const output = document.getElementById('saved');
+      const update = () => { output.textContent = `매주 3번이면 한 달에 약 ${Math.round(input.value * 3 * 4.3 / 60 * 10) / 10}시간을 아낍니다.`; };
+      input.addEventListener('input', update); update();
+    })();
+  </script>
+  <aside class="notes">슬라이더를 움직여 청중의 실제 업무 시간으로 계산해 봅니다.</aside>
+</section>
+<section class="center" data-align="center">
+  <h2>감사합니다</h2>
+  <p>질문 받겠습니다</p>
+</section>

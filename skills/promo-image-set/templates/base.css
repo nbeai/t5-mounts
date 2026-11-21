@@ -42,7 +42,7 @@ b.hl{color:var(--cobalt);font-weight:800}
 .shot img{display:block;width:100%}
 .note{font-size:18px;color:var(--mute);letter-spacing:0}
 
-/* 진한 바탕 장 — 시리즈에 한두 장만, 오너가 "너무 파랗다"고 하면 밝은 표지로 */
+/* 진한 바탕 장 — 시리즈에 한두 장만, "너무 파랗다"는 말이 나오면 밝은 표지로 */
 body.dark{background:#0F1E3D;color:#F5F1E8}
 body.dark .brand,body.dark .site{color:#F5F1E8}
 body.dark .topic{color:#A9B6CF}

@@ -2,8 +2,10 @@
   "name": "t5-mounts",
   "private": true,
   "type": "module",
-  "description": "한국형 AI 비서 티파이브 공식 장착 저장소 — 검수한 스킬·플러그인·MCP·CLI 와 서명된 목록",
-  "engines": { "node": ">=20" },
+  "description": "티파이브 스킬 저장소 — 티파이브 기본 탑재 스킬 공개본과 골라 넣는 스킬, 검수 증명서와 서명된 목록",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "validate": "node tools/validate.mjs",
     "build-index": "node tools/build-index.mjs",

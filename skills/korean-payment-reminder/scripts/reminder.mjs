@@ -22,7 +22,7 @@ const parseDate = (text) => { const m = String(text ?? '').match(/(\d{4})\D+(\d{
 const kdate = (v) => { const t = parseDate(v); if (t == null) return blank(v) ? MISSING : String(v); const d = new Date(t); return `${d.getUTCFullYear()}. ${d.getUTCMonth() + 1}. ${d.getUTCDate()}.`; };
 const DAY = 86400000;
 
-/** 숫자 금액 → 한글(자리마다 「일」까지, 띄우지 않음). K2 와 같은 관행. */
+/** 숫자 금액 → 한글(자리마다 「일」까지, 띄우지 않음). 한국 업무 서식과 같은 관행. */
 export function hangulNumber(n) {
   if (!Number.isSafeInteger(n) || n < 0) throw new RangeError(`0 이상 정수만: ${n}`);
   if (!n) return '영';

@@ -1,0 +1,25 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "가게 이름(페이지에 보이는 그대로)",
+  "url": "https://가게주소/",
+  "telephone": "+82-2-0000-0000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "도로명 주소",
+    "addressLocality": "구·시",
+    "addressRegion": "시·도",
+    "postalCode": "00000",
+    "addressCountry": "KR"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ],
+  "priceRange": "₩₩",
+  "image": "https://가게주소/대표사진.jpg"
+}

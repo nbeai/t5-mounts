@@ -1,0 +1,136 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "site-naver-smartplace",
+  "kind": "skill",
+  "category": "홍보·콘텐츠",
+  "name": "네이버 스마트플레이스",
+  "summary": "네이버 검색·지도·AI 요약이 근거로 쓰는 가게 정보 칸과 리뷰 답글 원리, 고친 뒤 확인하는 법을 알려 줘요.",
+  "version": "0.1.0",
+  "status": "draft",
+  "origin": {
+    "type": "t5_made",
+    "upstream": null,
+    "changes": [],
+    "note": "티파이브 제작. 공개 자료 조사(2026-11-21: 네이버 보도자료, 네이버 도움말을 인용한 글, 언론 보도)에서 스마트플레이스 지식만 따로 뽑음. 관리 주소는 2026-11-21 응답 200 확인. 화면 메뉴 위치는 싣지 않았다(자주 바뀜)."
+  },
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 306,
+      "sha256": "e8d90d1edb1536075b6e7f02ab57a9592f45961133f7a8389dcfaf2b53f5fb2c"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 4949,
+      "sha256": "126f65fb57f7366c4721bd1cd8b154e22315872a0b19345b18b539ae6280ffac"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": null,
+    "note": "MIT(docs/결정-기록.md). 티파이브 본체는 이 라이선스와 무관."
+  },
+  "permissions": {
+    "files": {
+      "uses": false,
+      "note": "파일을 읽거나 쓰지 않아요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "티파이브의 브라우저 손으로 사람의 평소 크롬 탭을 써요. 이 항목에는 실행 파일이 없어요."
+    },
+    "internet": {
+      "uses": true,
+      "note": "new.smartplace.naver.com 에 사장님 계정으로 접속해 읽고, 사장님이 고른 값을 써요."
+    },
+    "externalSend": {
+      "uses": true,
+      "note": "사장님이 시키면 네이버에 공개되는 가게 정보를 바꾸고 리뷰 답글을 올려요."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 서비스 사용 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": false,
+      "note": "지식 글이라 실행물이 없다. 티파이브 들이기 검사만 맥에서 돌림. 실제 스마트플레이스 화면에서 써 보지는 않았다."
+    },
+    "windows": {
+      "supported": true,
+      "verified": false,
+      "note": "확인 안 함."
+    }
+  },
+  "requires": [
+    "사장님 네이버 계정(스마트플레이스 관리 권한)"
+  ],
+  "t5MinVersion": "2.8.1",
+  "review": {
+    "date": "2026-11-21",
+    "result": "pending",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "본선 e0d46a653 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+        "result": "pass",
+        "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 0, 라이선스 MIT. description 148자(한도 320)."
+      },
+      {
+        "item": "2. 권한",
+        "method": "SKILL.md 단계를 읽고 칸을 채움",
+        "result": "pass"
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "실행물 없음. 들이기 검사만 맥에서",
+        "result": "not_checked",
+        "note": "두 운영체제 모두 verified false."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "우리 제작물. 항목 폴더 LICENSE 를 티파이브 판별로 확인",
+        "result": "pass"
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·스크립트에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass"
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "SKILL.md·references 를 읽어 다른 AI 제품 이름 찾기",
+        "result": "pass",
+        "note": "본문은 「AI 대화 서비스」로 묶어 부르고 특정 제품을 권하거나 견주지 않음. 수집기 이름(OAI-SearchBot 등)은 robots.txt 에 쓰는 기술 식별자, 운영사 문서 주소는 출처 표시."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "tools/refresh-files.mjs 로 files 를 적음",
+        "result": "pass",
+        "note": "숨은 파일·링크 0."
+      },
+      {
+        "item": "9. 가린 비교 판정",
+        "method": "같은 부탁을 이 방법 없이 한 결과와 가린 채 견주기",
+        "result": "not_checked",
+        "note": "아직 하지 않음. 이 칸이 끝나기 전에는 진열하지 않는다."
+      }
+    ]
+  }
+}

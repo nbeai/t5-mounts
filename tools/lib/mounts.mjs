@@ -131,21 +131,33 @@ export function checkItem(repoRoot, kindDir, id, schema) {
   } else {
     if (!mount.origin.upstream) errors.push(`${where}: 원형이 있는 항목은 origin.upstream(주소·태그·커밋)이 있어야 함`);
     if (!mount.license.upstreamLicense) errors.push(`${where}: 원형이 있는 항목은 license.upstreamLicense 가 있어야 함`);
-    if (mount.license.redistribution === 'allowed' && !mount.license.decided) errors.push(`${where}: 원형 사본은 오너 결정(license.decided) 없이 둘 수 없음`);
+    if (mount.license.redistribution === 'allowed' && !mount.license.decided) errors.push(`${where}: 원형 사본은 라이선스 결정(license.decided) 없이 둘 수 없음`);
   }
   if (type === 't5_modified') {
     if (!mount.origin.changes.length) errors.push(`${where}: 티파이브 수정판은 origin.changes(바뀐 점)가 있어야 함`);
-    // 수정판은 원형을 고친 사본을 이 창고에 둔다 — 재배포 허락과 오너 결정이 모두 있어야 한다(CHECKLIST 4).
-    if (mount.license.redistribution !== 'allowed' || !mount.license.decided) errors.push(`${where}: 티파이브 수정판은 재배포 허락(redistribution allowed)과 오너 결정이 있어야 함`);
+    // 수정판은 원형을 고친 사본을 이 창고에 둔다 — 재배포 허락과 라이선스 결정이 모두 있어야 한다(CHECKLIST 4).
+    if (mount.license.redistribution !== 'allowed' || !mount.license.decided) errors.push(`${where}: 티파이브 수정판은 재배포 허락(redistribution allowed)과 라이선스 결정이 있어야 함`);
   } else if (mount.origin.changes.length) errors.push(`${where}: 바뀐 점(origin.changes)은 티파이브 수정판에만 적음`);
 
-  // 기본 스킬 업그레이드(오너 결정 2026-10-26): 이미 실린 기본 스킬을 같은 이름·높은 판으로 내보낸다.
+  // 기본 스킬 업그레이드(docs/결정-기록.md 2026-10-26): 이미 실린 기본 스킬을 같은 이름·높은 판으로 내보낸다.
   if (mount.overrides) {
     if (mount.kind !== 'skill') errors.push(`${where}: 기본 스킬 덮어쓰기(overrides)는 스킬만`);
     if (mount.overrides.baseSkill !== mount.id) errors.push(`${where}: overrides.baseSkill 은 id 와 같은 이름이어야 함`);
-    // 티파이브가 기본 스킬을 실제로 바꿔 끼우는지 확인(연구 세션 t5-skill-research)되기 전에는 진열하지 않는다(CHECKLIST 정리 규칙).
+    // 티파이브가 기본 스킬을 실제로 바꿔 끼우는지 확인되기 전에는 진열하지 않는다(CHECKLIST 정리 규칙).
     if (mount.status === 'listed') errors.push(`${where}: 기본 스킬 덮어쓰기 항목은 티파이브 동작 확인 전에는 listed 가 될 수 없음`);
   }
+
+  // 기본 탑재 공개본(bundled): 어느 판에 실렸는지와, 그 판의 SKILL.md 와 바이트까지 같은지.
+  if (mount.status === 'bundled') {
+    if (mount.kind !== 'skill') errors.push(`${where}: 기본 탑재(bundled)는 스킬만`);
+    if (!mount.bundledIn) errors.push(`${where}: 기본 탑재 항목은 bundledIn(실린 판·커밋·SKILL.md 지문)이 있어야 함`);
+    else {
+      const skill = mount.files.find((f) => f.path === 'SKILL.md');
+      if (!skill || skill.sha256 !== mount.bundledIn.skillSha256) errors.push(`${where}: SKILL.md 가 bundledIn 에 적힌 앱 판과 다름(기본 탑재 공개본은 앱 판 그대로)`);
+    }
+    if (!mount.license.decided) errors.push(`${where}: 라이선스 미정 항목은 bundled 가 될 수 없음`);
+    if (mount.overrides) errors.push(`${where}: 기본 탑재 공개본에는 overrides 를 두지 않음(새 판은 따로 낸다)`);
+  } else if (mount.bundledIn) errors.push(`${where}: bundledIn 은 기본 탑재(bundled) 항목에만 적음`);
 
   // 판 이력: CHANGELOG.md 가 있고 지금 판의 제목이 있어야 한다.
   let changelog = null; try { changelog = readFileSync(join(folder, 'CHANGELOG.md'), 'utf8'); } catch { errors.push(`${where}: CHANGELOG.md(판 이력)가 없음`); }

@@ -1,0 +1,43 @@
+{
+  "schema": "t5.vendored-upstream.v1",
+  "name": "reveal.js",
+  "version": "6.0.2",
+  "license": "MIT",
+  "copyright": "Copyright (C) 2011-2026 Hakim El Hattab, http://hakim.se, and reveal.js contributors",
+  "homepage": "https://revealjs.com",
+  "repository": "https://github.com/hakimel/reveal.js",
+  "tarball": "https://registry.npmjs.org/reveal.js/-/reveal.js-6.0.2.tgz",
+  "integrity": "sha512-JYIg5D9aoxoaLeb84O+OvAwsKWdIavVgEDScxtYEXFCT6t6TQrhNtSgogcjdCpdLsWglhJn3zyE3fUOwiH5KEg==",
+  "tarballSha256": "2f0c20bfb02447a198a1ebe8a8c097a5437d035caa38f2820bf4ba887a3eac91",
+  "modification": "none; files are byte-identical copies of package/<path> in the tarball",
+  "files": {
+    "LICENSE": {
+      "bytes": 1108,
+      "sha256": "b2883e4b610bfa1b4d8fff84c4d4b825cc7d553cbd9fec4777c04068a2859dc0"
+    },
+    "package.json": {
+      "bytes": 3713,
+      "sha256": "c9cac6cb97f7e233219ee12a624283fc65c08a4d7bad09b1facc980a490dcc87"
+    },
+    "dist/reveal.js": {
+      "bytes": 118912,
+      "sha256": "aa1bbbf2617b23a623b23612cb3c5bdb63de512e652bf20fcfa832b045d37844"
+    },
+    "dist/reveal.css": {
+      "bytes": 53963,
+      "sha256": "615ee850cbbb98a0f688b60ed37b21819a3f54c9f3e6f20e33e63693ab74a0c0"
+    },
+    "dist/theme/white.css": {
+      "bytes": 575268,
+      "sha256": "41e9507d97eb13ce6804645a9ce9f16220ddc3bfd6e7888aa3a0b5f61777d8f3"
+    },
+    "dist/theme/black.css": {
+      "bytes": 575282,
+      "sha256": "c29c9689e8f3b277aa66edc01ed2ef97981a6768b05ad750582eac068d9705c3"
+    },
+    "dist/plugin/notes.js": {
+      "bytes": 67789,
+      "sha256": "447c42f365876e41853de81453d0c53c580c5b2099132e8f61200de4a0ba2af3"
+    }
+  }
+}

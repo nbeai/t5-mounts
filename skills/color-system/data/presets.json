@@ -1,0 +1,898 @@
+{
+ "schema": "t5.color-presets.v2",
+ "version": 4,
+ "rule": "사장님 브랜드 색·글꼴·참고 이미지가 있으면 그것이 늘 이긴다. 이 체계는 브랜드가 없을 때만 쓰는 재료다.",
+ "usage": "넓은 면은 옅고 덜 진하게(25~150), 진한 색은 강조 하나, 글자는 짙게(900·800). 조합은 업종 정답이 아니라 출발점이다.",
+ "roles": {
+  "bg": "바탕 25",
+  "surface": "카드 50",
+  "surface2": "둘째 면 100(표 머리줄·눌린 칸)",
+  "soft": "띠·태그 150",
+  "line": "꾸밈선 200(구분선·격자, 1.5:1 안팎)",
+  "lineFunc": "기능선 600(차트 축·입력칸, 3:1 이상)",
+  "barLo": "회색 막대 200(숫자 이름표와 함께)",
+  "text": "제목·본문 900",
+  "muted": "보조 글자 800",
+  "mutedLarge": "600 — 큰 글만",
+  "accent": "강조 하나(800·900)",
+  "onAccent": "강조 위 글자",
+  "onSoft": "띠 위 글자",
+  "up": "▲ 상승",
+  "down": "▼ 하락",
+  "icon": "옆 글자 색",
+  "scrim": "사진 덮개 색",
+  "photoText": "사진 위 글자 색",
+  "photo": "사진 위 글자 처리 값(덮개 세기·대비)"
+ },
+ "aiTell": {
+  "rule": "바탕 ΔE_ok≤6 그리고 강조 ΔE_ok≤10이면 근접(남보라는 강조만)",
+  "refs": [
+   {
+    "id": "cream-terracotta",
+    "ko": "크림+테라코타",
+    "bg": "#F4F1EA",
+    "accents": [
+     "#D97757"
+    ]
+   },
+   {
+    "id": "cream-brick",
+    "ko": "크림+벽돌(옛 발표 기본)",
+    "bg": "#F4F1EA",
+    "accents": [
+     "#B6402B"
+    ]
+   },
+   {
+    "id": "black-neon",
+    "ko": "검정+형광 주홍·연두",
+    "bg": "#0B0B0B",
+    "accents": [
+     "#FF4F1F",
+     "#B8F02E"
+    ]
+   },
+   {
+    "id": "indigo",
+    "ko": "남보라 단추",
+    "bg": null,
+    "accents": [
+     "#6366F1",
+     "#4F46E5",
+     "#8B5CF6"
+    ]
+   }
+  ]
+ },
+ "purposesNote": "업종과 무관한 목적 조합. 출발점이며, 이유가 있으면 벗어난다. 1번이 업종·목적을 모를 때의 기본(3판 기본 조합을 흡수).",
+ "purposes": [
+  {
+   "id": "trust",
+   "ko": "차분한 신뢰",
+   "when": "업종·목적을 모를 때, 상담·안내·보고",
+   "isDefault": true,
+   "light": {
+    "bg": "#FCF9F7",
+    "surface": "#F8F4F1",
+    "surface2": "#EEE8E4",
+    "soft": "#D6E1EE",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "mutedLarge": "#746D68",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "text": "#312D29",
+    "muted": "#47413D",
+    "accent": "#435772",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#312D29",
+    "icon": "#312D29",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.68
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "accent": "#92BEE2",
+    "soft": "#203550",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.68
+    }
+   }
+  },
+  {
+   "id": "formal",
+   "ko": "격식·공식",
+   "when": "공문·계약·관공서·협회 안내",
+   "light": {
+    "bg": "#F8FAFD",
+    "surface": "#FFFFFF",
+    "surface2": "#E1EBF5",
+    "soft": "#D6E1EE",
+    "line": "#BBCDE1",
+    "lineFunc": "#5F7695",
+    "barLo": "#BBCDE1",
+    "mutedLarge": "#5F7695",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "text": "#142140",
+    "muted": "#435772",
+    "accent": "#203550",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#142140",
+    "icon": "#142140",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "captionContrast": 4.8
+    }
+   },
+   "dark": {
+    "bg": "#142140",
+    "surface": "#203550",
+    "surface2": "#435772",
+    "line": "#435772",
+    "lineFunc": "#88A1BF",
+    "barLo": "#435772",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#88A1BF",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#142140",
+    "photoText": "#FCF9F7",
+    "accent": "#92BEE2",
+    "soft": "#143788",
+    "onAccent": "#142140",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "captionContrast": 4.79
+    }
+   }
+  },
+  {
+   "id": "warm",
+   "ko": "따뜻함·친근",
+   "when": "동네 가게 소식·감사 인사·후기",
+   "light": {
+    "bg": "#FFF8F7",
+    "surface": "#FDF2F1",
+    "surface2": "#F9E4E2",
+    "soft": "#F3D8D7",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "mutedLarge": "#746D68",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "text": "#34231E",
+    "muted": "#47413D",
+    "accent": "#6B4849",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#34231E",
+    "icon": "#34231E",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.68
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "accent": "#F59999",
+    "soft": "#86252E",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.68
+    }
+   }
+  },
+  {
+   "id": "learn",
+   "ko": "맑음·배움",
+   "when": "강좌·설명서·안내 교육 자료",
+   "light": {
+    "bg": "#F5FCFB",
+    "surface": "#ECF8F7",
+    "surface2": "#D8EFEF",
+    "soft": "#CAE6E6",
+    "line": "#BBCDE1",
+    "lineFunc": "#5F7695",
+    "barLo": "#BBCDE1",
+    "mutedLarge": "#5F7695",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "text": "#142140",
+    "muted": "#203550",
+    "accent": "#005860",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#142140",
+    "icon": "#142140",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "captionContrast": 4.8
+    }
+   },
+   "dark": {
+    "bg": "#142140",
+    "surface": "#203550",
+    "surface2": "#435772",
+    "line": "#435772",
+    "lineFunc": "#88A1BF",
+    "barLo": "#435772",
+    "text": "#FCF9F7",
+    "muted": "#BBCDE1",
+    "mutedLarge": "#88A1BF",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#142140",
+    "photoText": "#FCF9F7",
+    "accent": "#2DA4A8",
+    "soft": "#00353B",
+    "onAccent": "#142140",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "captionContrast": 4.79
+    }
+   }
+  },
+  {
+   "id": "active",
+   "ko": "활기·행동",
+   "when": "할인·행사·마감 알림 — 진한 강조는 작은 면적에만",
+   "light": {
+    "bg": "#FCF9F7",
+    "surface": "#F8F4F1",
+    "surface2": "#EEE8E4",
+    "soft": "#FEAA3A",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "mutedLarge": "#746D68",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "text": "#1B1715",
+    "muted": "#47413D",
+    "accent": "#910039",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#1B1715",
+    "icon": "#1B1715",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.68
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "accent": "#FE5E85",
+    "soft": "#4D1E00",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.68
+    }
+   }
+  },
+  {
+   "id": "data",
+   "ko": "데이터·분석",
+   "when": "매출·성과 보고, 대시보드 — 강조 한 계열, 나머지 회색",
+   "light": {
+    "bg": "#F7F7F7",
+    "surface": "#FFFFFF",
+    "surface2": "#E7E7E7",
+    "soft": "#D6E1EE",
+    "line": "#C2C2C2",
+    "lineFunc": "#747474",
+    "barLo": "#C2C2C2",
+    "text": "#212121",
+    "muted": "#404040",
+    "mutedLarge": "#747474",
+    "accent": "#435772",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#0F0F0F",
+    "photoText": "#F7F7F7",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#212121",
+    "icon": "#212121",
+    "photo": {
+     "scrim": "gray.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.95
+    }
+   },
+   "dark": {
+    "bg": "#0F0F0F",
+    "surface": "#212121",
+    "surface2": "#303030",
+    "soft": "#203550",
+    "line": "#404040",
+    "lineFunc": "#8E8E8E",
+    "barLo": "#585858",
+    "text": "#F7F7F7",
+    "muted": "#C2C2C2",
+    "mutedLarge": "#8E8E8E",
+    "accent": "#92BEE2",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#0F0F0F",
+    "photoText": "#F7F7F7",
+    "onAccent": "#0F0F0F",
+    "onSoft": "#F7F7F7",
+    "icon": "#F7F7F7",
+    "photo": {
+     "scrim": "gray.950",
+     "scrimMax": 0.85,
+     "captionContrast": 4.95
+    }
+   }
+  },
+  {
+   "id": "night",
+   "ko": "어두운 화면",
+   "when": "밤 발표·영상 위·어두운 매장 화면 — 어두움이 본판, 밝음은 짝",
+   "light": {
+    "bg": "#F8FAFD",
+    "surface": "#FFFFFF",
+    "surface2": "#E1EBF5",
+    "soft": "#EBDDCA",
+    "line": "#BBCDE1",
+    "lineFunc": "#5F7695",
+    "barLo": "#BBCDE1",
+    "mutedLarge": "#5F7695",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "text": "#142140",
+    "muted": "#435772",
+    "accent": "#143788",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#142140",
+    "icon": "#142140",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "captionContrast": 4.8
+    }
+   },
+   "dark": {
+    "bg": "#142140",
+    "surface": "#203550",
+    "surface2": "#435772",
+    "soft": "#4D1E00",
+    "line": "#435772",
+    "lineFunc": "#88A1BF",
+    "barLo": "#435772",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#88A1BF",
+    "accent": "#92BEE2",
+    "deco": "#FEAA3A",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#142140",
+    "photoText": "#FCF9F7",
+    "onAccent": "#142140",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "captionContrast": 4.79
+    }
+   }
+  }
+ ],
+ "industryNote": "업종 조합 6개는 3판 그대로. 3판의 기본 조합은 목적 조합 1번(차분한 신뢰)으로 옮겼다.",
+ "presets": [
+  {
+   "id": "cafe",
+   "ko": "카페·식당",
+   "mood": "에스프레소와 우유 거품",
+   "light": {
+    "bg": "#FEF9F6",
+    "surface": "#FBF3EF",
+    "surface2": "#F6E6DD",
+    "soft": "#EBDDCA",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "text": "#34231E",
+    "muted": "#6B4849",
+    "mutedLarge": "#746D68",
+    "accent": "#6D2818",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#34231E",
+    "icon": "#34231E",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#E9D7C1",
+     "captionContrast": 4.81,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "cocoa.25",
+      "text": "cocoa.900",
+      "contrast": 14.3
+     },
+     "pass": true
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "soft": "#4D1E00",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "accent": "#FEAA3A",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#E9D7C1",
+     "captionContrast": 4.81,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "warm.950",
+      "text": "warm.25",
+      "contrast": 16.98
+     },
+     "pass": true
+    }
+   }
+  },
+  {
+   "id": "beauty",
+   "ko": "미용·네일",
+   "mood": "옅은 장밋빛 바탕에 짙은 베리 한 점",
+   "light": {
+    "bg": "#FFF8F7",
+    "surface": "#FDF2F1",
+    "surface2": "#F9E4E2",
+    "soft": "#F3D8D7",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "text": "#34231E",
+    "muted": "#6B4849",
+    "mutedLarge": "#746D68",
+    "accent": "#910039",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#34231E",
+    "icon": "#34231E",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#F1D9D3",
+     "captionContrast": 4.68,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "rose.25",
+      "text": "cocoa.900",
+      "contrast": 14.25
+     },
+     "pass": true
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "soft": "#5A0022",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "accent": "#F59999",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#F1D9D3",
+     "captionContrast": 4.68,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "warm.950",
+      "text": "warm.25",
+      "contrast": 16.98
+     },
+     "pass": true
+    }
+   }
+  },
+  {
+   "id": "academy",
+   "ko": "학원·사무",
+   "mood": "흰 종이와 남색 잉크",
+   "light": {
+    "bg": "#F8FAFD",
+    "surface": "#FFFFFF",
+    "surface2": "#E1EBF5",
+    "soft": "#D0E2F3",
+    "line": "#BBCDE1",
+    "lineFunc": "#5F7695",
+    "barLo": "#BBCDE1",
+    "text": "#142140",
+    "muted": "#435772",
+    "mutedLarge": "#5F7695",
+    "accent": "#143788",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#142140",
+    "icon": "#142140",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.95,
+     "alphaAtText": 0.62,
+     "worstPhoto": "#E6E9EE",
+     "captionContrast": 4.96,
+     "alphaNeededForWhitePhoto": 0.63,
+     "band": {
+      "bg": "navy.25",
+      "text": "navy.950",
+      "contrast": 15.2
+     },
+     "pass": true
+    }
+   },
+   "dark": {
+    "bg": "#142140",
+    "surface": "#203550",
+    "surface2": "#435772",
+    "soft": "#143788",
+    "line": "#435772",
+    "lineFunc": "#88A1BF",
+    "barLo": "#435772",
+    "text": "#F8FAFD",
+    "muted": "#BBCDE1",
+    "mutedLarge": "#88A1BF",
+    "accent": "#40A5F7",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "onAccent": "#142140",
+    "onSoft": "#F8FAFD",
+    "icon": "#F8FAFD",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.95,
+     "alphaAtText": 0.62,
+     "worstPhoto": "#E6E9EE",
+     "captionContrast": 4.96,
+     "alphaNeededForWhitePhoto": 0.63,
+     "band": {
+      "bg": "navy.950",
+      "text": "navy.25",
+      "contrast": 15.2
+     },
+     "pass": true
+    }
+   }
+  },
+  {
+   "id": "flower-food",
+   "ko": "꽃·식품",
+   "mood": "아침 잎사귀와 연분홍 꽃잎",
+   "light": {
+    "bg": "#F7FBF7",
+    "surface": "#F0F7F0",
+    "surface2": "#DFEEE1",
+    "soft": "#F3D8D7",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "text": "#003822",
+    "muted": "#115B3A",
+    "mutedLarge": "#746D68",
+    "accent": "#86252E",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#003822",
+    "icon": "#003822",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#EAD3D6",
+     "captionContrast": 4.82,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "green.25",
+      "text": "green.900",
+      "contrast": 12.65
+     },
+     "pass": true
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "soft": "#003822",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "accent": "#F59999",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#EAD3D6",
+     "captionContrast": 4.82,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "warm.950",
+      "text": "warm.25",
+      "contrast": 16.98
+     },
+     "pass": true
+    }
+   }
+  },
+  {
+   "id": "craft",
+   "ko": "공방·소품",
+   "mood": "리넨과 가죽, 청록 실 한 가닥",
+   "light": {
+    "bg": "#FCF9F7",
+    "surface": "#F8F4F1",
+    "surface2": "#EEE8E4",
+    "soft": "#CAE6E6",
+    "line": "#CDC6C0",
+    "lineFunc": "#746D68",
+    "barLo": "#CDC6C0",
+    "text": "#34231E",
+    "muted": "#47413D",
+    "mutedLarge": "#746D68",
+    "accent": "#005860",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#34231E",
+    "icon": "#34231E",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#E6DCCD",
+     "captionContrast": 4.67,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "warm.25",
+      "text": "cocoa.900",
+      "contrast": 14.26
+     },
+     "pass": true
+    }
+   },
+   "dark": {
+    "bg": "#1B1715",
+    "surface": "#312D29",
+    "surface2": "#47413D",
+    "soft": "#00353B",
+    "line": "#5D5752",
+    "lineFunc": "#A49D97",
+    "barLo": "#47413D",
+    "text": "#FCF9F7",
+    "muted": "#CDC6C0",
+    "mutedLarge": "#A49D97",
+    "accent": "#2DA4A8",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#1B1715",
+    "photoText": "#FCF9F7",
+    "onAccent": "#1B1715",
+    "onSoft": "#FCF9F7",
+    "icon": "#FCF9F7",
+    "photo": {
+     "scrim": "warm.950",
+     "scrimMax": 0.85,
+     "alphaAtText": 0.55,
+     "worstPhoto": "#E6DCCD",
+     "captionContrast": 4.67,
+     "alphaNeededForWhitePhoto": 0.61,
+     "band": {
+      "bg": "warm.950",
+      "text": "warm.25",
+      "contrast": 16.98
+     },
+     "pass": true
+    }
+   }
+  },
+  {
+   "id": "fitness",
+   "ko": "운동·건강",
+   "mood": "맑은 아침, 짙은 풀잎의 힘",
+   "light": {
+    "bg": "#F8FAFD",
+    "surface": "#FFFFFF",
+    "surface2": "#E1EBF5",
+    "soft": "#D2E6D5",
+    "line": "#BBCDE1",
+    "lineFunc": "#5F7695",
+    "barLo": "#BBCDE1",
+    "text": "#203550",
+    "muted": "#435772",
+    "mutedLarge": "#5F7695",
+    "accent": "#115B3A",
+    "up": "#910039",
+    "down": "#1F55B5",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "onAccent": "#FFFFFF",
+    "onSoft": "#203550",
+    "icon": "#203550",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "alphaAtText": 0.59,
+     "worstPhoto": "#DDE7EA",
+     "captionContrast": 4.65,
+     "alphaNeededForWhitePhoto": 0.63,
+     "band": {
+      "bg": "navy.25",
+      "text": "navy.900",
+      "contrast": 11.91
+     },
+     "pass": true
+    }
+   },
+   "dark": {
+    "bg": "#142140",
+    "surface": "#203550",
+    "surface2": "#435772",
+    "soft": "#003822",
+    "line": "#435772",
+    "lineFunc": "#88A1BF",
+    "barLo": "#435772",
+    "text": "#F8FAFD",
+    "muted": "#BBCDE1",
+    "mutedLarge": "#88A1BF",
+    "accent": "#6AB17E",
+    "up": "#FFB2C0",
+    "down": "#92BEE2",
+    "scrim": "#142140",
+    "photoText": "#F8FAFD",
+    "onAccent": "#142140",
+    "onSoft": "#F8FAFD",
+    "icon": "#F8FAFD",
+    "photo": {
+     "scrim": "navy.950",
+     "scrimMax": 0.9,
+     "alphaAtText": 0.59,
+     "worstPhoto": "#DDE7EA",
+     "captionContrast": 4.65,
+     "alphaNeededForWhitePhoto": 0.63,
+     "band": {
+      "bg": "navy.950",
+      "text": "navy.25",
+      "contrast": 15.2
+     },
+     "pass": true
+    }
+   }
+  }
+ ]
+}

@@ -36,9 +36,9 @@
 
 ## 4. 라이선스
 
-- 우리 제작물: 저장소 라이선스 MIT(오너 결정 2026-10-26, `docs/결정-기록.md`)를 따르고, 항목 폴더에 `LICENSE` 사본을 둡니다(깃허브 항목 주소로 들일 때 티파이브는 그 폴더의 LICENSE 만 읽어 「MIT」로 알립니다). 라이선스가 정해지지 않은 항목은 `license.decided: false` 이고 진열하지 않습니다.
+- 우리 제작물: 저장소 라이선스 MIT(2026-10-26, `docs/결정-기록.md`)를 따르고, 항목 폴더에 `LICENSE` 사본을 둡니다(깃허브 항목 주소로 들일 때 티파이브는 그 폴더의 LICENSE 만 읽어 「MIT」로 알립니다). 라이선스가 정해지지 않은 항목은 `license.decided: false` 이고 진열하지 않습니다.
 - 외부 원형: 원 저장소의 LICENSE 파일을 고정 판 기준으로 직접 열어 `license.upstreamLicense`(SPDX·주소·확인 날짜)에 적습니다. 목록 사이트의 표기만 보고 적지 않습니다.
-- **원본 코드 복사·포크는 오너 결정 없이는 0입니다.** 우리 저장소에는 원형의 주소·고정 판(태그와 커밋 전체 해시)·얇은 연결 설정·검수 기록만 둡니다(`license.redistribution: "links_only"`). 사본을 두려면 재배포가 허락되는 라이선스인지 확인하고 오너 결정을 받아 `decided: true` 로 적습니다(검사기가 결정 없는 외부 사본을 막습니다).
+- **원본 코드 복사·포크는 라이선스 결정 없이는 0입니다.** 우리 저장소에는 원형의 주소·고정 판(태그와 커밋 전체 해시)·얇은 연결 설정·검수 기록만 둡니다(`license.redistribution: "links_only"`). 사본을 두려면 재배포가 허락되는 라이선스인지 확인하고 결정을 기록해 `decided: true` 로 적습니다(검사기가 결정 없는 외부 사본을 막습니다).
 - 티파이브는 깃허브에서 들일 때 특정 회사 서비스 안에서만 쓰라는 약관과 오픈소스 이름 없이 「All rights reserved」·「Proprietary」만 적힌 라이선스를 거절합니다(본선 `managed-skill-store.js` `license_forbids_install`). 항목 폴더에 둘 LICENSE 문장도 이 기준으로 확인합니다.
 
 ## 5. 경계 — 백업 없는 파괴·돈
@@ -65,20 +65,23 @@ API 키·토큰·비밀번호·쿠키·비밀 열쇠가 어떤 파일에도 없�
 
 ## 정리 규칙 — 이름·분류·출처·판 (검사기가 막음)
 
-이 창고에는 우리가 만들었거나 검수했거나 고친 것만 넣습니다(오너 방향 2026-10-26). 그래서 아래 칸으로 우리식대로 정리합니다.
+이 창고에는 우리가 만들었거나 검수했거나 고친 것만 넣습니다(2026-10-26 정리 방식). 그래서 아래 칸으로 우리식대로 정리합니다.
 
 - **이름:** `name` 은 한국어 표시 이름(한글 필수), `id` 는 영문 짧은 이름이며 폴더 이름과 같습니다. 기술 종류는 폴더(`skills/`·`mcp/`·`cli/`·`plugins/`)로 가릅니다.
 - **분류(`category`):** 사장님 일 기준 여섯 가지 — 홍보·콘텐츠, 문서·서식, 돈·장부, 웹 업무, 사진·영상, 컴퓨터 관리. 목록 원본은 `schema/mount.schema.json` 의 `category` 하나이고, `index.json` 의 `categories` 가 거기서 나옵니다. 분류를 늘리거나 바꾸면 그 목록만 고치고 목록을 다시 만듭니다.
 - **출처(`origin.type`) 세 가지:**
   - `t5_made` 「티파이브 제작」 — `origin.upstream` 은 `null`.
   - `reviewed_upstream` 「검수 통과(원형 그대로)」 — 원형 주소·태그·커밋(`origin.upstream`)과 원 라이선스(`license.upstreamLicense`) 필수. 원본 사본을 두지 않는 것이 기본(`redistribution: "links_only"`).
-  - `t5_modified` 「티파이브 수정판」 — 위 둘에 더해 `origin.changes` 에 바뀐 점을 한 줄씩(하나 이상). 고친 사본을 이 창고에 두므로 재배포 허락(`redistribution: "allowed"`)과 오너 결정(`decided: true`)이 모두 있어야 합니다.
-- **기본 스킬 업그레이드(`overrides`):** 티파이브에 이미 실린 기본 스킬을 **같은 이름 + 높은 판 번호**로 내보낼 때만 채웁니다(오너 결정 2026-10-26). `baseSkill`(= `id`), `baseProductVersion`(그 기본 스킬이 실린 티파이브 판), `baseContentSha256`(그 판 기본 스킬 SKILL.md 의 sha256 — 기본 스킬 머리말에는 판 번호 칸이 없어 내용 지문으로 가리킵니다), `changes`(바뀐 점), `rollback`(되돌리는 법). 티파이브가 실제로 기본 스킬을 바꿔 끼우는지, 판 번호를 무엇과 비교하는지는 연구 세션(t5-skill-research)이 확인 중이라 그 결과가 나오기 전에는 이 칸을 쓴 항목을 진열하지 않습니다.
+  - `t5_modified` 「티파이브 수정판」 — 위 둘에 더해 `origin.changes` 에 바뀐 점을 한 줄씩(하나 이상). 고친 사본을 이 창고에 두므로 재배포 허락(`redistribution: "allowed"`)과 라이선스 결정(`decided: true`)이 모두 있어야 합니다.
+- **기본 스킬 업그레이드(`overrides`):** 티파이브에 이미 실린 기본 스킬을 **같은 이름 + 높은 판 번호**로 내보낼 때만 채웁니다(2026-10-26 결정). `baseSkill`(= `id`), `baseProductVersion`(그 기본 스킬이 실린 티파이브 판), `baseContentSha256`(그 판 기본 스킬 SKILL.md 의 sha256 — 기본 스킬 머리말에는 판 번호 칸이 없어 내용 지문으로 가리킵니다), `changes`(바뀐 점), `rollback`(되돌리는 법). 티파이브가 실제로 기본 스킬을 바꿔 끼우는지, 판 번호를 무엇과 비교하는지는 아직 확인 중이라 그 결과가 나오기 전에는 이 칸을 쓴 항목을 진열하지 않습니다.
+- **기본 탑재 공개본(`status: "bundled"`):** 티파이브에 기본으로 실린 스킬을 그 판 그대로 공개할 때만 씁니다. `bundledIn` 에 실린 티파이브 판(`productVersion`)·본선 커밋 전체 해시(`productCommit`)·그 판 SKILL.md 의 sha256(`skillSha256`)·앱 판과 다른 점(`note`)을 적고, 검사기가 이 폴더의 SKILL.md 지문과 대조합니다. 라이선스가 정해져야 하고(`decided: true`), `overrides` 는 두지 않습니다. 이 항목은 설치 길로 들이지 않으므로 검수 칸 1은 `not_applicable` 로 두고, 참고로 description 길이를 적습니다. 옮기는 차례는 `CONTRIBUTING.md`.
 - **판 이력:** 항목 폴더에 `CHANGELOG.md` 를 두고 판마다 `## <판>` 제목 아래 날짜·출처·바뀐 점·되돌리기를 적습니다. 지금 `version` 의 제목이 없으면 검사가 떨어집니다.
 
 ## 넣는 순서
 
+자세한 차례(만들기 → 검수 → 서명 → 올리기)는 [CONTRIBUTING.md](CONTRIBUTING.md). 요약:
+
 1. 항목 폴더와 `mount.json`·`CHANGELOG.md` 를 만들고 `node tools/refresh-files.mjs <폴더>`.
 2. 위 1~8을 보고 `review` 를 채움.
 3. `node tools/validate.mjs` → `node tools/build-index.mjs` → `node tools/sign-index.mjs --key <저장소 밖 비밀 열쇠>` → `node tools/verify.mjs` → `node --test test/*.test.mjs`.
-4. 커밋. 공개 올리기는 오너 결정 뒤.
+4. 커밋. 공개 올리기(push)는 회사 확인 뒤.

@@ -1,0 +1,244 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "dashboard",
+  "kind": "skill",
+  "category": "문서·서식",
+  "name": "대시보드",
+  "summary": "엑셀·CSV 같은 업무 자료로 오늘 할 일이 먼저 보이는 대시보드·현황판·차트 화면을 만들고, 휴대폰과 PC에서 숫자·필터를 확인해요. 인터넷 없이도 차트와 한글 글꼴이 보여요.",
+  "version": "2.8.1",
+  "status": "bundled",
+  "origin": {
+    "type": "t5_made",
+    "upstream": null,
+    "changes": [],
+    "note": "티파이브 2.8.1 공증본(본선 커밋 7526fd575)에 기본으로 실린 `dashboard` 폴더를 바이트 그대로 옮겼다(앱 기록 파일 T5-BUNDLE.json 은 빼고). 앱 판에 없던 LICENSE·CHANGELOG.md 를 더했다. 안에 든 남의 파일(대시보드: Apache ECharts·Pretendard 글꼴, 웹 발표: reveal.js 6.0.2)은 원본 그대로이고 각 사용권 파일이 함께 들어 있다. 공개 전에 스크립트 주석의 내부 작업 표식을 지웠다(코드 동작은 같음)."
+  },
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 444,
+      "sha256": "6762ab1b26e86727ecb4810c06980f5ee4412a0c073df3daa465af81ae10a7a0"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 8808,
+      "sha256": "dac771f3d59fb648aecca015f2969e40799c413f8801307767816d9102ae8e9a"
+    },
+    {
+      "path": "assets/assets.json",
+      "bytes": 2962,
+      "sha256": "82adfbeacea9535ce2b1560e2a99fe147d91222240dc50eaf1217cee0cfa7a03"
+    },
+    {
+      "path": "assets/echarts/LICENSE",
+      "bytes": 11990,
+      "sha256": "634293835b43a6dd2094fa39182a3d9a6b9ca43b7fdb9ac354e8037af2a3093a"
+    },
+    {
+      "path": "assets/echarts/NOTICE",
+      "bytes": 168,
+      "sha256": "d491d358344f842685c1b1585970999db65fe30ecf7ef3867af8814f4016c016"
+    },
+    {
+      "path": "assets/echarts/echarts.min.js",
+      "bytes": 1121883,
+      "sha256": "b66b25aeb4df84e33199dc21694014d336d222cbd9deb0e5a7c14bd6aa0d0fd0"
+    },
+    {
+      "path": "assets/echarts/langKO.js",
+      "bytes": 5356,
+      "sha256": "1299ac7f4a78440064f91f6faeb7cd17a5e28ef6f96d5959c84e7f4fb2f6591d"
+    },
+    {
+      "path": "assets/echarts/licenses/LICENSE-d3",
+      "bytes": 1475,
+      "sha256": "e1211892da0b0e0585b7aebe8f98c1274fba15bafe47fa1f4ee8a7a502c06304"
+    },
+    {
+      "path": "assets/pretendard/LICENSE.txt",
+      "bytes": 4419,
+      "sha256": "b04538c9abec39a3db75108cf0af0fd9c77032fe8aa2cf38345b4d250e98e38e"
+    },
+    {
+      "path": "assets/pretendard/Pretendard-Bold.subset.woff2",
+      "bytes": 270784,
+      "sha256": "78eb71c33101ee7d4f8d1b777d193a12d00f8a296e712a8c417cf27abe946397"
+    },
+    {
+      "path": "assets/pretendard/Pretendard-Regular.subset.woff2",
+      "bytes": 267096,
+      "sha256": "01dd73155fdfab7ce9b25224523e85a96927e21aef97f21957d41f1bfa7e3878"
+    },
+    {
+      "path": "references/design.md",
+      "bytes": 5501,
+      "sha256": "af5a0635064ff92b9644d6c0c067e723a8054809be198466c0c66ea8d00d43fd"
+    },
+    {
+      "path": "references/edits.md",
+      "bytes": 440,
+      "sha256": "2f584079a1fffe1cd337243029cccaa4d43f692612755c841cdd02a3f5a8e76b"
+    },
+    {
+      "path": "scripts/build-dashboard.mjs",
+      "bytes": 20472,
+      "sha256": "64eef2a5b61406e9221850c931bc2696d5918bc6689b4d9fa6f4ebd1643f91bd"
+    },
+    {
+      "path": "scripts/check-dashboard.mjs",
+      "bytes": 19118,
+      "sha256": "0e0688fe7c060ef243e15e35866397940aaa29f7549570b18a9da0ac015da303"
+    },
+    {
+      "path": "scripts/inline-assets.mjs",
+      "bytes": 4473,
+      "sha256": "5550ba95617f584cce39e22426af3bbf12fb55bc8b917ddfe32879c9ddb97e5d"
+    },
+    {
+      "path": "scripts/lib/page-runtime.js",
+      "bytes": 23104,
+      "sha256": "d7498ef6a0154f0d323201915c09a0c0471a6eaadeda9d449c7fcb128d5c6069"
+    },
+    {
+      "path": "scripts/lib/page.css",
+      "bytes": 5481,
+      "sha256": "389e4c4fe94b8656064421b772801f2f82ecc17f275cf3dc1fcb23d230d9ae8a"
+    },
+    {
+      "path": "scripts/lib/preview-render.mjs",
+      "bytes": 8831,
+      "sha256": "9398405eba23a00430c0ab4a07fa09b66eb7dc6765a6cd939326a9d2b1e04e90"
+    },
+    {
+      "path": "scripts/lib/rules.mjs",
+      "bytes": 5741,
+      "sha256": "b3a167f82ac1071b3d79d3013bfa11bb2d25a1f29c06ffe13223ef74e5f2f679"
+    },
+    {
+      "path": "scripts/lib/source.mjs",
+      "bytes": 7457,
+      "sha256": "b0bd1d07ef271b5c151b0bf5cce21718ceb51a3cd29a9706440b1b26469a21bd"
+    },
+    {
+      "path": "scripts/profile-data.mjs",
+      "bytes": 4869,
+      "sha256": "99522ae26129b2ff574770043de7c08f5ee8c0141e7e29a4d01edbf363015e9e"
+    },
+    {
+      "path": "scripts/t5-refresh.mjs",
+      "bytes": 1350,
+      "sha256": "3ed7cb65403f8d24420203b6d1c576b015065adcc436aa5e29d25c7f6662b04d"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": null,
+    "note": "MIT(docs/결정-기록.md). 티파이브 본체는 이 라이선스와 무관. 안에 든 남의 파일은 각 사용권 파일을 따른다."
+  },
+  "permissions": {
+    "files": {
+      "uses": true,
+      "note": "엑셀·CSV 원본을 읽고 결과 HTML·점검 그림을 새로 써요. 원본은 고치지 않아요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "node 로 scripts/ 의 대시보드 만들기·점검 스크립트를 돌리고, 점검 때 이 컴퓨터의 크롬을 화면 없이 띄워요."
+    },
+    "internet": {
+      "uses": false,
+      "note": "인터넷을 쓰지 않아요. 차트(ECharts)·한글 글꼴(Pretendard)을 항목 안에 담아 두었어요. 점검은 이 컴퓨터 안(127.0.0.1)에서만 해요."
+    },
+    "externalSend": {
+      "uses": false,
+      "note": "만든 대시보드를 어디에도 올리지 않아요."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 서비스 사용 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": false,
+      "note": "티파이브 2.8.1 맥판에 기본으로 실림. 이 공개본으로 따로 돌려 보지는 않았다."
+    },
+    "windows": {
+      "supported": false,
+      "verified": false,
+      "note": "티파이브 윈도우판 준비 중. 확인 안 함."
+    }
+  },
+  "requires": [
+    "node(티파이브에 들어 있음)",
+    "크롬·엣지·크로뮴 중 하나(화면 점검용)",
+    "티파이브 문서 부품(playwright-core 등)"
+  ],
+  "t5MinVersion": "2.8.1",
+  "bundledIn": {
+    "productVersion": "2.8.1",
+    "productCommit": "7526fd575accc49f4ad939da7663c776e4937eac",
+    "skillSha256": "dac771f3d59fb648aecca015f2969e40799c413f8801307767816d9102ae8e9a",
+    "note": "SKILL.md 는 앱 판과 같다. 다른 점: 스크립트 주석의 내부 작업 표식을 지움(동작 같음). 더한 것: LICENSE, CHANGELOG.md."
+  },
+  "review": {
+    "date": "2026-11-21",
+    "result": "conditional",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "티파이브 2.8.1 공증본 본선 커밋 7526fd575 에 기본으로 실린 판인지 git archive 로 확인",
+        "result": "not_applicable",
+        "note": "설치 길로 들이지 않는 기본 탑재 공개본이라 들이기 검사는 해당 없음. 참고 사실: SKILL.md 8808바이트, description 262자."
+      },
+      {
+        "item": "2. 권한",
+        "method": "SKILL.md 머리말·본문의 도구 이름과 단계, 스크립트의 import·spawn·fetch·파일 쓰기 줄을 읽음(스크립트: scripts/build-dashboard.mjs, scripts/check-dashboard.mjs, scripts/inline-assets.mjs, scripts/lib/page-runtime.js, scripts/lib/preview-render.mjs, scripts/lib/rules.mjs, scripts/lib/source.mjs, scripts/profile-data.mjs, scripts/t5-refresh.mjs)",
+        "result": "pass"
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "맥판에 실린 사실만 확인. 이 공개본으로 따로 돌려 보지 않음",
+        "result": "not_checked",
+        "note": "platforms 의 verified 가 둘 다 false."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "티파이브 제작물. 제품 제3자 고지(THIRD_PARTY_NOTICES.md)에 이 스킬의 원형이 없고 스킬 안에 원형 표시가 없음을 확인. 항목 폴더에 MIT LICENSE 사본",
+        "result": "pass"
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·스크립트에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass",
+        "note": "원본을 고치는 길은 되돌릴 수 있게 알리는 티파이브 도구로만 감. 결제 없음."
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "항목 안 .md 파일에서 다른 AI 제품 이름 찾기",
+        "result": "pass",
+        "note": "없음."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사, 개발 내부 흔적(내부 경로·세션 이름·개인 정보) 검색",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "본선 커밋 7526fd575accc49f4ad939da7663c776e4937eac 에서 git archive 로 꺼내 옮기고 tools/refresh-files.mjs 로 files 를 적음. SKILL.md sha256 을 bundledIn.skillSha256 과 검사기가 대조",
+        "result": "pass",
+        "note": "숨은 파일·링크 0."
+      }
+    ]
+  }
+}

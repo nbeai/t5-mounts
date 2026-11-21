@@ -1,0 +1,30 @@
+{
+ "schema": "t5.color-engines.v1",
+ "note": "결과물 엔진의 기본 색 자리가 색 체계의 어느 역할을 쓰는지만 적는다(값은 palette.json·presets.json). 참조: 조합.밝음|어두움.역할(default.light.accent — default 는 아래 defaultPreset) 또는 계열.단계(teal.800). 사용자·브랜드·「내 방식」 색이 있으면 엔진이 이 기본값을 쓰지 않는다.",
+ "defaultPreset": "trust",
+ "chartSeries": {
+  "light": ["palette:categorical.light.order", "default.light.mutedLarge"],
+  "dark": ["palette:categorical.dark.order", "default.dark.mutedLarge"]
+ },
+ "carousel": { "accent": "default.dark.accent", "background": "default.light.bg", "text": "default.light.text" },
+ "video": { "accent": "default.dark.accent" },
+ "presentation": {
+  "editorial-classic": { "bg": "default.light.bg", "primary": "default.light.text", "accent": "default.light.accent", "secondaryAccent": "amber.600", "text": "default.light.text", "textSecondary": "default.light.muted", "border": "default.light.line" },
+  "swiss-minimal": { "bg": "formal.light.bg", "primary": "formal.light.text", "accent": "formal.light.accent", "secondaryAccent": "amber.600", "text": "formal.light.text", "textSecondary": "formal.light.muted", "border": "formal.light.line" },
+  "contrast-briefing": { "bg": "night.dark.bg", "primary": "night.dark.text", "accent": "night.dark.accent", "secondaryAccent": "amber.200", "text": "night.dark.text", "textSecondary": "night.dark.muted", "border": "night.dark.line" },
+  "photo-editorial": { "bg": "warm.light.bg", "primary": "warm.light.text", "accent": "warm.light.accent", "secondaryAccent": "teal.800", "text": "warm.light.text", "textSecondary": "warm.light.muted", "border": "warm.light.line" }
+ },
+ "presentationTable": { "header": "default.light.accent", "headerText": "default.light.onAccent", "bodyFill": "default.light.bg", "bodyText": "default.light.text", "band": "default.light.surface", "line": "default.light.line" },
+ "dashboard": { "bg": "default.light.bg", "surface": "default.light.surface", "text": "default.light.text", "muted": "default.light.muted", "line": "default.light.line", "accent": "default.light.accent", "onAccent": "default.light.onAccent" },
+ "document": { "heading": "default.light.accent", "subheading": "default.light.text", "tableHeader": "default.light.surface2", "rule": "default.light.lineFunc", "line": "default.light.line", "coverSubtitle": "default.light.muted", "coverLine": "default.light.mutedLarge" },
+ "spreadsheet": { "title": "default.light.text", "total": "default.light.surface2", "rule": "default.light.lineFunc" },
+ "ebookCover": { "background": "default.dark.bg", "color": "default.dark.text" },
+ "htmlSlides": { "bg": "default.light.bg", "text": "default.light.text", "muted": "default.light.muted", "accent": "default.light.accent", "line": "default.light.line", "darkBg": "default.dark.bg", "darkText": "default.dark.text", "darkAccent": "default.dark.accent", "darkMuted": "default.dark.muted", "darkLine": "default.dark.line" },
+ "panel": {
+  "carouselMarks": [["amber.200", "호박"], ["rose.200", "분홍"], ["blue.200", "하늘"], ["green.200", "연두"], ["berry.800", "베리"], ["navy.800", "남색"]],
+  "videoTextColors": ["gray.0", "amber.200", "rose.200", "blue.200", "green.200", "warm.950"],
+  "videoHighlights": ["default.dark.accent", "amber.200", "rose.200", "green.200", "berry.400"],
+  "videoStrokes": [["gray.1000", "검정"], ["gray.0", "흰색"], ["amber.200", "호박"], ["rose.200", "분홍"], ["navy.800", "남색"]],
+  "videoAccent": "default.dark.accent"
+ }
+}

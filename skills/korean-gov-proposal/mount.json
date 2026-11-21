@@ -42,7 +42,7 @@
     "decided": true,
     "redistribution": "allowed",
     "upstreamLicense": null,
-    "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
+    "note": "결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
   },
   "t5MinVersion": "2.2.1",
   "category": "문서·서식",
@@ -52,7 +52,7 @@
     "type": "t5_made",
     "upstream": null,
     "changes": [],
-    "note": "티파이브 연구(결과물품질-스킬연구-20261026) 후보 K4 를 2026-10-26 창고 항목으로 처음 만든 것. 특정 연도 양식 사본 0 — 늘 사용자가 준 지금 양식을 읽어 칸을 맞춘다. 채우기는 티파이브 문서 도구(read-hwp·fill-hwp·edit-hwp·edit-docx)를 부르기만 한다."
+    "note": "티파이브 결과물 품질 연구(2026-10-26)의 후보를 2026-10-26 창고 항목으로 처음 만든 것. 특정 연도 양식 사본 0 — 늘 사용자가 준 지금 양식을 읽어 칸을 맞춘다. 채우기는 티파이브 문서 도구(read-hwp·fill-hwp·edit-hwp·edit-docx)를 부르기만 한다."
   },
   "permissions": {
     "files": {
@@ -97,11 +97,11 @@
   "review": {
     "date": "2026-10-26",
     "result": "pending",
-    "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
     "checks": [
       {
         "item": "1. 티파이브가 받아들이나",
-        "method": "본선 t5-work-app d622dcd4(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+        "method": "본선 d622dcd4 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
         "result": "pass",
         "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 201자(한도 320), when_to_use 25자(140에서 잘림). SKILL.md 7733바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음."
       },
@@ -119,7 +119,7 @@
       },
       {
         "item": "4. 라이선스",
-        "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+        "method": "우리 제작물. 결정 기록의 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
         "result": "pass",
         "note": "licenseFacts: file LICENSE, name MIT, restriction 없음."
       },
@@ -156,7 +156,7 @@
         "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
         "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
         "result": "not_checked",
-        "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고에. 이 칸이 끝나기 전에는 진열하지 않음."
+        "note": "실모델 비교는 아직 돌리지 않음. 이 칸이 끝나기 전에는 진열하지 않음."
       }
     ]
   }

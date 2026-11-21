@@ -1,0 +1,134 @@
+/* 티파이브 기본 색 체계 4판 — 웹·카드·HTML 결과물용 토큰
+   쓰는 법: <html data-palette="trust"> (목적 조합 7: trust formal warm learn active data night)
+   밝음·어두움은 시스템 설정을 따르고, data-theme="light|dark"로 고정할 수 있다.
+   브랜드 색이 있으면 --t5-accent 등을 덮어쓴다(브랜드가 이긴다). 출발점이며 이유가 있으면 바꾼다. */
+:root { color-scheme: light dark; }
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+:root {
+  /* 상태: 글자 / 옅은 바탕 */
+  --t5-ok: light-dark(#115B3A, #AAD8B5); --t5-ok-bg: light-dark(#F0F7F0, #003822);
+  --t5-warn: light-dark(#793800, #FEAA3A); --t5-warn-bg: light-dark(#F9F5EC, #4D1E00);
+  --t5-danger: light-dark(#910039, #FFB2C0); --t5-danger-bg: light-dark(#FDF2F4, #5A0022);
+  --t5-info: light-dark(#1F55B5, #92BEE2); --t5-info-bg: light-dark(#EFF6FD, #143788);
+  --t5-up: light-dark(#910039, #FFB2C0);   /* ▲ 상승(한국은 빨강) — 기호와 같이 */
+  --t5-down: light-dark(#1F55B5, #92BEE2); /* ▼ 하락 */
+  /* 분류 1~5: 같은 항목은 늘 같은 번호. 4·5번은 이름표와 같이 */
+  --t5-cat-1: light-dark(#435772, #BBCDE1);
+  --t5-cat-2: light-dark(#AD5D00, #FEAA3A);
+  --t5-cat-3: light-dark(#2286D8, #40A5F7);
+  --t5-cat-4: light-dark(#00858A, #2DA4A8);
+  --t5-cat-5: light-dark(#CF2257, #FE5E85);
+}
+/* 1. 차분한 신뢰 — 업종·목적을 모를 때, 상담·안내·보고 */
+:root, [data-palette="trust"] {
+  --t5-bg: light-dark(#FCF9F7, #1B1715);
+  --t5-surface: light-dark(#F8F4F1, #312D29);
+  --t5-surface-2: light-dark(#EEE8E4, #47413D);
+  --t5-soft: light-dark(#D6E1EE, #203550);
+  --t5-on-soft: light-dark(#312D29, #FCF9F7);
+  --t5-text: light-dark(#312D29, #FCF9F7);
+  --t5-muted: light-dark(#47413D, #CDC6C0);
+  --t5-line: light-dark(#CDC6C0, #5D5752);
+  --t5-line-strong: light-dark(#746D68, #A49D97);
+  --t5-accent: light-dark(#435772, #92BEE2);
+  --t5-on-accent: light-dark(#FFFFFF, #1B1715);
+}
+/* 2. 격식·공식 — 공문·계약·관공서·협회 안내 */
+[data-palette="formal"] {
+  --t5-bg: light-dark(#F8FAFD, #142140);
+  --t5-surface: light-dark(#FFFFFF, #203550);
+  --t5-surface-2: light-dark(#E1EBF5, #435772);
+  --t5-soft: light-dark(#D6E1EE, #143788);
+  --t5-on-soft: light-dark(#142140, #FCF9F7);
+  --t5-text: light-dark(#142140, #FCF9F7);
+  --t5-muted: light-dark(#435772, #CDC6C0);
+  --t5-line: light-dark(#BBCDE1, #435772);
+  --t5-line-strong: light-dark(#5F7695, #88A1BF);
+  --t5-accent: light-dark(#203550, #92BEE2);
+  --t5-on-accent: light-dark(#FFFFFF, #142140);
+}
+/* 3. 따뜻함·친근 — 동네 가게 소식·감사 인사·후기 */
+[data-palette="warm"] {
+  --t5-bg: light-dark(#FFF8F7, #1B1715);
+  --t5-surface: light-dark(#FDF2F1, #312D29);
+  --t5-surface-2: light-dark(#F9E4E2, #47413D);
+  --t5-soft: light-dark(#F3D8D7, #86252E);
+  --t5-on-soft: light-dark(#34231E, #FCF9F7);
+  --t5-text: light-dark(#34231E, #FCF9F7);
+  --t5-muted: light-dark(#47413D, #CDC6C0);
+  --t5-line: light-dark(#CDC6C0, #5D5752);
+  --t5-line-strong: light-dark(#746D68, #A49D97);
+  --t5-accent: light-dark(#6B4849, #F59999);
+  --t5-on-accent: light-dark(#FFFFFF, #1B1715);
+}
+/* 4. 맑음·배움 — 강좌·설명서·안내 교육 자료 */
+[data-palette="learn"] {
+  --t5-bg: light-dark(#F5FCFB, #142140);
+  --t5-surface: light-dark(#ECF8F7, #203550);
+  --t5-surface-2: light-dark(#D8EFEF, #435772);
+  --t5-soft: light-dark(#CAE6E6, #00353B);
+  --t5-on-soft: light-dark(#142140, #FCF9F7);
+  --t5-text: light-dark(#142140, #FCF9F7);
+  --t5-muted: light-dark(#203550, #BBCDE1);
+  --t5-line: light-dark(#BBCDE1, #435772);
+  --t5-line-strong: light-dark(#5F7695, #88A1BF);
+  --t5-accent: light-dark(#005860, #2DA4A8);
+  --t5-on-accent: light-dark(#FFFFFF, #142140);
+}
+/* 5. 활기·행동 — 할인·행사·마감 알림 — 진한 강조는 작은 면적에만 */
+[data-palette="active"] {
+  --t5-bg: light-dark(#FCF9F7, #1B1715);
+  --t5-surface: light-dark(#F8F4F1, #312D29);
+  --t5-surface-2: light-dark(#EEE8E4, #47413D);
+  --t5-soft: light-dark(#FEAA3A, #4D1E00);
+  --t5-on-soft: light-dark(#1B1715, #FCF9F7);
+  --t5-text: light-dark(#1B1715, #FCF9F7);
+  --t5-muted: light-dark(#47413D, #CDC6C0);
+  --t5-line: light-dark(#CDC6C0, #5D5752);
+  --t5-line-strong: light-dark(#746D68, #A49D97);
+  --t5-accent: light-dark(#910039, #FE5E85);
+  --t5-on-accent: light-dark(#FFFFFF, #1B1715);
+}
+/* 6. 데이터·분석 — 매출·성과 보고, 대시보드 — 강조 한 계열, 나머지 회색 */
+[data-palette="data"] {
+  --t5-bg: light-dark(#F7F7F7, #0F0F0F);
+  --t5-surface: light-dark(#FFFFFF, #212121);
+  --t5-surface-2: light-dark(#E7E7E7, #303030);
+  --t5-soft: light-dark(#D6E1EE, #203550);
+  --t5-on-soft: light-dark(#212121, #F7F7F7);
+  --t5-text: light-dark(#212121, #F7F7F7);
+  --t5-muted: light-dark(#404040, #C2C2C2);
+  --t5-line: light-dark(#C2C2C2, #404040);
+  --t5-line-strong: light-dark(#747474, #8E8E8E);
+  --t5-accent: light-dark(#435772, #92BEE2);
+  --t5-on-accent: light-dark(#FFFFFF, #0F0F0F);
+}
+/* 7. 어두운 화면 — 밤 발표·영상 위·어두운 매장 화면 — 어두움이 본판, 밝음은 짝 */
+[data-palette="night"] {
+  --t5-bg: light-dark(#F8FAFD, #142140);
+  --t5-surface: light-dark(#FFFFFF, #203550);
+  --t5-surface-2: light-dark(#E1EBF5, #435772);
+  --t5-soft: light-dark(#EBDDCA, #4D1E00);
+  --t5-on-soft: light-dark(#142140, #FCF9F7);
+  --t5-text: light-dark(#142140, #FCF9F7);
+  --t5-muted: light-dark(#435772, #CDC6C0);
+  --t5-line: light-dark(#BBCDE1, #435772);
+  --t5-line-strong: light-dark(#5F7695, #88A1BF);
+  --t5-accent: light-dark(#143788, #92BEE2);
+  --t5-on-accent: light-dark(#FFFFFF, #142140);
+}
+/* 바로 쓰는 기본 연결(필요 없으면 지운다) */
+body { background: var(--t5-bg); color: var(--t5-text); }
+
+/* light-dark() 를 모르는 브라우저: 밝음 값으로 */
+@supports not (color: light-dark(#000, #fff)) {
+:root{--t5-ok:#115B3A;--t5-ok-bg:#F0F7F0;--t5-warn:#793800;--t5-warn-bg:#F9F5EC;--t5-danger:#910039;--t5-danger-bg:#FDF2F4;--t5-info:#1F55B5;--t5-info-bg:#EFF6FD;--t5-up:#910039;--t5-down:#1F55B5;--t5-cat-1:#435772;--t5-cat-2:#AD5D00;--t5-cat-3:#2286D8;--t5-cat-4:#00858A;--t5-cat-5:#CF2257}
+:root, [data-palette="trust"]{--t5-bg:#FCF9F7;--t5-surface:#F8F4F1;--t5-surface-2:#EEE8E4;--t5-soft:#D6E1EE;--t5-on-soft:#312D29;--t5-text:#312D29;--t5-muted:#47413D;--t5-line:#CDC6C0;--t5-line-strong:#746D68;--t5-accent:#435772;--t5-on-accent:#FFFFFF}
+[data-palette="formal"]{--t5-bg:#F8FAFD;--t5-surface:#FFFFFF;--t5-surface-2:#E1EBF5;--t5-soft:#D6E1EE;--t5-on-soft:#142140;--t5-text:#142140;--t5-muted:#435772;--t5-line:#BBCDE1;--t5-line-strong:#5F7695;--t5-accent:#203550;--t5-on-accent:#FFFFFF}
+[data-palette="warm"]{--t5-bg:#FFF8F7;--t5-surface:#FDF2F1;--t5-surface-2:#F9E4E2;--t5-soft:#F3D8D7;--t5-on-soft:#34231E;--t5-text:#34231E;--t5-muted:#47413D;--t5-line:#CDC6C0;--t5-line-strong:#746D68;--t5-accent:#6B4849;--t5-on-accent:#FFFFFF}
+[data-palette="learn"]{--t5-bg:#F5FCFB;--t5-surface:#ECF8F7;--t5-surface-2:#D8EFEF;--t5-soft:#CAE6E6;--t5-on-soft:#142140;--t5-text:#142140;--t5-muted:#203550;--t5-line:#BBCDE1;--t5-line-strong:#5F7695;--t5-accent:#005860;--t5-on-accent:#FFFFFF}
+[data-palette="active"]{--t5-bg:#FCF9F7;--t5-surface:#F8F4F1;--t5-surface-2:#EEE8E4;--t5-soft:#FEAA3A;--t5-on-soft:#1B1715;--t5-text:#1B1715;--t5-muted:#47413D;--t5-line:#CDC6C0;--t5-line-strong:#746D68;--t5-accent:#910039;--t5-on-accent:#FFFFFF}
+[data-palette="data"]{--t5-bg:#F7F7F7;--t5-surface:#FFFFFF;--t5-surface-2:#E7E7E7;--t5-soft:#D6E1EE;--t5-on-soft:#212121;--t5-text:#212121;--t5-muted:#404040;--t5-line:#C2C2C2;--t5-line-strong:#747474;--t5-accent:#435772;--t5-on-accent:#FFFFFF}
+[data-palette="night"]{--t5-bg:#F8FAFD;--t5-surface:#FFFFFF;--t5-surface-2:#E1EBF5;--t5-soft:#EBDDCA;--t5-on-soft:#142140;--t5-text:#142140;--t5-muted:#435772;--t5-line:#BBCDE1;--t5-line-strong:#5F7695;--t5-accent:#143788;--t5-on-accent:#FFFFFF}
+}

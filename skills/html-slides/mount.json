@@ -1,0 +1,203 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "html-slides",
+  "kind": "skill",
+  "category": "문서·서식",
+  "name": "웹 발표자료 만들기",
+  "summary": "링크로 열어 보는 웹 발표자료와 강의 슬라이드를 만들어요.",
+  "version": "2.8.1",
+  "status": "bundled",
+  "origin": {
+    "type": "t5_made",
+    "upstream": null,
+    "changes": [],
+    "note": "티파이브 2.8.1 공증본(본선 커밋 7526fd575)에 기본으로 실린 `html-slides` 폴더를 바이트 그대로 옮겼다(앱 기록 파일 T5-BUNDLE.json 은 빼고). 앱 판에 없던 LICENSE·CHANGELOG.md 를 더했다. 안에 든 남의 파일(대시보드: Apache ECharts·Pretendard 글꼴, 웹 발표: reveal.js 6.0.2)은 원본 그대로이고 각 사용권 파일이 함께 들어 있다. 공개 전에 스크립트 주석의 내부 작업 표식을 지웠다(코드 동작은 같음)."
+  },
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 458,
+      "sha256": "1ae80bf2eb821c685a736a0c33ca03bc7302bff74ac3cb905a605fb447f45b26"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 6882,
+      "sha256": "d096a53891ca76c5eb9407b9ad6824d5f6ad97150708c0af674f4dd3f31676b7"
+    },
+    {
+      "path": "assets/example-slides.html",
+      "bytes": 1794,
+      "sha256": "e0359e64352e2269e7deb8af47d13ef630d180e99003d647f6cdbd1bd4c95869"
+    },
+    {
+      "path": "assets/t5-korean.css",
+      "bytes": 855,
+      "sha256": "c6a4278fff48e43388d56f4b67db891bf8107ffa482930965af65520d0df08cd"
+    },
+    {
+      "path": "scripts/build-deck.mjs",
+      "bytes": 10575,
+      "sha256": "45389e1066dd6bba7e55e491410483f958b0b2710bb3dc3e5a933ccb9b1f2d17"
+    },
+    {
+      "path": "scripts/deck-convert.mjs",
+      "bytes": 12824,
+      "sha256": "11dc172cbae71300e303cb5cedefa51ca1cccb367e353f522766f197f67019d0"
+    },
+    {
+      "path": "scripts/verify-deck.mjs",
+      "bytes": 18708,
+      "sha256": "63efbcd9f26f1af6473d3ce03421f75407a2ab516f65cda46a9a51bd1a5d42af"
+    },
+    {
+      "path": "vendor/reveal.js/LICENSE",
+      "bytes": 1108,
+      "sha256": "b2883e4b610bfa1b4d8fff84c4d4b825cc7d553cbd9fec4777c04068a2859dc0"
+    },
+    {
+      "path": "vendor/reveal.js/dist/plugin/notes.js",
+      "bytes": 67789,
+      "sha256": "447c42f365876e41853de81453d0c53c580c5b2099132e8f61200de4a0ba2af3"
+    },
+    {
+      "path": "vendor/reveal.js/dist/reveal.css",
+      "bytes": 53963,
+      "sha256": "615ee850cbbb98a0f688b60ed37b21819a3f54c9f3e6f20e33e63693ab74a0c0"
+    },
+    {
+      "path": "vendor/reveal.js/dist/reveal.js",
+      "bytes": 118912,
+      "sha256": "aa1bbbf2617b23a623b23612cb3c5bdb63de512e652bf20fcfa832b045d37844"
+    },
+    {
+      "path": "vendor/reveal.js/dist/theme/black.css",
+      "bytes": 575282,
+      "sha256": "c29c9689e8f3b277aa66edc01ed2ef97981a6768b05ad750582eac068d9705c3"
+    },
+    {
+      "path": "vendor/reveal.js/dist/theme/white.css",
+      "bytes": 575268,
+      "sha256": "41e9507d97eb13ce6804645a9ce9f16220ddc3bfd6e7888aa3a0b5f61777d8f3"
+    },
+    {
+      "path": "vendor/reveal.js/package.json",
+      "bytes": 3713,
+      "sha256": "c9cac6cb97f7e233219ee12a624283fc65c08a4d7bad09b1facc980a490dcc87"
+    },
+    {
+      "path": "vendor/reveal.lock.json",
+      "bytes": 1652,
+      "sha256": "599299cfbf7b25022481efaa438809a38ca257278a1e8614afc120f9d83b872d"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": null,
+    "note": "MIT(docs/결정-기록.md). 티파이브 본체는 이 라이선스와 무관. 안에 든 남의 파일은 각 사용권 파일을 따른다."
+  },
+  "permissions": {
+    "files": {
+      "uses": true,
+      "note": "사람이 준 자료를 읽고 발표 HTML 한 파일을 새로 써요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "node 로 scripts/ 의 발표 만들기·점검·변환 스크립트를 돌려요. 변환 스크립트는 티파이브 앱 부품을 불러 쓰므로 앱 밖에서는 돌지 않아요."
+    },
+    "internet": {
+      "uses": false,
+      "note": "인터넷을 쓰지 않아요. reveal.js 6.0.2 를 항목 안에 원본 그대로 담아 두었어요."
+    },
+    "externalSend": {
+      "uses": false,
+      "note": "만든 발표를 어디에도 올리지 않아요(링크 공유는 웹 주소로 공유하기에서 따로)."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 서비스 사용 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": false,
+      "note": "티파이브 2.8.1 맥판에 기본으로 실림. 이 공개본으로 따로 돌려 보지는 않았다."
+    },
+    "windows": {
+      "supported": false,
+      "verified": false,
+      "note": "티파이브 윈도우판 준비 중. 확인 안 함."
+    }
+  },
+  "requires": [
+    "node(티파이브에 들어 있음)",
+    "티파이브 문서 부품"
+  ],
+  "t5MinVersion": "2.8.1",
+  "bundledIn": {
+    "productVersion": "2.8.1",
+    "productCommit": "7526fd575accc49f4ad939da7663c776e4937eac",
+    "skillSha256": "d096a53891ca76c5eb9407b9ad6824d5f6ad97150708c0af674f4dd3f31676b7",
+    "note": "SKILL.md 는 앱 판과 같다. 다른 점: 스크립트 주석의 내부 작업 표식을 지움(동작 같음). 더한 것: LICENSE, CHANGELOG.md."
+  },
+  "review": {
+    "date": "2026-11-21",
+    "result": "conditional",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "티파이브 2.8.1 공증본 본선 커밋 7526fd575 에 기본으로 실린 판인지 git archive 로 확인",
+        "result": "not_applicable",
+        "note": "설치 길로 들이지 않는 기본 탑재 공개본이라 들이기 검사는 해당 없음. 참고 사실: SKILL.md 6882바이트, description 415자(창고에서 따로 들이는 항목의 한도 320자를 넘으므로, 새 판으로 내보낼 때는 줄여야 함)."
+      },
+      {
+        "item": "2. 권한",
+        "method": "SKILL.md 머리말·본문의 도구 이름과 단계, 스크립트의 import·spawn·fetch·파일 쓰기 줄을 읽음(스크립트: scripts/build-deck.mjs, scripts/deck-convert.mjs, scripts/verify-deck.mjs)",
+        "result": "pass"
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "맥판에 실린 사실만 확인. 이 공개본으로 따로 돌려 보지 않음",
+        "result": "not_checked",
+        "note": "platforms 의 verified 가 둘 다 false."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "티파이브 제작물. 제품 제3자 고지(THIRD_PARTY_NOTICES.md)에 이 스킬의 원형이 없고 스킬 안에 원형 표시가 없음을 확인. 항목 폴더에 MIT LICENSE 사본",
+        "result": "pass"
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·스크립트에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass",
+        "note": "원본을 고치는 길은 되돌릴 수 있게 알리는 티파이브 도구로만 감. 결제 없음."
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "항목 안 .md 파일에서 다른 AI 제품 이름 찾기",
+        "result": "pass",
+        "note": "없음."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사, 개발 내부 흔적(내부 경로·세션 이름·개인 정보) 검색",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "본선 커밋 7526fd575accc49f4ad939da7663c776e4937eac 에서 git archive 로 꺼내 옮기고 tools/refresh-files.mjs 로 files 를 적음. SKILL.md sha256 을 bundledIn.skillSha256 과 검사기가 대조",
+        "result": "pass",
+        "note": "숨은 파일·링크 0."
+      }
+    ]
+  }
+}

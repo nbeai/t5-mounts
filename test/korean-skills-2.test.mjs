@@ -1,4 +1,4 @@
-// 서식 분야 둘째 묶음(구비서류 꾸러미·직원 서류·받을 돈 독촉·K2 계약서 절)의 스크립트 시험. 결정적, 실모델·문서 도구 0.
+// 서식 분야 둘째 묶음(구비서류 꾸러미·직원 서류·받을 돈 독촉·한국 업무 서식 계약서 절)의 스크립트 시험. 결정적, 실모델·문서 도구 0.
 import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -163,7 +163,7 @@ test('lint: 결과 장담·집행·위협 말을 찾고, 사실 문장은 지나
   assert.deepEqual(lintText('2026. 11. 10.까지 남은 금액 2,200,000원을 보내 주시기 바랍니다.'), []);
 });
 
-// ── K2 계약서 절
+// ── 한국 업무 서식 계약서 절
 const QUOTE = { date: '2026-10-26', supplier: { name: '예시상회', representative: '김예시', bizNo: '1234567891' }, buyer: { name: '가나다' },
   items: [{ name: '로고', qty: 1, unitPrice: 800000 }, { name: '명함', qty: 3, unitPrice: 12345 }] };
 

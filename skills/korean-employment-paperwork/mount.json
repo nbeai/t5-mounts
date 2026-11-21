@@ -5,20 +5,20 @@
   "category": "문서·서식",
   "name": "직원 서류",
   "summary": "내 사업장 직원의 근로계약서와 임금명세서·임금대장을 법정 항목과 계산 근거까지 채워 만들고, 4대보험 신고 기한을 알려 줘요.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "draft",
   "origin": {
     "type": "t5_made",
     "upstream": null,
     "changes": [],
-    "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 2를 2026-10-26 창고 항목으로 처음 만든 것. 최저임금·보험료율·세액 같은 해마다 바뀌는 값은 싣지 않고 사람이 확인한 값만 쓴다. 외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음."
+    "note": "티파이브 기획팀 「서식·청구가 많은 분야 전수 조사」(2026-10-26) 추천 2를 2026-10-26 창고 항목으로 처음 만든 것. 최저임금·보험료율·세액 같은 해마다 바뀌는 값은 싣지 않고 사람이 확인한 값만 쓴다. 외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 2026-10-26 결정, 지금 돈 드는 확인은 하지 않음."
   },
   "overrides": null,
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 693,
-      "sha256": "3a666a2e70c06c1ccb7b7415b2f6ac44ce28d486156823cc58ebe79622669264"
+      "bytes": 937,
+      "sha256": "c807b89b6ae9721197a10ba7ab4072f3e5270aec86fabdc4ed5db34fe77ee790"
     },
     {
       "path": "LICENSE",
@@ -32,8 +32,8 @@
     },
     {
       "path": "references/boundary.md",
-      "bytes": 1287,
-      "sha256": "7bfbf03803b54c99cdcd6ea93c50ef62c1f6b09897efff3f3e5d72c1de8d021c"
+      "bytes": 1280,
+      "sha256": "82f888fdb7ad6402a6482f4d0939a3acf2d6a87ff1054b0f582e67565c32ecf2"
     },
     {
       "path": "references/facts-format.md",
@@ -61,7 +61,7 @@
     "decided": true,
     "redistribution": "allowed",
     "upstreamLicense": null,
-    "note": "오너 결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
+    "note": "결정 2026-10-26: 이 창고 안 장착 도구에만 MIT. 티파이브 본체는 독점 배포 그대로(docs/결정-기록.md)."
   },
   "permissions": {
     "files": {
@@ -108,11 +108,11 @@
   "review": {
     "date": "2026-10-26",
     "result": "pending",
-    "reviewer": "t5-mounts 한국형 스킬 제작 세션(Claude Code)",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
     "checks": [
       {
         "item": "1. 티파이브가 받아들이나",
-        "method": "본선 t5-work-app 4c96b025(codex/t5-work-app) 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+        "method": "본선 4c96b025 의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
         "result": "pass",
         "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 외부 주소 0, 라이선스 MIT(폴더 LICENSE). description 195자(한도 320), when_to_use 29자. SKILL.md 5781바이트(한도 64KB). 배포 zip 은 만들지 않아 zip 길은 돌리지 않음."
       },
@@ -130,7 +130,7 @@
       },
       {
         "item": "4. 라이선스",
-        "method": "우리 제작물. 오너 결정 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
+        "method": "우리 제작물. 결정 기록의 MIT, 항목 폴더 LICENSE 사본을 티파이브 판별(licenseFacts)로 확인",
         "result": "pass",
         "note": "licenseFacts: file LICENSE, name MIT, restriction 없음."
       },
@@ -167,13 +167,13 @@
         "item": "10. 결과 품질 판정(제작 가이드 6절 제안 칸)",
         "method": "같은 부탁 셋을 기본 스킬만 / 기본 + 이 스킬로 만들어 가린 채 비교(05 기준서 3절)",
         "result": "not_checked",
-        "note": "실모델 바퀴는 G(통합시험) 예산 몫이라 이 세션에서 돌리지 않음. 판정 초안은 상담4 보고·공유 노트에. 이 칸이 끝나기 전에는 진열하지 않음."
+        "note": "실모델 비교는 아직 돌리지 않음. 이 칸이 끝나기 전에는 진열하지 않음."
       },
       {
-        "item": "11. 법무 확인(상담 결정 칸)",
+        "item": "11. 법무 확인",
         "method": "서식 분야 전수 조사 5·8절의 경계를 SKILL.md·references/boundary.md 에 옮김",
         "result": "not_checked",
-        "note": "외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 상담 결정 2026-10-26, 지금 돈 드는 확인은 하지 않음."
+        "note": "외부 배포 전 법무 확인 필요(공인노무사법 27조·변호사법 109조 선은 기획팀 가설) — 2026-10-26 결정, 지금 돈 드는 확인은 하지 않음."
       }
     ]
   }

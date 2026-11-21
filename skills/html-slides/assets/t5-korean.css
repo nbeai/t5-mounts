@@ -1,0 +1,13 @@
+/* T5 layer over the unmodified reveal.js theme: Korean system fonts and line breaking only.
+   Pretendard is used when it is installed on the viewer's computer; nothing is downloaded. */
+.reveal-viewport {
+  --r-main-font: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Noto Sans KR", "Noto Sans CJK KR", "Source Sans Pro", system-ui, sans-serif;
+  --r-heading-font: var(--r-main-font);
+  --r-heading-text-transform: none;
+  --r-heading-letter-spacing: -0.01em;
+}
+.reveal { word-break: keep-all; overflow-wrap: anywhere; line-height: 1.45; }
+.reveal h1, .reveal h2, .reveal h3 { line-height: 1.25; }
+.reveal .slides section { text-align: left; }
+.reveal .slides section.center, .reveal .slides section[data-align="center"] { text-align: center; }
+.reveal .speaker-notes { font-family: var(--r-main-font); word-break: keep-all; }

@@ -1,7 +1,7 @@
 // 검사기·서명 시험. 저장소를 임시 폴더에 복사하고 그때그때 만든 시험 열쇠로 서명한 뒤 하나씩 망가뜨려 잡는지 본다.
 // 열쇠는 임시 폴더에만 있고 시험이 끝나면 지운다. 쓰는 법: node --test test/
 import assert from 'node:assert/strict';
-import { generateKeyPairSync } from 'node:crypto';
+import { createHash, generateKeyPairSync } from 'node:crypto';
 import { appendFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
@@ -127,7 +127,7 @@ test('검수 통과(원형 그대로)는 고정 커밋·원 라이선스 없이 
 const upstream = { url: 'https://github.com/example/skill', ref: 'v1.0.0', commit: 'a'.repeat(40) };
 const upstreamLicense = { spdx: 'MIT', url: 'https://github.com/example/skill/blob/v1.0.0/LICENSE', checkedAt: '2026-10-26' };
 
-test('티파이브 수정판은 바뀐 점과 재배포 허락·오너 결정이 있어야 한다', () => {
+test('티파이브 수정판은 바뀐 점과 재배포 허락·라이선스 결정이 있어야 한다', () => {
   editMount((m) => { m.origin = { type: 't5_modified', upstream, changes: [], note: '' }; m.license.upstreamLicense = upstreamLicense; m.license.redistribution = 'links_only'; });
   const errors = checkRepo(repo).errors.join('\n');
   assert.match(errors, /origin\.changes/u);
@@ -234,4 +234,28 @@ test('비밀 열쇠를 저장소 안에 두려 하면 거절한다', () => {
 test('검사가 떨어진 저장소로는 목록을 만들지 않는다', () => {
   appendFileSync(join(repo, 'skills', 'promo-image-set', 'SKILL.md'), '\n');
   assert.throws(() => buildIndex(repo, { publicKeyPem: keys.publicPem, builtAt: '2026-10-26' }), { code: 'items_invalid' });
+});
+
+// ── 기본 탑재 공개본(status bundled): 앱 판 SKILL.md 와 바이트까지 같아야 한다.
+const bundledPath = () => join(repo, 'skills', 'site-google', 'mount.json');
+const editBundled = (fn) => { const m = JSON.parse(readFileSync(bundledPath(), 'utf8')); fn(m); writeFileSync(bundledPath(), JSON.stringify(m, null, 2)); };
+
+test('기본 탑재 공개본의 SKILL.md 를 고치면(지문을 다시 적어도) 앱 판과 다르다고 잡는다', () => {
+  const skill = join(repo, 'skills', 'site-google', 'SKILL.md');
+  appendFileSync(skill, '\n한 줄 더\n');
+  const bytes = readFileSync(skill);
+  editBundled((m) => { const f = m.files.find((x) => x.path === 'SKILL.md'); f.bytes = bytes.length; f.sha256 = createHash('sha256').update(bytes).digest('hex'); });
+  const errors = checkRepo(repo).errors.join('\n');
+  assert.match(errors, /앱 판과 다름/u);
+  assert.doesNotMatch(errors, /지문이 다름/u);
+});
+
+test('기본 탑재 공개본은 bundledIn 없이 들어갈 수 없다', () => {
+  editBundled((m) => { delete m.bundledIn; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('bundledIn')));
+});
+
+test('bundledIn 은 기본 탑재 항목에만 적는다', () => {
+  editBundled((m) => { m.status = 'draft'; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('bundled) 항목에만')));
 });

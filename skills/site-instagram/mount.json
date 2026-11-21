@@ -1,0 +1,137 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "site-instagram",
+  "kind": "skill",
+  "category": "홍보·콘텐츠",
+  "name": "인스타그램",
+  "summary": "인스타그램 게시물·릴스 주소와 새 게시물 만들기 화면에서 겹치는 창·단추를 가려 쓰는 방법이에요.",
+  "version": "2.8.1",
+  "status": "bundled",
+  "origin": {
+    "type": "t5_made",
+    "upstream": null,
+    "changes": [],
+    "note": "티파이브 2.8.1 공증본(본선 커밋 7526fd575)에 기본으로 실린 `site-instagram` 폴더를 바이트 그대로 옮겼다(앱 기록 파일 T5-BUNDLE.json 은 빼고). 앱 판에 없던 LICENSE·CHANGELOG.md 를 더했다."
+  },
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 372,
+      "sha256": "ca7a567b840d66e86a00724f5a3f46760b752efa0b6c24d7535d2485220457ad"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 4081,
+      "sha256": "e84279d9a9d62f7ddbd47088a958936c8d2d734a8cd19b67beecadcffeb6e145"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": null,
+    "note": "MIT(docs/결정-기록.md). 티파이브 본체는 이 라이선스와 무관."
+  },
+  "permissions": {
+    "files": {
+      "uses": true,
+      "note": "사람이 고른 사진·영상 파일을 게시물에 붙여요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "티파이브의 브라우저 손으로 사람의 평소 크롬 탭을 써요. 이 항목에는 실행 파일이 없어요."
+    },
+    "internet": {
+      "uses": true,
+      "note": "www.instagram.com 에 접속해 읽어요. 사람이 시킨 변경은 그 사이트에 써요."
+    },
+    "externalSend": {
+      "uses": true,
+      "note": "사람이 시키면 그 사람의 계정으로 게시물·릴스를 올려요."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 서비스 사용 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": false,
+      "note": "티파이브 2.8.1 맥판에 기본으로 실림. 이 공개본으로 따로 돌려 보지는 않았다."
+    },
+    "windows": {
+      "supported": false,
+      "verified": false,
+      "note": "티파이브 윈도우판 준비 중. 확인 안 함."
+    }
+  },
+  "requires": [
+    "인스타그램 로그인(사람의 크롬)"
+  ],
+  "t5MinVersion": "2.8.1",
+  "bundledIn": {
+    "productVersion": "2.8.1",
+    "productCommit": "7526fd575accc49f4ad939da7663c776e4937eac",
+    "skillSha256": "e84279d9a9d62f7ddbd47088a958936c8d2d734a8cd19b67beecadcffeb6e145",
+    "note": "SKILL.md 와 나머지 스킬 파일은 앱 판과 같다. 더한 것: LICENSE, CHANGELOG.md."
+  },
+  "review": {
+    "date": "2026-11-21",
+    "result": "conditional",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "티파이브 2.8.1 공증본 본선 커밋 7526fd575 에 기본으로 실린 판인지 git archive 로 확인",
+        "result": "not_applicable",
+        "note": "설치 길로 들이지 않는 기본 탑재 공개본이라 들이기 검사는 해당 없음. 참고 사실: SKILL.md 4081바이트, description 193자."
+      },
+      {
+        "item": "2. 권한",
+        "method": "SKILL.md 머리말·본문의 도구 이름과 단계, 스크립트의 import·spawn·fetch·파일 쓰기 줄을 읽음(스크립트 없음)",
+        "result": "pass"
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "맥판에 실린 사실만 확인. 이 공개본으로 따로 돌려 보지 않음",
+        "result": "not_checked",
+        "note": "platforms 의 verified 가 둘 다 false."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "티파이브 제작물. 제품 제3자 고지(THIRD_PARTY_NOTICES.md)에 이 스킬의 원형이 없고 스킬 안에 원형 표시가 없음을 확인. 항목 폴더에 MIT LICENSE 사본",
+        "result": "pass"
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·스크립트에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass",
+        "note": "원본을 고치는 길은 되돌릴 수 있게 알리는 티파이브 도구로만 감. 결제 없음."
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "항목 안 .md 파일에서 다른 AI 제품 이름 찾기",
+        "result": "pass",
+        "note": "없음."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사, 개발 내부 흔적(내부 경로·세션 이름·개인 정보) 검색",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "본선 커밋 7526fd575accc49f4ad939da7663c776e4937eac 에서 git archive 로 꺼내 옮기고 tools/refresh-files.mjs 로 files 를 적음. SKILL.md sha256 을 bundledIn.skillSha256 과 검사기가 대조",
+        "result": "pass",
+        "note": "숨은 파일·링크 0."
+      }
+    ]
+  }
+}
