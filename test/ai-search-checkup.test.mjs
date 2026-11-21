@@ -1,8 +1,8 @@
 // AI 검색 노출 점검 스크립트 시험. 결정적, 인터넷 0(site-check 는 판정 함수만 부른다).
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { parseCsv, tally } from '../skills/ai-search-checkup/scripts/tally.mjs';
-import { pageFacts, robotsVerdict } from '../skills/ai-search-checkup/scripts/site-check.mjs';
+import { parseCsv, tally } from '../drafts/ai-search-checkup/scripts/tally.mjs';
+import { pageFacts, robotsVerdict } from '../drafts/ai-search-checkup/scripts/site-check.mjs';
 
 const HEAD = 'when,round,engine,logged_in,location,query,shown,described_ok,wrong_facts,others,sources,answer_file,note';
 const rows = (...lines) => parseCsv([HEAD, ...lines].join('\n'));

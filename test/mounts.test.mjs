@@ -2,7 +2,7 @@
 // 열쇠는 임시 폴더에만 있고 시험이 끝나면 지운다. 쓰는 법: node --test test/
 import assert from 'node:assert/strict';
 import { createHash, generateKeyPairSync } from 'node:crypto';
-import { appendFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { appendFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { after, beforeEach, test } from 'node:test';
@@ -27,7 +27,7 @@ const editMount = (fn) => { const m = JSON.parse(readFileSync(mountPath(), 'utf8
 
 beforeEach(() => {
   repo = mkdtempSync(join(scratch, 'repo-'));
-  for (const part of ['schema', 'skills', 'mcp', 'cli', 'plugins', 'hooks', 'keys']) cpSync(join(source, part), join(repo, part), { recursive: true });
+  for (const part of ['schema', 'skills', 'drafts', 'bundled', 'mcp', 'cli', 'plugins', 'keys']) cpSync(join(source, part), join(repo, part), { recursive: true });
   keys = pair();
   writeFileSync(join(repo, PUBLIC_KEY_PATH), keys.publicPem);
   signAll();
@@ -163,7 +163,15 @@ test('기본 스킬 덮어쓰기는 같은 이름이어야 하고 바뀐 점·�
   assert.match(errors, /overrides\.changes/u);
   assert.match(errors, /overrides\.rollback/u);
   editMount((m) => { m.overrides = { ...base, baseSkill: 'promo-image-set' }; m.status = 'draft'; });
+  renameSync(join(repo, 'skills', 'promo-image-set'), join(repo, 'drafts', 'promo-image-set'));
   assert.deepEqual(checkRepo(repo).errors, []);
+});
+
+test('저장소 첫 주소로 한꺼번에 들어가지 않게: 검수 중·기본 탑재 항목이 skills/ 에 있으면 잡는다', () => {
+  editMount((m) => { m.status = 'draft'; });
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('drafts/ 에 있어야 함')));
+  renameSync(join(repo, 'bundled', 'site-google'), join(repo, 'skills', 'site-google'));
+  assert.ok(checkRepo(repo).errors.some((e) => e.includes('skills/site-google') && e.includes('bundled/ 에 있어야 함')));
 });
 
 test('기본 스킬 덮어쓰기 항목은 티파이브 동작 확인 전에는 진열할 수 없다', () => {
@@ -237,11 +245,11 @@ test('검사가 떨어진 저장소로는 목록을 만들지 않는다', () => 
 });
 
 // ── 기본 탑재 공개본(status bundled): 앱 판 SKILL.md 와 바이트까지 같아야 한다.
-const bundledPath = () => join(repo, 'skills', 'site-google', 'mount.json');
+const bundledPath = () => join(repo, 'bundled', 'site-google', 'mount.json');
 const editBundled = (fn) => { const m = JSON.parse(readFileSync(bundledPath(), 'utf8')); fn(m); writeFileSync(bundledPath(), JSON.stringify(m, null, 2)); };
 
 test('기본 탑재 공개본의 SKILL.md 를 고치면(지문을 다시 적어도) 앱 판과 다르다고 잡는다', () => {
-  const skill = join(repo, 'skills', 'site-google', 'SKILL.md');
+  const skill = join(repo, 'bundled', 'site-google', 'SKILL.md');
   appendFileSync(skill, '\n한 줄 더\n');
   const bytes = readFileSync(skill);
   editBundled((m) => { const f = m.files.find((x) => x.path === 'SKILL.md'); f.bytes = bytes.length; f.sha256 = createHash('sha256').update(bytes).digest('hex'); });

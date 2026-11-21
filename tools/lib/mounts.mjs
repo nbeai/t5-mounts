@@ -5,6 +5,12 @@ import { lstatSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve, sep } from 'node:path';
 
 export const KIND_DIRS = { skill: 'skills', mcp: 'mcp', cli: 'cli', plugin: 'plugins', hook: 'hooks' };
+// 스킬은 상태에 따라 폴더를 나눈다. 티파이브는 저장소 첫 주소를 받으면 맨 위 skills/ 안을 전부 한 묶음으로 들이므로,
+// skills/ 에는 골라 넣을 수 있는 진열(listed) 항목만 둔다. 검수 중·내림은 drafts/, 기본 탑재 공개본은 bundled/.
+export const SKILL_DIRS = { listed: 'skills', draft: 'drafts', withdrawn: 'drafts', bundled: 'bundled' };
+export const ITEM_DIRS = [...new Set([...Object.values(SKILL_DIRS), ...Object.values(KIND_DIRS)])];
+/** 이 명세가 있어야 할 폴더(저장소 맨 위 기준). */
+export const homeDirOf = (mount) => (mount.kind === 'skill' ? SKILL_DIRS[mount.status] : KIND_DIRS[mount.kind]);
 export const INDEX_SCHEMA = 't5.mount-index.v1';
 export const PUBLIC_KEY_PATH = 'keys/t5-mounts-public.pem';
 // 출처 표시 세 가지(진열대·README 가 쓰는 이름). 스키마 origin.type 의 값과 짝이다.
@@ -101,7 +107,7 @@ export function checkItem(repoRoot, kindDir, id, schema) {
   if (errors.length) return { mount, errors };
 
   if (mount.id !== id) errors.push(`${where}: id(${mount.id})가 폴더 이름과 다름`);
-  if (KIND_DIRS[mount.kind] !== kindDir) errors.push(`${where}: 종류 ${mount.kind} 는 ${KIND_DIRS[mount.kind]}/ 에 있어야 함`);
+  if (homeDirOf(mount) !== kindDir) errors.push(`${where}: 종류 ${mount.kind}·상태 ${mount.status} 항목은 ${homeDirOf(mount)}/ 에 있어야 함`);
 
   // 지문: 적힌 목록과 실제 파일이 하나도 빠짐·더함·바뀜 없이 같아야 한다.
   const actual = fileFacts(folder);
@@ -200,7 +206,7 @@ export function checkItem(repoRoot, kindDir, id, schema) {
 export function checkRepo(repoRoot) {
   const schema = JSON.parse(readFileSync(join(repoRoot, 'schema', 'mount.schema.json'), 'utf8'));
   const items = []; const errors = [];
-  for (const kindDir of Object.values(KIND_DIRS)) {
+  for (const kindDir of ITEM_DIRS) {
     let children = [];
     try { children = readdirSync(join(repoRoot, kindDir), { withFileTypes: true }); } catch { continue; }
     for (const child of children.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))) {

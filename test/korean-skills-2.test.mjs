@@ -4,10 +4,10 @@ import { mkdirSync, mkdtempSync, readdirSync, rmSync, writeFileSync } from 'node
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, test } from 'node:test';
-import { bundleKit, checkKit, dateInName, listFiles, normalize } from '../skills/korean-paperwork-kit/scripts/kit.mjs';
-import { buildContract as buildLaborContract, buildWage, computeWage, deadlines } from '../skills/korean-employment-paperwork/scripts/payroll.mjs';
-import { buildClaimSheet, buildLetter, computeOutstanding, lintText, listEvidence, matchEvidence } from '../skills/korean-payment-reminder/scripts/reminder.mjs';
-import { buildContract, checkBizNo, computeTotals } from '../skills/korean-business-forms/scripts/forms.mjs';
+import { bundleKit, checkKit, dateInName, listFiles, normalize } from '../drafts/korean-paperwork-kit/scripts/kit.mjs';
+import { buildContract as buildLaborContract, buildWage, computeWage, deadlines } from '../drafts/korean-employment-paperwork/scripts/payroll.mjs';
+import { buildClaimSheet, buildLetter, computeOutstanding, lintText, listEvidence, matchEvidence } from '../drafts/korean-payment-reminder/scripts/reminder.mjs';
+import { buildContract, checkBizNo, computeTotals } from '../drafts/korean-business-forms/scripts/forms.mjs';
 
 const scratch = mkdtempSync(join(tmpdir(), 't5-korean-skills-2-'));
 after(() => rmSync(scratch, { recursive: true, force: true }));

@@ -5,8 +5,8 @@ import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, test } from 'node:test';
-import { buildForm, checkBizNo, computeTotals, hangulAmount, hangulNumber, koreanDate, readText } from '../skills/korean-business-forms/scripts/forms.mjs';
-import { checkFilled, mapForm, readInput } from '../skills/korean-gov-proposal/scripts/proposal.mjs';
+import { buildForm, checkBizNo, computeTotals, hangulAmount, hangulNumber, koreanDate, readText } from '../drafts/korean-business-forms/scripts/forms.mjs';
+import { checkFilled, mapForm, readInput } from '../drafts/korean-gov-proposal/scripts/proposal.mjs';
 
 const scratch = mkdtempSync(join(tmpdir(), 't5-korean-skills-'));
 after(() => rmSync(scratch, { recursive: true, force: true }));

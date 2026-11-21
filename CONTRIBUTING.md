@@ -4,7 +4,7 @@
 
 ## 1. 만들기
 
-1. `skills/<영문 짧은 이름>/` 폴더를 만든다. 이름은 소문자·숫자·하이픈, 64자 이하.
+1. `drafts/<영문 짧은 이름>/` 폴더를 만든다(검수 중 자리). 이름은 소문자·숫자·하이픈, 64자 이하.
 2. `SKILL.md` — `---` 머리말에 `name`(폴더 이름과 같게)·`description`(320자 이하, 언제 쓰는지 사장님 말로). 본문은 64KB 이하.
    - 무엇을 왜 그 순서로 하는지, 언제 쓰지 않는지, 흔한 실패, 결과 확인법을 쓴다.
    - 근거가 없는 숫자는 지어내지 않는다. 사람이 고를 값이면 고르게 하고, 기본값을 두면 까닭을 함께 적는다.
@@ -18,9 +18,9 @@
 ## 2. 검수
 
 1. `mount.json` 을 쓴다(다른 항목을 본보기로). 칸 뜻은 `schema/mount.schema.json`, 확인할 것은 [CHECKLIST.md](CHECKLIST.md) 1~8.
-2. `node tools/refresh-files.mjs skills/<이름>` 으로 파일 지문을 적는다.
+2. `node tools/refresh-files.mjs drafts/<이름>` 으로 파일 지문을 적는다.
 3. 티파이브 들이기 검사(CHECKLIST 1)를 돌려 거절 0·아직 못 쓰는 부분 0을 확인하고 `review.checks` 에 적는다.
-4. 처음에는 `status: "draft"`(검수 중). 같은 부탁을 기본 기능만으로 한 결과와 가린 채 견주는 판정까지 통과하면 `listed`(진열).
+4. 처음에는 `status: "draft"`(검수 중, `drafts/`). 같은 부탁을 기본 기능만으로 한 결과와 가린 채 견주는 판정까지 통과하면 `listed`(진열)로 바꾸고 폴더를 `skills/` 로 옮긴다(`git mv`). `skills/` 에 든 것은 저장소 첫 주소로 한꺼번에 들어가므로, 진열 항목만 둔다.
 5. 확인:
 
 ```bash
@@ -49,7 +49,7 @@ node tools/build-index.mjs && node tools/sign-index.mjs --key <저장소 밖 비
 
 티파이브 새 판이 나오면, 그 판에 실린 기본 스킬을 공개본으로 옮깁니다.
 
-1. 그 판을 지은 본선 커밋에서 스킬 폴더를 꺼내 `skills/<이름>/` 에 그대로 둔다(앱 기록 파일·숨은 파일 제외).
+1. 그 판을 지은 본선 커밋에서 스킬 폴더를 꺼내 `bundled/<이름>/` 에 그대로 둔다(앱 기록 파일·숨은 파일 제외).
 2. `mount.json` 의 `status: "bundled"`, `version` 과 `bundledIn.productVersion` 은 그 티파이브 판, `bundledIn.productCommit` 은 본선 커밋, `bundledIn.skillSha256` 은 그 판 `SKILL.md` 의 sha256. 검사기가 이 폴더의 `SKILL.md` 와 바이트까지 같은지 대조합니다.
 3. `CHANGELOG.md` 에 새 판 제목을 더하고, `LICENSE`(와 원형이 있으면 `NOTICE.md`)를 둔다.
 4. 공개 전에 내부 개발 흔적을 찾아 걷는다. 스킬 글(`SKILL.md`)에 흔적이 있으면 공개본에서 고치지 말고 앱 쪽을 먼저 고친다(공개본은 앱 판 그대로여야 함).

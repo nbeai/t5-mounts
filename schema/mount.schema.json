@@ -42,7 +42,7 @@
         "plugin",
         "hook"
       ],
-      "description": "들어 있는 최상위 폴더와 맞아야 한다(skills/·mcp/·cli/·plugins/·hooks/)."
+      "description": "들어 있는 최상위 폴더와 맞아야 한다(스킬은 상태에 따라 skills/ 진열·drafts/ 검수 중·내림·bundled/ 기본 탑재, 그 밖은 mcp/·cli/·plugins/·hooks/)."
     },
     "category": {
       "enum": [
