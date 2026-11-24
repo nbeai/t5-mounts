@@ -1,0 +1,151 @@
+{
+  "schema": "t5.mount.v1",
+  "id": "naver-first-page-record",
+  "kind": "skill",
+  "category": "홍보·콘텐츠",
+  "name": "네이버 첫 페이지 점유 기록",
+  "summary": "키워드로 네이버를 검색했을 때 첫 화면에 우리 상호가 들어간 글이 몇 개인지 모바일·PC 따로, 플레이스 순위와 함께 매일 쌓아 그래프와 달력으로 보여 줘요.",
+  "version": "0.1.0",
+  "status": "draft",
+  "origin": {
+    "type": "t5_made",
+    "upstream": null,
+    "changes": [],
+    "note": "티파이브 제작. 팀이 2026-11-04·11-24 네이버 실제 화면(모바일·PC)으로 맞춘 기록 스크립트를 작업 방법으로 묶음. 상위 5개·요청 간격 3초·화면 원본 14일 보관·그래프 90일은 만든 쪽이 정한 시작값이고 설정 한 줄로 바꿀 수 있다. 화면을 브라우저가 아니라 스크립트가 로그인 없이 직접 받는 방식이다."
+  },
+  "overrides": null,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 607,
+      "sha256": "b69cf0859ad65587d13a72cb4253cbb1397144b3ebaca4a00a92ecf338ac9754"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1122,
+      "sha256": "a0b24f83294522fd0be60a082f01fd2a29b970f0b75af7506da22233439768a9"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 7732,
+      "sha256": "7a7830b965c4a4f641f06b8364238732db6e6083b3a198be7b85dc2b1de62c0a"
+    },
+    {
+      "path": "scripts/naver-exposure.mjs",
+      "bytes": 48037,
+      "sha256": "791b9f9425a6c021dfb7836bbb6428b19c021180cb2eea1c94d26de744b6da52"
+    }
+  ],
+  "license": {
+    "spdx": "MIT",
+    "decided": true,
+    "redistribution": "allowed",
+    "upstreamLicense": null,
+    "note": "MIT(docs/결정-기록.md). 티파이브 본체는 이 라이선스와 무관."
+  },
+  "permissions": {
+    "files": {
+      "uses": true,
+      "note": "사람이 정한 기록 폴더에 설정 파일·누적 CSV 두 개·그래프 화면·기록 원본·받은 화면 원본을 새로 써요. 받은 화면 원본만 14일 뒤 스스로 지우고, 칸이 바뀐 옛 CSV는 지우지 않고 옆 이름으로 비켜 둬요. 그 폴더 밖은 건드리지 않아요."
+    },
+    "programs": {
+      "uses": true,
+      "note": "node 로 scripts/naver-exposure.mjs 하나를 돌려요. 설치하는 것은 없고 브라우저를 띄우지 않아요."
+    },
+    "internet": {
+      "uses": true,
+      "note": "네이버 공개 검색 화면(통합검색·블로그 탭 모바일/PC, 지도 목록)과 상위 글의 본문 주소를 로그인 없이 읽기만 해요. 모바일·PC 화면을 가려 받으려고 휴대폰·PC 기기 표시로 요청해요. 키워드 하나에 네이버 화면 5장 + 본문 최대 20개, 네이버 요청 사이 3초. 캡차가 나오면 멈춰요."
+    },
+    "externalSend": {
+      "uses": true,
+      "note": "검색 키워드가 검색어로 네이버에 가요. 대조 상호·기록·사장님 파일은 밖으로 보내지 않아요."
+    },
+    "money": {
+      "uses": false,
+      "note": "결제·유료 도구 없음."
+    }
+  },
+  "platforms": {
+    "macos": {
+      "supported": true,
+      "verified": true,
+      "note": "2026-11-24 macOS(node)에서 키워드 하나로 실제 네이버를 한 번 돌려(43초) 결과 줄·CSV 두 개·그래프 화면·오늘 목록이 나오고, 다시 돌리면 「오늘 할 키워드가 없습니다」가 되는 것을 확인. 매일 예약 실행과 여러 날 쌓인 그래프는 실기로 보지 않음."
+    },
+    "windows": {
+      "supported": true,
+      "verified": false,
+      "note": "확인 안 함. 스크립트는 Node 내장 기능만 써서 운영체제 분기가 없다."
+    }
+  },
+  "requires": [
+    "node(티파이브에 들어 있음)",
+    "인터넷 연결",
+    "매일 받으려면 티파이브 예약 작업"
+  ],
+  "t5MinVersion": "2.8.2",
+  "review": {
+    "date": "2026-11-24",
+    "result": "pending",
+    "reviewer": "t5-mounts 저장소 관리(Claude Code)",
+    "checks": [
+      {
+        "item": "1. 티파이브가 받아들이나",
+        "method": "본선 ce988fc45473b5ed080eec7148ff3422278aa676(2.8.2)의 inspectPackageSource(kind folder)를 이 폴더에, validateProcedureContent 를 SKILL.md 에 실행",
+        "result": "pass",
+        "note": "kind=skill, 거절 0, 아직 못 쓰는 부분 0, 스크립트 .mjs 1개, 라이선스 LICENSE 를 MIT 로 읽음, 바깥 주소는 네이버 넷(search·m.search·pcmap.place·m.blog). description 220자(한도 320). 대화에서 실제로 들이는 장면은 돌리지 않음."
+      },
+      {
+        "item": "2. 권한",
+        "method": "scripts/naver-exposure.mjs 620줄의 import·fetch·파일 쓰기·지우기 줄을 읽고 들이기 결과의 바깥 주소와 대조",
+        "result": "pass",
+        "note": "import 는 node:fs·zlib·path 뿐. fetch 는 GET 읽기만(20초 제한). 쓰기는 설정 파일과 dataDir 아래, 지우기는 dataDir/raw 의 보관 기한 지난 날짜 폴더뿐. 상위 글 본문은 검색 결과에 나온 주소라 네이버 밖 사이트도 읽는다(들이기 결과의 바깥 주소 목록에는 네이버 넷만 보임)."
+      },
+      {
+        "item": "3. 맥·Windows",
+        "method": "맥에서 스크립트 실행. Windows 는 코드만 읽음",
+        "result": "not_checked",
+        "note": "맥 확인. Windows 실기 확인 안 함."
+      },
+      {
+        "item": "4. 라이선스",
+        "method": "우리 제작물. 항목 폴더 LICENSE 를 티파이브 판별로 확인",
+        "result": "pass"
+      },
+      {
+        "item": "5. 경계(백업 없는 파괴·돈)",
+        "method": "SKILL.md·스크립트에서 지우기·덮어쓰기·결제 동작 찾기",
+        "result": "pass",
+        "note": "지우는 것은 스크립트가 받아 둔 화면 원본(14일 지난 것)뿐. 사람의 파일을 고치거나 지우지 않음. 결제 없음."
+      },
+      {
+        "item": "6. 비교군 이름 0",
+        "method": "SKILL.md·스크립트를 읽어 다른 AI 제품 이름 찾기",
+        "result": "pass",
+        "note": "「AI 브리핑」은 네이버 검색 화면의 묶음 이름으로만 씀."
+      },
+      {
+        "item": "7. 비밀값 0",
+        "method": "tools/validate.mjs 의 비밀값 모양 검사",
+        "result": "pass"
+      },
+      {
+        "item": "8. 고정과 지문",
+        "method": "tools/refresh-files.mjs 로 files 를 적음",
+        "result": "pass",
+        "note": "숨은 파일·링크 0."
+      },
+      {
+        "item": "9. 가린 비교 판정",
+        "method": "같은 부탁을 이 방법 없이 한 결과와 가린 채 견주기",
+        "result": "not_checked",
+        "note": "아직 하지 않음. 이 칸이 끝나기 전에는 진열하지 않는다."
+      },
+      {
+        "item": "10. 자동으로 읽는 방식과 네이버 이용 조건",
+        "method": "로그인 없이 기기 표시를 정해 검색 화면을 직접 받는 방식이 네이버 이용 조건·수집 안내에 맞는지 확인",
+        "result": "not_checked",
+        "note": "확인 안 함. 이 칸을 확인하기 전에는 진열하지 않는다."
+      }
+    ]
+  }
+}
